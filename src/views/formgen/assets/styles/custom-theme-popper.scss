@@ -1,0 +1,85 @@
+//// ElementUI 会把弹窗的元素直接挂在根节点 非scoped生效的样式
+//// SELECT
+//.t-select-popper {
+//  color: $themeColor !important;
+//}
+//
+//.t-select-popper {
+//  .el-select-dropdown__item.selected {
+//    color: $themeColor !important;
+//    font-weight: 700;
+//  }
+//}
+//
+////Cascader
+//.t-cascader-popper {
+//  .el-cascader__suggestion-item.is-checked {
+//    color: $themeColor;
+//    font-weight: 700;
+//  }
+//
+//  .el-cascader-node.in-active-path,
+//  .el-cascader-node.is-active,
+//  .el-cascader-node.is-selectable.in-checked-path {
+//    color: $themeColor;
+//    font-weight: 700;
+//  }
+//}
+//
+//// DATE
+//.t-date-picker {
+//  .el-date-table td.today span {
+//    color: $themeColor;
+//    font-weight: 700;
+//  }
+//
+//  .el-date-table td.available:hover {
+//    color: $themeColor;
+//  }
+//
+//  .el-date-table td.current:not(.disabled) span {
+//    background-color: $themeColor;
+//  }
+//
+//  .el-date-table td.end-date span,
+//  .el-date-table td.start-date span {
+//    background-color: $themeColor;
+//  }
+//
+//  .el-date-table td.selected span {
+//    background-color: $themeColor;
+//  }
+//
+//  .el-month-table td.today .cell {
+//    color: $themeColor;
+//  }
+//
+//  .el-month-table td .cell:hover {
+//    color: $themeColor;
+//  }
+//
+//  .el-month-table td.end-date .cell,
+//  .el-month-table td.start-date .cell {
+//    background-color: $themeColor;
+//  }
+//
+//  .el-month-table td.current:not(.disabled) .cell {
+//    color: $themeColor;
+//  }
+//
+//  .el-year-table td.today .cell {
+//    color: $themeColor;
+//  }
+//
+//  .el-year-table td .cell:hover {
+//    color: $themeColor;
+//  }
+//
+//  .el-year-table td.current:not(.disabled) .cell {
+//    color: $themeColor;
+//  }
+//
+//  .el-time-spinner__arrow:hover {
+//    color: $themeColor;
+//  }
+//}

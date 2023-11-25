@@ -1,0 +1,165 @@
+.project-form-wrapper {
+  transition: all 0.3s;
+  width: 100%;
+
+  background-color: var(--form-theme-backgroundColor);
+  overflow: auto;
+  // 高度不百分百背景会不完全显示
+  height: 100%;
+  position: relative;
+
+  --el-text-color-regular: var(--form-theme-optionFontColor, #3d3d3d);
+  --el-font-size-base: var(--form-theme-optionFontSize, #3d3d3d);
+
+  .el-input__inner {
+    height: calc(var(--form-theme-optionFontSize, 14px) + 16px);
+    line-height: calc(var(--form-theme-optionFontSize, 14px) + 16px);
+  }
+
+  // 处理饿了吗不的样式
+  .el-form-item__label {
+    font-size: var(--form-theme-labelFontSize, 14px);
+    color: var(--form-theme-labelFontColor, #3d3d3d);
+  }
+
+  .el-radio__label {
+    font-size: var(--form-theme-optionFontSize, 14px) !important;
+    color: var(--form-theme-optionFontColor, #3d3d3d) !important;
+
+    span {
+      font-size: var(--form-theme-optionFontSize, 14px) !important;
+      color: var(--form-theme-optionFontColor, #3d3d3d) !important;
+      display: flex;
+    }
+  }
+
+  .el-image__inner {
+    border-radius: 12px 12px 0 0;
+  }
+}
+
+.project-form {
+  margin: 50px auto;
+  max-width: 800px;
+  background-repeat: repeat;
+  background-color: #ffffff;
+  //box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+.form-name-text {
+  padding: 20px 30px 10px;
+  border: 1px dashed transparent;
+  line-height: 30px;
+  margin: 0;
+  display: var(--form-theme-showFormTitle, block);
+}
+
+.describe-html {
+  padding: 5px 30px;
+  border: 1px dashed transparent;
+  display: var(--form-theme-showFormDescribe, block);
+}
+
+.project-form .describe-html img {
+  max-width: 780px;
+  margin: 0;
+}
+
+.project-body::-webkit-scrollbar {
+  width: 0 !important;
+  background: transparent;
+}
+
+.project-body {
+  -ms-overflow-style: none;
+}
+
+.logo-img-wrap {
+  text-align: var(--form-theme-logoPosition, center);
+}
+
+.logo-img {
+  max-height: 120px;
+}
+
+.submit-btn {
+  display: var(--form-theme-showSubmitBtn, block);
+  font-size: 16px;
+}
+
+.submit-btn-form-item button {
+  width: 30%;
+}
+
+.top-login-user {
+  display: var(--form-theme-showTopUserInfo, block) !important;
+}
+
+.support-text {
+  color: #545454;
+  text-shadow: 0 1px 1px #e9e9e9;
+  margin-top: 20px;
+  padding-bottom: 30px;
+  display: var(--form-theme-showSupport, block);
+}
+
+.foot-text {
+  color: #545454;
+  text-shadow: 0 1px 1px #e9e9e9;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  display: var(--form-theme-showFootDescription);
+}
+
+.confirm-warp {
+  height: 90vh;
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: flex-start;
+  justify-content: center;
+  align-items: center;
+
+  i {
+    color: #bfbfbf;
+    font-size: 80px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .project-form-wrapper {
+    padding: 0;
+  }
+  .project-form {
+    width: 100% !important;
+    margin-top: 20px !important;
+  }
+  .logo-img {
+    max-height: 2.94rem;
+  }
+  .submit-btn-form-item {
+    text-align: center;
+  }
+  .submit-btn-form-item button {
+    width: 80%;
+  }
+  .project-form .describe-html img {
+    width: 95vw !important;
+  }
+
+  .el-form-item__label {
+    margin-bottom: 5px !important;
+  }
+  :deep(.el-form-item__label) {
+    width: 100% !important;
+    display: flex !important;
+    align-content: center !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    flex-wrap: nowrap !important;
+    flex-direction: row !important;
+  }
+  :deep(.t-gen-form > .el-col) {
+    margin-top: 15px !important;
+  }
+}

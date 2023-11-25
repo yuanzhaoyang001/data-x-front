@@ -1,0 +1,62 @@
+{
+  "card": {
+    "copy": "Copy",
+    "createTime": "Creation Time",
+    "data": "Data",
+    "delFolderText": "Are you sure to delete this folder?",
+    "delete": "Delete",
+    "edit": "Edit",
+    "isDelete": "Are you sure to delete this form ?",
+    "move": "Move",
+    "noData": "No Data",
+    "numText": "Pieces",
+    "publish": "Publish",
+    "reName": "Rename",
+    "statistics": "Statistics",
+    "stop": "Stop",
+    "updateTime": "Update Time"
+  },
+  "label": {
+    "one1": "User name login",
+    "two2": "Mobile number"
+  },
+  "my": {
+    "cancel": "Cancel",
+    "chooseFolder": "Please choose a folder",
+    "folderName": "FolderName",
+    "folderNameRequired": "Folder name cannot be empty",
+    "moveFolder": "MoveFolder",
+    "myForm": "MyForm",
+    "newFolder": "NewFolder",
+    "noNameSurvey": "Unnamed survey",
+    "renameFolder": "RenameFolder",
+    "rootDirectory": "Root directory",
+    "search": "Enter a project name",
+    "yes": "Confirm"
+  },
+  "table": {
+    "copy": "Copy",
+    "createTime": "Creation Time",
+    "createUser": "Creator",
+    "data": "Data",
+    "delFolderText": "Are you sure you want to delete this folder?",
+    "delForm": "Are you sure you want to delete this file?",
+    "delete": "Delete",
+    "edit": "Edit",
+    "folder": "Folder",
+    "formType": "Form Type",
+    "more": "More",
+    "move": "Move",
+    "noData": "No Data",
+    "ok": "Okay",
+    "operate": "Operation",
+    "publish": "Publish",
+    "reName": "Rename",
+    "statistics": "Statistics",
+    "status": "Status",
+    "stop": "Stop",
+    "stopText": "Are you sure you want to delete this folder?",
+    "title": "Form Title",
+    "updateTime": "Update Time"
+  }
+}

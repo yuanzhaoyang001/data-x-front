@@ -1,0 +1,26 @@
+{
+  "label": {
+    "one1": "User name login",
+    "two2": "Mobile number"
+  },
+  "login": {
+    "ServiceTerms": "Service Terms",
+    "copyright": {
+      "one5": "Copyright © 2018-2023 tduckcloud.com All Rights Reserved."
+    },
+    "loginBtnText": "Sign in",
+    "loginInBtnText": "In the login...",
+    "nameCheck": "Account length must be between 2 and 20 characters.",
+    "notRegText": "Not registered",
+    "otherLogin": "Others",
+    "placeholderName": "Please enter a user name",
+    "placeholderPwd": "Please enter your password",
+    "protocol": "Login signifies agreement",
+    "pwdCheck": "Password length is between 5 and 20 characters.",
+    "pwdRepeatCheck": "The two entered passwords do not match.",
+    "registerNow": "Register Now",
+    "rememberPwdText": "Remember the password",
+    "type": "login",
+    "wechatLogin": "WeChat login"
+  }
+}

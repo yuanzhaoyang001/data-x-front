@@ -1,0 +1,17 @@
+{
+  "addSuccess": "Successfully added",
+  "cancel": "Cancel",
+  "close": "Close",
+  "createTime": "Creation time",
+  "delete": "delete",
+  "deleteConfirm": "Are you sure to delete this data?",
+  "edit": "edit",
+  "enter": "OK",
+  "filed": "Field",
+  "preview": "Preview",
+  "save": "Save",
+  "saveFail": "Save failed",
+  "saveSuccess": "Save successful",
+  "submit": "Submit",
+  "updateSuccess": "Successfully modified"
+}

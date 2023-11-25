@@ -1,0 +1,62 @@
+{
+  "card": {
+    "copy": "复制",
+    "createTime": "创建时间",
+    "data": "数据",
+    "delFolderText": "确认删除该文件夹？",
+    "delete": "删除",
+    "edit": "编辑",
+    "isDelete": "此操作将删除该文件, 是否继续?",
+    "move": "移动",
+    "noData": "暂无数据",
+    "numText": "份",
+    "publish": "发布",
+    "reName": "重命名",
+    "statistics": "统计",
+    "stop": "停止",
+    "updateTime": "更新时间"
+  },
+  "label": {
+    "one1": "用户名登录",
+    "two2": "手机号登录"
+  },
+  "my": {
+    "cancel": "取消",
+    "chooseFolder": "请选择文件夹",
+    "folderName": "文件夹名称",
+    "folderNameRequired": "文件夹名称不能为空",
+    "moveFolder": "移动文件夹",
+    "myForm": "我的表单",
+    "newFolder": "新建文件夹",
+    "noNameSurvey": "未命名问卷",
+    "renameFolder": "重命名文件夹",
+    "rootDirectory": "根目录",
+    "search": "请输入项目名称",
+    "yes": "确认"
+  },
+  "table": {
+    "copy": "复制",
+    "createTime": "创建时间",
+    "createUser": "创建人",
+    "data": "数据",
+    "delFolderText": "确认删除该文件夹？",
+    "delForm": "确认删除该文件吗？",
+    "delete": "删除",
+    "edit": "编辑",
+    "folder": "文件夹",
+    "formType": "表单类型",
+    "more": "更多",
+    "move": "移动",
+    "noData": "暂无数据",
+    "ok": "好的",
+    "operate": "操作",
+    "publish": "发布",
+    "reName": "重命名",
+    "statistics": "统计",
+    "status": "表单状态",
+    "stop": "停止",
+    "stopText": "确认删除该文件夹？",
+    "title": "表单标题",
+    "updateTime": "更新时间"
+  }
+}

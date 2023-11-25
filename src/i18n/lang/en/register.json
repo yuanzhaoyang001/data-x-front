@@ -1,0 +1,22 @@
+{
+  "label": {
+    "one1": "User name login",
+    "two2": "Mobile number"
+  },
+  "register": {
+    "account": "Existing Account",
+    "agreement": "Read and agree",
+    "conformPwd": "Confirm Password",
+    "copyright": {
+      "one5": "Copyright © 2018-2021 tduckcloud.com All Rights Reserved."
+    },
+    "handleRegister": "Register",
+    "inputAccount": "Please enter your account number",
+    "inputNickname": "Please enter your nickname",
+    "inputPwd": "Please enter your password",
+    "loginNow": "login Now",
+    "registerIng": "Registering",
+    "term": "Term of service",
+    "type": "Register"
+  }
+}

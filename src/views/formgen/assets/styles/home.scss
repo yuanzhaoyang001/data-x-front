@@ -1,0 +1,465 @@
+.form-edit-container {
+  position: relative;
+  width: 100%;
+  overflow-y: hidden;
+  background-color: var(--el-bg-color-page);
+  overflow-x: hidden !important;
+  height: calc(100vh - 50px);
+}
+
+// 组件列表
+.components-list {
+  padding: 8px;
+  box-sizing: border-box;
+  height: 100%;
+  color: #333333;
+
+  .components-title {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    padding-left: 7px;
+  }
+
+  .components-draggable {
+    padding-bottom: 20px;
+  }
+
+  .components-item {
+    display: inline-block;
+    width: 48%;
+    height: 40px;
+    margin: 1%;
+    cursor: move;
+    font-size: 14px;
+    color: #333333;
+
+    .components-body {
+      padding: 8px 10px;
+      font-size: 12px;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      background: #f7f7f7;
+      vertical-align: middle;
+      margin-bottom: 8px;
+      white-space: nowrap;
+      display: flex;
+
+      svg {
+        font-size: 16px;
+        font-weight: 700;
+        margin-right: 8px;
+      }
+
+      &:hover {
+        color: var(--el-color-primary);
+        background-color: var(--el-color-primary-light-9);
+
+        svg {
+          color: var(--el-color-primary) !important;
+        }
+      }
+    }
+  }
+}
+
+// 左侧面板
+.left-board {
+  width: 350px;
+  position: absolute;
+  //left: 20px;
+  top: 0px;
+  border-radius: 0px;
+  bottom: 20px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 100);
+  //box-shadow: var(--el-box-shadow);
+  border: 1px solid rgba(255, 255, 255, 100);
+
+  .left-tabs {
+    height: 100%;
+
+    .el-tab-pane {
+      height: 100%;
+    }
+
+    .tabs-label {
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+
+      span {
+        margin-top: 5px;
+        font-size: 12px;
+      }
+
+      .el-icon,
+      i {
+        font-size: 20px;
+      }
+    }
+
+    .el-tabs__item:focus-visible {
+      box-shadow: none;
+    }
+
+    .el-tabs__item {
+      padding: 0 10px !important;
+      justify-content: center;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .el-tabs__active-bar {
+      display: none;
+    }
+
+    .el-tabs__header {
+      border-right: var(--el-border);
+      padding-top: 10px;
+      margin-right: 0 !important;
+    }
+  }
+}
+
+.el-menu.el-menu--horizontal {
+  border-bottom: none;
+}
+
+.left-scrollbar {
+  height: 97%;
+  overflow: hidden;
+  margin: 0;
+  border-radius: 7px;
+}
+
+// 中间滑块
+.center-scrollbar {
+  height: 97%;
+  overflow: hidden;
+  width: 85%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.center-board {
+  height: 100%;
+  width: auto;
+  margin: 0 346px 85px 346px;
+  box-sizing: border-box;
+}
+
+.empty-info {
+  position: absolute;
+  top: 36%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: var(--el-font-size-base);
+  color: var(--el-text-color);
+  letter-spacing: 4px;
+  font-weight: 400;
+  height: 180px;
+  width: 95%;
+  margin: 0 auto;
+  border: var(--el-border-width) dashed var(--el-color-primary-light-3);
+  border-radius: 5px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  // 镜像翻转
+  .pointer {
+    transform: rotate(250deg);
+  }
+}
+
+.operation-btn-view {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  width: 90%;
+  margin: 0 auto;
+  padding: 5px;
+  border-bottom: 1px #dcdfe6 solid;
+}
+
+.center-board-row {
+  padding: 12px 12px 15px 12px;
+  box-sizing: border-box;
+  overflow-y: hidden;
+  margin-bottom: 50px;
+}
+
+.drawing-board {
+  height: 100%;
+  min-height: 50vh;
+  position: relative;
+
+  .components-body {
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+  }
+
+  .sortable-ghost {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 60px;
+
+    &::before {
+      content: " ";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 3px;
+      background: var(--el-color-primary);
+      z-index: 2;
+    }
+  }
+
+  .el-form-item {
+    margin-bottom: 15px;
+  }
+}
+
+// 自增表单
+.drawing-item {
+  .batch-box {
+    & > .batch-label {
+      font-size: 16px;
+      font-weight: 500;
+      padding: 10px 10px;
+    }
+
+    .draggable-box {
+      min-height: 60px;
+      width: 100%;
+      border: 1px #ccc dashed;
+      background: #fff;
+
+      .drawing-item-operation-wrap {
+        width: 50px;
+      }
+
+      .list-main {
+        min-height: 60px;
+        position: relative;
+        border: 1px #ccc dashed;
+        overflow-x: auto;
+        overflow-y: auto;
+        white-space: nowrap;
+        padding: 10px;
+
+        .moving {
+          width: 175px;
+          min-height: 94px;
+          display: inline-block;
+          box-sizing: border-box;
+          overflow: hidden;
+          padding: 0 !important;
+          position: relative;
+        }
+
+        .moving::before {
+          content: "";
+          height: 5px;
+          width: 100%;
+          background: #409eff;
+          position: absolute;
+          top: 0;
+          right: 0;
+        }
+
+        .drag-move:hover {
+          & > .drawing-item-copy,
+          & > .drawing-item-plus,
+          & > .drawing-item-delete {
+            display: initial;
+          }
+        }
+
+        & > div {
+          min-width: 185px;
+          display: inline-block;
+          vertical-align: top;
+          border: 1px #dfe4ed dashed;
+          position: relative;
+          margin: 0px 2px;
+        }
+
+        .drag-move-box {
+          position: relative;
+          box-sizing: border-box;
+          padding: 8px;
+          overflow: hidden;
+          //transition: all 0.1s;
+          min-height: 36px;
+        }
+      }
+    }
+  }
+}
+
+// END  自增表单结束
+
+.drawing-item {
+  box-shadow: 0 0 10px 0 rgba(78, 89, 105, 0.1);
+  background-color: var(--el-bg-color-overlay);
+  border-radius: 6px;
+  margin-bottom: 8px;
+  border: 1px dashed transparent;
+  position: relative;
+  padding: 10px 0;
+
+  &.active-from-item {
+    border: 1px solid var(--el-color-primary-light-5);
+    background-color: #fafafa;
+    transition: all 0.1s;
+
+    & > .drawing-item-operation-wrap {
+      visibility: visible;
+    }
+  }
+
+  .el-form-item {
+    padding: 11px 10px 10px 20px;
+  }
+
+  &:hover {
+    border: 1px solid var(--el-color-primary-light-5);
+
+    & > .drawing-item-operation-wrap {
+      visibility: visible;
+    }
+  }
+
+  .drawing-item-operation-wrap {
+    visibility: hidden;
+    position: absolute;
+    top: 5px;
+    right: 9px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 1;
+    display: flex;
+    width: 90px;
+    justify-content: space-between;
+
+    .el-icon {
+      color: #606266;
+      font-size: 16px;
+    }
+  }
+
+  & .mover {
+    right: 90px !important;
+    color: #484848;
+    cursor: move;
+  }
+
+  & .drawing-item-copy {
+    &:hover {
+      .el-icon {
+        color: var(--el-color-primary);
+      }
+    }
+  }
+
+  & .drawing-item-plus {
+    &:hover {
+      .el-icon {
+        color: var(--el-color-success);
+      }
+    }
+  }
+
+  & .drawing-item-delete {
+    &:hover {
+      .el-icon {
+        color: var(--el-color-danger);
+      }
+    }
+  }
+}
+
+.form-desc-wrap {
+  box-shadow: var(--el-box-shadow-light);
+  padding: 30px;
+  background-color: var(--el-bg-color-overlay);
+  border-radius: 6px;
+  min-height: 120px;
+  margin-top: 5px;
+  position: relative;
+
+  .form-name-text {
+    padding: 20px 30px 10px;
+    border: 1px dashed transparent;
+    line-height: 30px;
+    margin: 0;
+  }
+
+  .describe-html {
+    padding: 5px 30px;
+    border: 1px dashed transparent;
+  }
+
+  .form-name-text input {
+    border: none;
+    background-color: transparent;
+  }
+
+  [contenteditable]:focus {
+    outline: none;
+    background-color: #f4f4f4;
+    border: 1px solid #f4f4f4;
+  }
+
+  .center-name-box {
+    margin: 0 10px 15px;
+  }
+
+  .center-desc-box {
+    margin: 0 10px 15px;
+    line-height: 20px;
+  }
+}
+
+.design-form {
+  margin-top: 20px;
+
+  .el-row {
+    align-content: flex-start;
+  }
+}
+
+// 考试
+.evaluation-total-score {
+  position: absolute;
+  right: 22px;
+  top: 15px;
+  border-radius: 4px;
+  min-width: 65px;
+  min-height: 65px;
+  background-color: var(--el-color-primary);
+
+  .total-score-title {
+    margin-top: 2px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 14px;
+    color: #fff;
+  }
+
+  .total-score {
+    text-align: center;
+    font-weight: 700;
+    font-size: 30px;
+    color: #fff;
+  }
+}

@@ -1,0 +1,40 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 2839103 */
+  src:
+    url("iconfont.woff2?t=1632795697691") format("woff2"),
+    url("iconfont.woff?t=1632795697691") format("woff"),
+    url("iconfont.ttf?t=1632795697691") format("truetype");
+}
+
+[class^="tduck-"],
+[class*=" tduck-"] {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.tduck-taiyang:before {
+  content: "\e64c";
+}
+
+.tduck-biaoqing-weixiao:before {
+  content: "\e611";
+}
+
+.tduck-dianzan:before {
+  content: "\ec7f";
+}
+
+.tduck-aixin:before {
+  content: "\e8ab";
+}
+
+.tduck-star:before {
+  content: "\e9a1";
+}
+
+.tduck-moonyueliang:before {
+  content: "\e6dd";
+}

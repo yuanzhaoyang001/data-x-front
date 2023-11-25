@@ -1,0 +1,26 @@
+{
+  "label": {
+    "one1": "用户名登录",
+    "two2": "手机号登录"
+  },
+  "login": {
+    "ServiceTerms": "服务条款",
+    "copyright": {
+      "one5": "Copyright © 2018-2023 tduckcloud.com All Rights Reserved."
+    },
+    "loginBtnText": "登 录",
+    "loginInBtnText": "登 录 中...",
+    "nameCheck": "用户账号长度必须介于 2 和 20 之间",
+    "notRegText": "没有注册",
+    "otherLogin": "其他方式",
+    "placeholderName": "请输入用户名",
+    "placeholderPwd": "请输入密码",
+    "protocol": "登录即表示同意",
+    "pwdCheck": "密码介于5-20位之间",
+    "pwdRepeatCheck": "两次输入的密码不一致",
+    "registerNow": "立即注册",
+    "rememberPwdText": "记住密码",
+    "type": "登录",
+    "wechatLogin": "微信登录"
+  }
+}

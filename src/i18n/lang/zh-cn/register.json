@@ -1,0 +1,22 @@
+{
+  "label": {
+    "one1": "用户名登录",
+    "two2": "手机号登录"
+  },
+  "register": {
+    "account": "已有账户",
+    "agreement": "已阅读并同意以下协议",
+    "conformPwd": "确认密码",
+    "copyright": {
+      "one5": "Copyright © 2018-2021 tduckcloud.com All Rights Reserved."
+    },
+    "handleRegister": "注册",
+    "inputAccount": "请输入账号",
+    "inputNickname": "请输入昵称",
+    "inputPwd": "请输入密码",
+    "loginNow": "立即登录",
+    "registerIng": "注册中...",
+    "term": "服务条款",
+    "type": "登录"
+  }
+}

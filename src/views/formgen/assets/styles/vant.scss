@@ -1,0 +1,9 @@
+$base-color: #1890ff;
+
+:deep(.van-tabs__line) {
+  background-color: $base-color !important;
+}
+
+:deep(.van-cascader__option--selected) {
+  color: $base-color;
+}

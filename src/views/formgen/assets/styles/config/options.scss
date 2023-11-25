@@ -1,0 +1,35 @@
+.select-item {
+  display: flex;
+  border: 1px dashed #fff;
+  box-sizing: border-box;
+  align-items: center;
+
+  & .close-btn {
+    cursor: pointer;
+    color: #f56c6c;
+  }
+
+  & .el-input + .el-input {
+    margin-left: 4px;
+  }
+}
+
+.select-item + .select-item {
+  margin-top: 4px;
+}
+
+.select-item.sortable-chosen {
+  border: 1px dashed #409eff;
+}
+
+.select-line-icon {
+  line-height: 32px;
+  font-size: 22px;
+  padding: 0 4px;
+  color: #777;
+  display: flex;
+}
+
+.option-drag {
+  cursor: move;
+}
