@@ -173,6 +173,11 @@ const handleChange = (val: any) => {
       emits("update:value", noExclusive);
     }
   }
+  // 记录分值
+  const scoreOptions = props.item?.config.options
+    .filter((item: any) => val.indexOf(item.value) > -1 && item.score)
+    .map((item: any) => item.score);
+  props.models[`${props.item?.vModel}score`] = scoreOptions.reduce((acc: number, curr: number) => acc + curr, 0);
 };
 
 const handleInputValueChange = (val: any) => {

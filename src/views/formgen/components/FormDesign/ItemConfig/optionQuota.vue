@@ -21,7 +21,7 @@
             </div>
             <div>
               <el-popover
-                v-model="quotaSettingVisible"
+                v-model:visible="quotaSettingVisible"
                 trigger="click"
                 width="300"
               >
@@ -32,7 +32,6 @@
                       v-model="quota"
                       :min="0"
                       class="w100"
-                      placeholder=""
                     ></el-input-number>
                   </div>
                   <div>
@@ -207,7 +206,7 @@ const openQuotaSetting = () => {
 
 const onQuotaSetting = () => {
   props.activeData.config.options.map((e: any) => {
-    e.quotaSetting = "";
+    e.quotaSetting = quota.value;
     return e;
   });
   quotaSettingVisible.value = false;

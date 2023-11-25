@@ -46,9 +46,27 @@
         <el-button v-else>{{ $t("formgen.radio.notSetting") }}</el-button>
       </div>
     </el-form-item>
+    <el-form-item :label="$t('formgen.radio.scoreSetting')">
+      <div
+        class="cp"
+        @click="$refs.optionScoreDialog.openQuotaSetting()"
+      >
+        <el-button
+          v-if="isScoreSetting"
+          type="primary"
+        >
+          {{ $t("formgen.radio.isSetting") }}
+        </el-button>
+        <el-button v-else>{{ $t("formgen.radio.notSetting") }}</el-button>
+      </div>
+    </el-form-item>
     <option-quota
       :active-data="activeData"
       ref="optionQuotaDialog"
+    />
+    <option-score
+      ref="optionScoreDialog"
+      :active-data="activeData"
     />
 
     <!--    <el-form-item
@@ -66,57 +84,51 @@
 				</el-form-item>-->
   </div>
 </template>
-
 <script>
+export default {
+  name: "ConfigItemRadio"
+};
+</script>
+
+<script name="ConfigItemRadio" setup>
 import ConfigItemOption from "./option.vue";
 import OptionQuota from "./optionQuota.vue";
+import OptionScore from "./optionScore.vue";
+import { computed, onBeforeMount } from "vue";
 
-export default {
-  name: "ConfigItemRadio",
-  components: {
-    ConfigItemOption,
-    OptionQuota
-  },
-  props: ["activeData"],
-  data() {
-    return {
-      dialogVisible: false,
-      quotaSettingVisible: false,
-      quota: ""
-    };
-  },
-  computed: {
-    isQuotaSetting() {
-      const arr = this.activeData.config.options.filter(e => {
-        return typeof e.quotaSetting === "number";
-      });
-      return arr.length;
-    }
-  },
-  created() {
-    if (!Object.hasOwnProperty.call(this.activeData.config, "withExclusiveChoice")) {
-      this.activeData.config.withExclusiveChoice = false;
-      this.activeData.config.exclusiveChoiceApiCodes = [];
-      this.activeData.config.quotaBlankWarning = "";
-      this.activeData.config.quotaCycleRule = "fixed";
-      this.activeData.config.hideQuota = false;
-      this.activeData.config.hideChoiceWhenQuotaEmpty = false;
-      this.activeData.config.quotaRecoverable = true;
-    }
-  },
-  methods: {
-    onQuotaSetting() {
-      const { quota } = this;
-      this.activeData.config.options.map(e => {
-        e.quota = quota;
-        e.quotaSetting = quota;
-        return e;
-      });
-      this.quotaSettingVisible = false;
-    },
-    onChangeQuota(scope) {
-      scope.row.quota = scope.row.quotaSetting;
+const props = defineProps({
+  activeData: {
+    type: Object,
+    default() {
+      return {};
     }
   }
-};
+});
+
+const isQuotaSetting = computed(() => {
+  const arr = props.activeData.config.options.filter(e => {
+    return typeof e.quotaSetting === "number";
+  });
+  return arr.length;
+});
+
+const isScoreSetting = computed(() => {
+  const arr = props.activeData.config.options.filter(e => {
+    return typeof e.score === "number";
+  });
+  return arr.length;
+});
+
+onBeforeMount(() => {
+  console.log(props.activeData);
+  if (!Object.hasOwnProperty.call(props.activeData.config, "withExclusiveChoice")) {
+    props.activeData.config.withExclusiveChoice = false;
+    props.activeData.config.exclusiveChoiceApiCodes = [];
+    props.activeData.config.quotaBlankWarning = "";
+    props.activeData.config.quotaCycleRule = "fixed";
+    props.activeData.config.hideQuota = false;
+    props.activeData.config.hideChoiceWhenQuotaEmpty = false;
+    props.activeData.config.quotaRecoverable = true;
+  }
+});
 </script>

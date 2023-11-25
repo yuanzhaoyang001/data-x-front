@@ -1,4 +1,4 @@
-import { EditorView, Decoration, ViewPlugin, WidgetType, MatchDecorator } from "@codemirror/view";
+import { Decoration, EditorView, MatchDecorator, ViewPlugin, WidgetType } from "@codemirror/view";
 
 /**
  * 自定义一个组件 显示自定义的标签
@@ -37,20 +37,26 @@ const placeholderMatcher = new MatchDecorator({
 class PlaceholderWidget extends WidgetType {
   label;
 
-  constructor(label) {
+  constructor(label: string) {
     super();
     this.label = label;
   }
 
-  eq(other) {
+  eq(other: { label: string }) {
     return other.label === this.label;
   }
 
   toDOM() {
     let wrap = document.createElement("span");
     console.log(customFieldLabelMap);
-    let value = this.label.replace("#{", "").replace("}", "");
-    wrap.innerHTML = customFieldLabelMap[value] || value;
+    // 普通的说明是题目引用标签 如果带有score表示引用分数
+    if (this.label.endsWith("score}")) {
+      let value = this.label.replace("#{", "").replace("}", "").replace("score", "");
+      wrap.innerHTML = customFieldLabelMap[value] + "(分值)" || value;
+    } else {
+      let value = this.label.replace("#{", "").replace("}", "");
+      wrap.innerHTML = customFieldLabelMap[value] || value;
+    }
     wrap.className = "cm-field-value";
     return wrap;
   }
@@ -74,7 +80,7 @@ const tduckTheme = EditorView.baseTheme({
   }
 });
 
-let customFieldLabelMap = {};
+let customFieldLabelMap: any = {};
 
 const setCustomFieldLabelMap = (obj: any) => {
   customFieldLabelMap = obj;

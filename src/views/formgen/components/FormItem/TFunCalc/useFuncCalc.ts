@@ -99,7 +99,10 @@ export function useFuncCalcHook() {
   };
 
   const handleValue = (key: string, val: any, modelVal: any) => {
+    debugger;
     if (key.startsWith("number")) {
+      return val;
+    } else if (key.endsWith("score")) {
       return val;
     } else if (isLabelTag(key)) {
       return `'${modelVal[`${key}label`]}'`;

@@ -49,6 +49,18 @@
                     >
                       <span class="menu-item with-capsule">{{ f.label }}</span>
                     </el-tooltip>
+                    <span
+                      v-if="f.key.startsWith('radio') || f.key.startsWith('checkbox')"
+                      class="score"
+                      @click="
+                        event => {
+                          event.stopPropagation();
+                          handleFieldClick({ key: f.key + 'score', label: f.label + '(分值)' });
+                        }
+                      "
+                    >
+                      {{ $t("formgen.funcalc.scoreVal") }}
+                    </span>
                   </li>
                 </ul>
               </el-scrollbar>
@@ -265,12 +277,29 @@ export default {
     overflow: hidden;
     // 禁止换行
     white-space: nowrap;
+    position: relative;
   }
 
   .field:hover {
     background: #f6f8f9;
     color: rgba(0, 0, 0, 0.75);
     cursor: pointer;
+  }
+
+  .score {
+    cursor: pointer;
+    height: 28px;
+    line-height: 25px;
+    width: 33px;
+    font-size: 12px;
+    border-radius: 12px;
+    color: #ffffff;
+    padding: 4px;
+    text-align: center;
+    background-color: var(--el-color-primary);
+    position: absolute;
+    right: 5px;
+    display: inline-block;
   }
 }
 </style>

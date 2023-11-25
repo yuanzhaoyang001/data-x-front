@@ -124,6 +124,8 @@ const handleClick = (option: any) => {
   if (option.type !== "input") {
     props.models[`${props.item?.vModel}label`] = option.value === changeValue.value ? removeHtmlTag(option.label) : null;
   }
+  // 分值
+  props.models[`${props.item?.vModel}score`] = option.value === changeValue.value ? option.score : 0;
   // 自动下一页
   nextTick(() => {
     if (changeValue) {

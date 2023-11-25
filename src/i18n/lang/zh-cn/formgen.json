@@ -252,7 +252,8 @@
     "formula": "计算公式",
     "searchFun": "搜索函数",
     "title": "函数计算",
-    "varName": "请输入变量名"
+    "varName": "请输入变量名",
+    "scoreVal": "分值"
   },
   "goodsConfig": {
     "addGoods": "添加商品",
@@ -455,6 +456,9 @@
     "resetQuota": "选项名额重置",
     "title": "名额设置"
   },
+  "optionScore": {
+    "title": "分值设置"
+  },
   "phoneVerification": {
     "placeholder": "请输入手机号完成验证",
     "smsCode": "验证码"
@@ -473,6 +477,7 @@
     "isSetting": "已设置",
     "notSetting": "未设置",
     "numberSetting": "名额设置",
+    "scoreSetting": "分值设置",
     "otherOption": "其他选项必填",
     "showVoteResult": "显示投票结果",
     "transverse": "横向"
