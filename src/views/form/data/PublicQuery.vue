@@ -168,7 +168,7 @@
 </template>
 
 <script name="PublicQuery" setup>
-import { nextTick, onBeforeMount, reactive, ref } from "vue";
+import { nextTick, onBeforeMount, provide, reactive, ref } from "vue";
 import BaseTable from "./table/BaseTable.vue";
 import ReplyDrawer from "./ReplyDrawer.vue";
 import { formatTableColumn } from "./table/formatTableColumn";
@@ -406,6 +406,8 @@ const handleTableColumns = fields => {
     });
   }
 };
+
+provide("formDisabled", formConf.disabled);
 
 const replyDrawerRef = ref(null);
 
