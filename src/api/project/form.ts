@@ -114,6 +114,7 @@ export interface FormRey {
   type?: number;
   formKey?: string;
   textName?: string;
+  userName?: string;
 }
 export interface FormReyPageRes extends ResPage<FormRey> {
   records: FormRey[];

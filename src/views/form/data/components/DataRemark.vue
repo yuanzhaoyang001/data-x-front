@@ -46,22 +46,26 @@ export default {
     };
   },
   watch: {
-    dataId(value) {
-      if (value) {
-        getRemarkRequest(this.dataId).then(res => {
-          if (res.data) {
-            this.remarkEntity.id = res.data.id;
-            this.remarkEntity.content = res.data.content;
-          } else {
-            this.remarkEntity = {
-              id: null,
-              formKey: this.formKey,
-              dataId: "",
-              content: ""
-            };
-          }
-        });
-      }
+    dataId: {
+      handler(value) {
+        if (value) {
+          getRemarkRequest(this.dataId).then(res => {
+            if (res.data) {
+              this.remarkEntity.id = res.data.id;
+              this.remarkEntity.content = res.data.content;
+            } else {
+              this.remarkEntity = {
+                id: null,
+                formKey: this.formKey,
+                dataId: "",
+                content: ""
+              };
+            }
+          });
+        }
+      },
+      deep: true,
+      immediate: true
     }
   },
   methods: {

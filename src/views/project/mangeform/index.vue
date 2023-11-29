@@ -28,23 +28,27 @@
                 ></el-date-picker>
               </el-form-item>
             </el-col>
-            <el-col :span="10">
-              <el-form-item>
-                <el-input
-                  v-model="queryParams.name"
-                  class="project_my_input_search"
-                  :placeholder="$t('project.mangeform.inputProjectName')"
-                  style="width: 70%"
-                />
-                <el-button
-                  class="ml10"
-                  icon="ele-Search"
-                  type="primary"
-                  @click="queryProjectPage"
-                >
-                  {{ $t("project.mangeform.query") }}
-                </el-button>
-              </el-form-item>
+            <el-col :span="12">
+              <el-input
+                v-model="queryParams.name"
+                :placeholder="$t('project.mangeform.inputProjectName')"
+                class="project_my_input_search mr20"
+                style="width: 40%"
+              />
+              <el-input
+                v-model="queryParams.userName"
+                :placeholder="$t('project.mangeform.inputUserNameName')"
+                class="project_my_input_search"
+                style="width: 40%"
+              />
+              <el-button
+                class="ml10"
+                icon="ele-Search"
+                type="primary"
+                @click="queryProjectPage"
+              >
+                {{ $t("project.mangeform.query") }}
+              </el-button>
             </el-col>
           </el-row>
 
@@ -162,6 +166,7 @@ const queryParams = reactive<FormRey>({
   current: 1,
   size: 12,
   name: "",
+  userName: "",
   beginDateTime: "",
   endDateTime: "",
   status: [],

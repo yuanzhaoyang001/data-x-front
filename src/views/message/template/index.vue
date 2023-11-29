@@ -267,25 +267,25 @@
           prop="templateType"
         >
           <el-select
-            v-model="queryParams.templateType"
+            v-model="form.templateType"
             :placeholder="$t('system.noticeTemplate.chooseTemplateType')"
             clearable
           >
             <el-option
               :label="$t('system.noticeTemplate.sms')"
-              value="SMS"
+              value="1"
             />
             <el-option
               :label="$t('system.noticeTemplate.email')"
-              value="EMAIL"
+              value="2"
             />
             <el-option
               :label="$t('system.noticeTemplate.wechat')"
-              value="WX_MP"
+              value="3"
             />
             <el-option
               :label="$t('system.noticeTemplate.inbox')"
-              value="INTERNAL"
+              value="4"
             />
           </el-select>
         </el-form-item>

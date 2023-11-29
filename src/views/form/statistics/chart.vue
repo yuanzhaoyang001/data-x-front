@@ -88,6 +88,7 @@
         class="mt20"
       >
         <el-col :span="12">
+          {{ formKey }}
           <device :form-key="formKey" />
         </el-col>
         <el-col :span="12">
@@ -105,7 +106,7 @@ import PositionMap from "./charts/PositionMap.vue";
 import device from "./charts/device.vue";
 import SubmitSource from "./charts/source.vue";
 import { Info } from "@icon-park/vue-next";
-import { onMounted, ref } from "vue";
+import { onBeforeMount, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useFormInfo } from "@/stores/formInfo";
 
@@ -157,7 +158,7 @@ const examScoreInfo = ref({});
 
 const route = useRoute();
 
-onMounted(() => {
+onBeforeMount(() => {
   formKey.value = route.query.key;
   getProjectStats();
 });
