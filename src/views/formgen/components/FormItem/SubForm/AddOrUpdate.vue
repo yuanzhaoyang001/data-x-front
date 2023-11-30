@@ -78,7 +78,7 @@ export default {
   },
   methods: {
     handleUpdate() {
-      this.$refs.generateForm.$refs[this.formConf.formRef].validate(valid => {
+      this.$refs.generateForm.$refs["genFormRef"].validate(valid => {
         if (valid) {
           // this.msgSuccess('保存成功')
           this.dialogFormVisible = false;
