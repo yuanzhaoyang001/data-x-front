@@ -130,6 +130,11 @@ export const staticRoutes: Array<RouteRecordRaw> = [
     }
   },
   {
+    path: "/authLogin/:path(.*)",
+    component: () => import("@/views/user/login/AuthLogin.vue"),
+    meta: { requireLogin: false, title: "登录" }
+  },
+  {
     path: "/test",
     name: "tyest",
     component: () => import("@/views/test/index.vue"),
