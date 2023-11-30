@@ -73,6 +73,7 @@ export function useFuncCalcHook() {
       TRUE,
       XOR
     } = formulaLib;
+    console.log(SUM(1, 2));
     try {
       if (!formula) {
         return;
@@ -99,7 +100,6 @@ export function useFuncCalcHook() {
   };
 
   const handleValue = (key: string, val: any, modelVal: any) => {
-    debugger;
     if (key.startsWith("number")) {
       return val;
     } else if (key.endsWith("score")) {

@@ -9,7 +9,7 @@
 
 <script setup lang="ts" name="TFunCalc">
 import { formEmits, formItemProps, useFormItem } from "@/views/formgen/components/FormItem/hooks/useFormItemHook";
-import { watch } from "vue";
+import { watchDebounced } from "@vueuse/core";
 import { useFuncCalcHook } from "@/views/formgen/components/FormItem/TFunCalc/useFuncCalc";
 
 const props = defineProps({
@@ -28,7 +28,7 @@ const { changeValue } = formItemHook;
 
 const { evalFormula } = useFuncCalcHook();
 
-watch(
+watchDebounced(
   () => props.models,
   (val: any) => {
     const result = evalFormula(val, props.item?.calcFormula);
@@ -36,9 +36,6 @@ watch(
       changeValue.value = result;
     }
   },
-  {
-    deep: true,
-    immediate: true
-  }
+  { debounce: 500, maxWait: 1000, immediate: true, deep: true }
 );
 </script>
