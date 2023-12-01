@@ -57,45 +57,37 @@
         </div>
       </div>
       <div class="mt20">
-        <el-table
-          v-if="!isMobile()"
-          :data="dimensionList"
-          border
-          size="default"
-          style="width: 100%"
+        <div
+          v-for="(item, index) in dimensionList"
+          :key="item.name"
         >
-          <el-table-column
-            :label="$t('form.dimension.dimension')"
-            prop="name"
-          ></el-table-column>
-          <el-table-column
-            :label="$t('form.dimension.myScore')"
-            prop="score"
-          ></el-table-column>
-          <el-table-column
-            :label="$t('form.dimension.standardScore')"
-            prop="standardScore"
-          ></el-table-column>
-          <el-table-column
-            :label="$t('form.dimension.resultSuggestionIndex')"
-            prop="advice"
-          ></el-table-column>
-        </el-table>
-        <div v-else>
-          <div
-            v-for="(item, index) in dimensionList"
-            :key="item.name"
-          >
-            <el-descriptions :column="1">
-              <el-descriptions-item :label="$t('form.dimension.dimension')">{{ item.name }}</el-descriptions-item>
-              <el-descriptions-item :label="$t('form.dimension.myScore')">{{ item.score }}</el-descriptions-item>
-              <el-descriptions-item :label="$t('form.dimension.standardScore')">{{ item.standardScore }}</el-descriptions-item>
-              <el-descriptions-item :label="$t('form.dimension.resultSuggestionIndex')">
-                {{ item.advice }}
-              </el-descriptions-item>
-            </el-descriptions>
-            <el-divider v-if="index !== dimensionList.length - 1" />
-          </div>
+          <el-descriptions :column="1">
+            <el-descriptions-item :label="$t('form.dimension.dimension')">
+              <el-tag
+                size="small"
+                type="success"
+              >
+                {{ item.name }}
+              </el-tag>
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('form.dimension.myScore')">
+              <el-tag
+                size="small"
+                type="danger"
+              >
+                {{ item.score }}
+              </el-tag>
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('form.dimension.standardScore')">
+              <el-tag size="small">
+                {{ item.standardScore }}
+              </el-tag>
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('form.dimension.resultSuggestionIndex')">
+              {{ item.advice }}
+            </el-descriptions-item>
+          </el-descriptions>
+          <el-divider v-if="index !== dimensionList.length - 1" />
         </div>
       </div>
     </div>
@@ -111,7 +103,6 @@ import TChart from "@/views/components/TChart/index.vue";
 import { i18n } from "@/i18n";
 import { DimensionInfo, ResultAdvice } from "@/views/form/dimension/types";
 import { removeHtmlTag } from "@/views/formgen/utils";
-import { isMobile } from "@/utils/other";
 
 const linkUrl = ref<string>(window.location.href);
 
