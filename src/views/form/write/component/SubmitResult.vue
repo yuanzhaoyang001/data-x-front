@@ -60,6 +60,7 @@
     </div>
     <div
       class="flex-center mt10"
+      style="width: 450px"
       @click="handleToExamResult"
     >
       <!--		考试按钮-->
@@ -72,7 +73,8 @@
       </el-button>
     </div>
     <div
-      class="flex-center mt10"
+      class="mt10"
+      style="text-align: center"
       @click="handleToAnswerResult"
     >
       <el-button
@@ -84,7 +86,8 @@
       </el-button>
     </div>
     <div
-      class="flex-center mt10"
+      class="mt10"
+      style="text-align: center"
       @click="handleToEvaluationResult"
     >
       <el-button

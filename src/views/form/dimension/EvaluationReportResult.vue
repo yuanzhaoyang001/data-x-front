@@ -58,6 +58,7 @@
       </div>
       <div class="mt20">
         <el-table
+          v-if="!isMobile()"
           :data="dimensionList"
           border
           size="default"
@@ -80,6 +81,22 @@
             prop="advice"
           ></el-table-column>
         </el-table>
+        <div v-else>
+          <div
+            v-for="(item, index) in dimensionList"
+            :key="item.name"
+          >
+            <el-descriptions :column="1">
+              <el-descriptions-item :label="$t('form.dimension.dimension')">{{ item.name }}</el-descriptions-item>
+              <el-descriptions-item :label="$t('form.dimension.myScore')">{{ item.score }}</el-descriptions-item>
+              <el-descriptions-item :label="$t('form.dimension.standardScore')">{{ item.standardScore }}</el-descriptions-item>
+              <el-descriptions-item :label="$t('form.dimension.resultSuggestionIndex')">
+                {{ item.advice }}
+              </el-descriptions-item>
+            </el-descriptions>
+            <el-divider v-if="index !== dimensionList.length - 1" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -94,6 +111,7 @@ import TChart from "@/views/components/TChart/index.vue";
 import { i18n } from "@/i18n";
 import { DimensionInfo, ResultAdvice } from "@/views/form/dimension/types";
 import { removeHtmlTag } from "@/views/formgen/utils";
+import { isMobile } from "@/utils/other";
 
 const linkUrl = ref<string>(window.location.href);
 

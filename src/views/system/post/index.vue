@@ -141,11 +141,11 @@
         :label="$t('system.position.name')"
         prop="postName"
       />
-      <el-table-column
-        align="center"
-        :label="$t('system.position.level')"
-        prop="level"
-      />
+      <!--      <el-table-column-->
+      <!--        align="center"-->
+      <!--        :label="$t('system.position.level')"-->
+      <!--        prop="level"-->
+      <!--      />-->
       <el-table-column
         align="center"
         :label="$t('system.position.managerPosition')"
@@ -247,16 +247,16 @@
             :placeholder="$t('system.position.enterCode')"
           />
         </el-form-item>
-        <el-form-item
-          :label="$t('system.position.level')"
-          prop="level"
-        >
-          <el-input-number
-            v-model="form.level"
-            :min="0"
-            controls-position="right"
-          />
-        </el-form-item>
+        <!--        <el-form-item-->
+        <!--          :label="$t('system.position.level')"-->
+        <!--          prop="level"-->
+        <!--        >-->
+        <!--          <el-input-number-->
+        <!--            v-model="form.level"-->
+        <!--            :min="0"-->
+        <!--            controls-position="right"-->
+        <!--          />-->
+        <!--        </el-form-item>-->
         <el-form-item
           :label="$t('system.position.managerPosition')"
           prop="leaderPostBool"

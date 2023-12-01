@@ -56,7 +56,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
 import TemplateCreate from "@/views/project/template/create.vue";
-import ImportFormItem from "./ImportFormItem.vue";
+import ImportFormItem from "./import/TextImportFormItem.vue";
 import { useFormInfo } from "@/stores/formInfo";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";

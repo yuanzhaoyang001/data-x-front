@@ -119,10 +119,11 @@ const handleSetCurrentDimension = (ele: DimensionInfo) => {
 .setting-wrap {
   padding: 20px;
   display: flex;
+  height: 90%;
 
   .left-wrap {
     width: 30%;
-    min-height: 70vh;
+    height: 75vh;
   }
 
   .right-wrap {
@@ -139,6 +140,7 @@ const handleSetCurrentDimension = (ele: DimensionInfo) => {
     height: 100%;
     padding: 20px;
     border-radius: 5px;
+    overflow: auto;
   }
 
   .list-group-item {
@@ -174,7 +176,7 @@ const handleSetCurrentDimension = (ele: DimensionInfo) => {
   .todo-items {
     margin-top: 10px;
     border: var(--el-border);
-    height: 50%;
+    height: 45%;
     padding: 10px 20px;
     border-radius: 5px;
     overflow: scroll;

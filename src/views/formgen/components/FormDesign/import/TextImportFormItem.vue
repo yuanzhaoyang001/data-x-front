@@ -81,6 +81,7 @@
         <el-button @click="dialogVisible = false">{{ $t("formI18n.all.cancel") }}</el-button>
         <el-button
           type="primary"
+          v-re-click
           @click="handleImport"
         >
           {{ $t("formI18n.all.confirm") }}
@@ -92,10 +93,10 @@
 
 <script>
 import _ from "lodash-es";
-import { allComponents } from "../GenerateForm/config";
+import { allComponents } from "../../GenerateForm/config";
 import GenerateForm from "@/views/formgen/components/GenerateForm/GenerateForm.vue";
-import { formItemConvertData } from "../../utils/convert";
-import { batchCreateProjectItem } from "../../api";
+import { formItemConvertData } from "../../../utils/convert";
+import { batchCreateProjectItem } from "../../../api";
 import mittBus from "@/utils/mitt";
 
 export default {

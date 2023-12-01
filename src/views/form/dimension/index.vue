@@ -110,10 +110,12 @@ watch(
 <style lang="scss" scoped>
 .dimension-wrap {
   padding: 20px;
+  height: 100%;
 
   .steps-wrap {
     width: 70%;
     margin: 0 auto;
+    height: 100%;
   }
 }
 </style>

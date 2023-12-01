@@ -4,6 +4,7 @@
     :label-width="labelWidth"
     :required="config.required"
     :for="'null'"
+    :prop="formItemId"
   >
     <template
       #label
@@ -141,7 +142,7 @@ const config = computed(() => {
 });
 
 const formItemId = computed(() => {
-  return props.currentItem.formItemId;
+  return props.currentItem.vModel;
 });
 
 const labelWidth = computed(() => {

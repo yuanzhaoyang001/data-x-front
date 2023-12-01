@@ -36,10 +36,13 @@
           tag="div"
         >
           <template #item="{ element, index }">
-            <div class="fa item ml5 mr10">
+            <div
+              class="fa item"
+              @click="handleItemClick(element.vModel)"
+            >
               <i
                 v-if="sortStatus"
-                class="el-icon handle"
+                class="el-icon handle mr10"
               >
                 <svg
                   viewBox="0 0 1024 1024"
@@ -80,7 +83,7 @@ const props = defineProps({
 
 const sortStatus = ref(false);
 
-const tempFormItemList = ref([]);
+const tempFormItemList = ref<any[]>([]);
 
 watch(
   () => props.formItemList,
@@ -97,7 +100,13 @@ const handleStartSort = () => {
   sortStatus.value = true;
 };
 
-const emit = defineEmits(["refreshFormList"]);
+const emit = defineEmits(["refreshFormList", "scrollToField"]);
+
+const handleItemClick = (formId: string) => {
+  console.log(formId);
+  emit("scrollToField", formId);
+};
+
 /**
  *  保存排序后的表单项
  */

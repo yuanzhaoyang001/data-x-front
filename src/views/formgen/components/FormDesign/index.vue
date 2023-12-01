@@ -70,6 +70,7 @@
             :form-item-list="drawingList"
             :form-key="formKey"
             @refresh-form-list="handleSortAllItem"
+            @scroll-to-field="handleFormScrollToField"
           />
         </el-tab-pane>
         <el-tab-pane class="container">
@@ -149,6 +150,7 @@
             :label-width="formConf.labelWidth + 'px'"
             class="design-form"
             size="default"
+            ref="designFormRef"
           >
             <draggable
               v-model="drawingList"
@@ -474,6 +476,12 @@ const handleSortAllItem = (sortIdList: string[]) => {
     ElMessage.success(i18n.global.t("formI18n.all.success"));
     loadAllItems();
   });
+};
+
+const designFormRef = ref<any>(null);
+
+const handleFormScrollToField = (prop: string) => {
+  designFormRef.value.scrollToField(prop);
 };
 
 /**

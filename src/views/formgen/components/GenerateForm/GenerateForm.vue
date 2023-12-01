@@ -342,7 +342,12 @@ const nextPage = (page: number) => {
 };
 
 const prevPage = (page: number) => {
-  switchPage("prev", page);
+  emit("prev", {
+    page,
+    startSeqNo: formConfCopy.value.startSeqNo,
+    endSeqNo: seqNo,
+    formModel: formModel.value
+  });
 };
 
 const switchPage = (eventName: string, page: number) => {

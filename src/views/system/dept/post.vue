@@ -94,11 +94,11 @@
         align="center"
         prop="postShowName"
       />
-      <el-table-column
-        align="center"
-        :label="$t('system.deptPost.postLevel')"
-        prop="level"
-      />
+      <!--      <el-table-column-->
+      <!--        align="center"-->
+      <!--        :label="$t('system.deptPost.postLevel')"-->
+      <!--        prop="level"-->
+      <!--      />-->
       <el-table-column
         align="center"
         :label="$t('system.deptPost.leaderPost')"
@@ -191,7 +191,7 @@
             type="primary"
             @click="submitForm"
           >
-            {{ $t("system.deptPost.submit") }}
+            {{ $t("formI18n.all.confirm") }}
           </el-button>
           <el-button @click="cancel">{{ $t("formI18n.all.cancel") }}</el-button>
         </div>
@@ -259,11 +259,11 @@
           :label="$t('system.deptPost.postName')"
           prop="postName"
         />
-        <el-table-column
-          align="center"
-          :label="$t('system.deptPost.postLevel')"
-          prop="level"
-        />
+        <!--        <el-table-column-->
+        <!--          align="center"-->
+        <!--          :label="$t('system.deptPost.postLevel')"-->
+        <!--          prop="level"-->
+        <!--        />-->
         <el-table-column
           align="center"
           :label="$t('system.deptPost.leaderPost')"
