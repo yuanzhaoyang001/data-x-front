@@ -142,6 +142,7 @@ const config = computed(() => {
 });
 
 const formItemId = computed(() => {
+  console.log(props.currentItem);
   return props.currentItem.vModel;
 });
 
@@ -151,9 +152,8 @@ const labelWidth = computed(() => {
 
 const getExamAnswer = computed(() => {
   if (["RADIO", "CHECKBOX", "IMG_SELECT", "SELECT"].includes(props.currentItem.typeId)) {
-    return getCheckedLabel(props.currentItem.examConfig.answer, props.currentItem.config.options, props.currentItem, {}).join(
-      ","
-    );
+    const label = getCheckedLabel(props.currentItem.examConfig.answer, props.currentItem.config.options, props.currentItem, {});
+    return Array.isArray(label) ? label.join(",") : "";
   } else {
     return props.currentItem.examConfig.answer;
   }
@@ -161,11 +161,6 @@ const getExamAnswer = computed(() => {
 
 const handleDefaultValue = val => {
   props.currentItem.config["defaultValue"] = val;
-};
-
-const handleChangeLabel = val => {
-  props.currentItem.config["label"] = val;
-  emit("change", props.currentItem);
 };
 
 const getComponentName = item => {

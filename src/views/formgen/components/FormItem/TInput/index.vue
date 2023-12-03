@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts" name="TInput">
-import { onMounted } from "vue";
+import { onMounted, watch } from "vue";
 import { useFormItemExam } from "@/views/formgen/components/FormItem/hooks/useExamHook";
 import { formEmits, formItemProps, useFormItem } from "@/views/formgen/components/FormItem/hooks/useFormItemHook";
 import { BasicComponent } from "@/views/formgen/components/GenerateForm/types/form";
@@ -60,8 +60,17 @@ const { changeValue } = formItemHook;
 
 const handleInputChange = (val: any) => {
   classList.value = examHook.getExamClass(changeValue.value, null);
+  // 数据关联
   handleLinkData();
 };
+
+// 检查开启了显示答案没
+watch(
+  () => props.item?.examConfig!.showAnswer,
+  () => {
+    classList.value = examHook.getExamClass(changeValue.value, null);
+  }
+);
 
 const handleLinkData = () => {
   if (!props.item?.config?.dataLinkConfig || !changeValue.value) {

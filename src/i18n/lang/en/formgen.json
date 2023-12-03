@@ -250,6 +250,7 @@
   },
   "funcalc": {
     "formula": "Formula calculation",
+    "scoreVal": "Score",
     "searchFun": "Search function",
     "title": "Function calculation",
     "varName": "Enter the variable name"
@@ -288,6 +289,7 @@
     "uploadImg": "Upload image"
   },
   "importItem": {
+    "cleanAll": "empty",
     "importText": "Import Tips",
     "inputDesc": "Please paste the prepared content installation format here",
     "templateText1": "1. Add the question type mark in Chinese 【】 before the question title. The mark should be the same as the prompt component name. Unmarked questions will not be recognized by the system.",
@@ -455,6 +457,9 @@
     "resetQuota": "Reset option quota",
     "title": "Quota Setting"
   },
+  "optionScore": {
+    "title": "Score setting"
+  },
   "phoneVerification": {
     "placeholder": "Enter phone number verification",
     "smsCode": "Send"
@@ -474,6 +479,7 @@
     "notSetting": "To set",
     "numberSetting": "Seat setting",
     "otherOption": "Other options must be filled",
+    "scoreSetting": "Score setting",
     "showVoteResult": "Show voting results",
     "transverse": "Transverse"
   },

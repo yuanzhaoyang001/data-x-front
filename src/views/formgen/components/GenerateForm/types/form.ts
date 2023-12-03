@@ -98,13 +98,13 @@ export interface ExamConfig {
   // 评分类型
   scoringType: number;
   // 分值
-  score: 0;
+  score: number;
   // 是否启用分值
-  enableScore: false;
+  enableScore: boolean;
   // 答案
-  answer: null;
+  answer: string | any;
   // 答案解析
-  answerAnalysis: null;
+  answerAnalysis: string;
 }
 
 // 表单设置查询

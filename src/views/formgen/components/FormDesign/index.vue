@@ -241,6 +241,7 @@ import { sortAllProjectItem } from "@/views/formgen/api";
 import { ElLoading, ElMessage } from "element-plus";
 import { i18n } from "@/i18n";
 import { useExamForm } from "./hooks/useExamForm";
+import mittBus from "@/utils/mitt";
 
 const { setIsSaving } = useFormInfo();
 let oldActiveId = ref<string | null>(null);
@@ -335,6 +336,10 @@ onMounted(async () => {
   await nextTick(() => {
     loading.close();
   });
+});
+
+mittBus.on("refreshFormList", () => {
+  loadAllItems();
 });
 
 const handleActiveDataChange = async (val: any) => {
@@ -443,7 +448,11 @@ const drawingItemCopy = (item: any, list: any) => {
     if (res) {
       const clone = cloneComponent(item);
       clone.placeholder = item.placeholder;
-      list.push(clone);
+      //加2 会在复制的下一个 +1 也行
+      clone.sort = clone.sort + 2;
+      // 数组指定位置1插入 找到原来的位置
+      const index = list.findIndex((val: any) => val.config.formId === item.config.formId);
+      list.splice(index + 1, 0, clone);
       activeFormItem(clone);
       createItemInfo(clone);
     }

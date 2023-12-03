@@ -22,6 +22,7 @@ export function formItemConvertData(item: any, formKey: string) {
     description: item.description,
     hideType: item.config.hideType,
     scheme: item,
+    sort: item.sort,
     formKey
   };
   return data;

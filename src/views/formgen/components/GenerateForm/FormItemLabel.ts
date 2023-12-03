@@ -37,9 +37,9 @@ export function getCheckedLabel(val: any, options: any, item: any, formModel: an
       return labelArr;
     }
     const obj: any = getObject(options, "value", val);
-    return obj ? obj.label : "";
+    return obj ? obj.label : [];
   }
-  return "";
+  return [];
 }
 
 /**
@@ -52,7 +52,7 @@ export function getCheckedLabel(val: any, options: any, item: any, formModel: an
 function getObject(array: any[], key: string, value: any) {
   let o;
   array.some(function iter(a) {
-    if (a[key] === value) {
+    if (a[key] == value) {
       o = a;
       return true;
     }

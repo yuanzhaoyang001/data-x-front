@@ -65,6 +65,7 @@
     "dataShowTypeCard": "Card View",
     "dataShowTypeTable": "Table View",
     "inputProjectName": "Enter Project Name",
+    "inputUserNameName": "Please enter the name of the created account",
     "projectStatus": "Project Status",
     "projectType": "Form Type",
     "projectUpdateTime": "Project Update Time",

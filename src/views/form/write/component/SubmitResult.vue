@@ -19,10 +19,16 @@
       </el-result>
     </div>
     <!-- 考试分数-->
-    <div v-if="resultData.examScoreText && !tipTitle">
+    <div
+      v-if="resultData.examScoreText && !tipTitle"
+      class="text-center"
+    >
       {{ resultData.examScoreText }}
     </div>
-    <div v-if="resultData.randomNumberText">
+    <div
+      v-if="resultData.randomNumberText"
+      class="text-center"
+    >
       {{ resultData.randomNumberText }}
       <el-button
         v-copyText="resultData.randomNumberText"
@@ -171,12 +177,13 @@ const handleToAnswerResult = () => {
 };
 
 const handleToEvaluationResult = () => {
-  router.push({
+  const href = router.resolve({
     path: "/form/dimension/result",
     query: {
       key: props.resultData?.dataId
     }
   });
+  window.open(href.href, "_blank");
 };
 
 onMounted(() => {
