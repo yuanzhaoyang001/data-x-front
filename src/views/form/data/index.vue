@@ -197,6 +197,7 @@ import { MessageBoxUtil, MessageUtil } from "@/utils/messageUtil";
 import commonFunction from "@/utils/commonFunction";
 import { useFormInfo } from "@/stores/formInfo";
 import { storeToRefs } from "pinia";
+import { getDimensionByKey } from "@/api/project/dimension";
 
 const formKey = ref("");
 const formConfig = ref({
@@ -262,6 +263,9 @@ const router = useRouter();
 const formLogicData = ref(null);
 provide("formLogicData", formLogicData);
 
+const dimensionConfig = ref(null);
+provide("dimensionConfig", dimensionConfig);
+
 onBeforeMount(async () => {
   formKey.value = route.query.key || route.params.key;
   listFixedFormFieldsRequest(formKey.value).then(res => {
@@ -273,6 +277,14 @@ onBeforeMount(async () => {
   // 获取逻辑
   const { data: logicData } = await getFormLogicRequest({ formKey: formKey.value });
   formLogicData.value = logicData;
+  // 获取维度信息
+  if (formType.value === 4) {
+    getDimensionByKey(formKey.value).then(res => {
+      if (res.data) {
+        dimensionConfig.value = res.data;
+      }
+    });
+  }
 });
 
 const checkBtnPerms = btn => {

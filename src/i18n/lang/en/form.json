@@ -536,6 +536,7 @@
     "paperTypePlaceholder": "Select paper size",
     "portraitOption": "Portrait",
     "printDefaultName": "Unnamed Template",
+    "printDirectionField": "Print Fields",
     "printDirectionLabel": "Print Direction",
     "printPageSize": "Print Page Size",
     "printPageSizePlaceholder": "Select print page size",

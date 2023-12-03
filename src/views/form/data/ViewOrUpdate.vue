@@ -82,6 +82,7 @@
               ref="examFormRef"
               :data-id="formModel['id']"
               style="margin-bottom: 40px"
+              :show-dimension-report="!!dimensionConfig"
             />
             <view-data
               v-else
@@ -295,6 +296,8 @@ const checkBtnPermsFunc = inject("checkBtnPerms");
 const checkBtnPerms = btn => {
   return checkBtnPermsFunc(btn);
 };
+
+const dimensionConfig = inject("dimensionConfig");
 
 const showDialog = () => {
   formConf.value.disabled = true;

@@ -20,17 +20,27 @@
             {{ $t("form.exam.leaderboard") }}
           </el-button>
           <el-button
+            v-if="showDimensionReport"
             size="small"
             plain
-            type="success"
+            icon="ele-TrendCharts"
+            type="primary"
+            @click="handleToDimensionReport"
+          >
+            {{ $t("form.exam.dimensionReport") }}
+          </el-button>
+          <el-button
             v-copyText="linkUrl"
+            plain
+            size="small"
+            type="success"
           >
             <share-three
-              theme="outline"
-              size="16"
               :stroke-width="3"
-              stroke-linejoin="bevel"
               class="mr5"
+              size="16"
+              stroke-linejoin="bevel"
+              theme="outline"
             />
             {{ $t("form.exam.shareToFriends") }}
           </el-button>
@@ -141,7 +151,9 @@ const examResultData = ref<FormExamResultVO>({
 const router = useRouter();
 const route = useRoute();
 const props = defineProps({
-  dataId: Number
+  dataId: Number,
+  // 显示维度报告
+  showDimensionReport: Boolean
 });
 
 const examUniqueId = ref<string | null>(null);
@@ -186,6 +198,16 @@ const handleToRankList = () => {
       uniqueId: examUniqueId.value
     }
   });
+};
+
+const handleToDimensionReport = () => {
+  const href = router.resolve({
+    path: "/form/dimension/result",
+    query: {
+      key: props.dataId
+    }
+  });
+  window.open(href.href, "_blank");
 };
 
 const formConf = ref<any>({
