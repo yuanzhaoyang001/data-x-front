@@ -9,5 +9,5 @@ export const toolbar = [
 
 // 内联模式包含的按钮
 export const inlineToolbar = [
-  " styleselect fontsizeselect bold italic underline strikethrough undo redo  removeformat alignleft aligncenter alignright  subscript superscript  hr  charmap    forecolor backcolor  "
+  " styleselect fontsizeselect bold italic underline strikethrough undo redo   removeformat alignleft aligncenter alignright  subscript superscript  hr  charmap    forecolor backcolor  "
 ];

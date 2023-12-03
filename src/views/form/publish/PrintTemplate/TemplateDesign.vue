@@ -48,7 +48,7 @@
           type="border-card"
         >
           <el-tab-pane
-            :label="$t('form.printTemplate.printDirectionLabel')"
+            :label="$t('form.printTemplate.printDirectionField')"
             name="first"
           >
             <el-scrollbar style="height: calc(100vh - 130px)">
@@ -57,7 +57,10 @@
                 :key="f.value"
                 class="field-item"
               >
-                <div @click="handleSetCellVal(f.value, PrintCellType.COLUMN)">
+                <div
+                  class="field-text"
+                  @click="handleSetCellVal(f.value, PrintCellType.COLUMN)"
+                >
                   <el-icon>
                     <add-text
                       theme="outline"
@@ -209,6 +212,12 @@ const handleSetCellVal = (val: string, cellType?: PrintCellType) => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  .field-text {
+    width: 80%;
+    // 文字超出隐藏
+    overflow: hidden;
+  }
 
   &:hover {
     background: var(--el-color-primary-light-10);

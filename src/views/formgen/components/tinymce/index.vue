@@ -74,7 +74,7 @@ onMounted(() => {
     skin: "tduck",
     // skin_url: "/tinymce/skins/ui/tduck",
     // content_css: "/tinymce/skins/content/tduck",
-    cache_suffix: "?v=0.0.4",
+    cache_suffix: "?v=0.0.6",
     plugins,
     inline: props.inline,
     toolbar: finalToolbar,
@@ -100,6 +100,7 @@ onMounted(() => {
     statusbar: false,
     convert_urls: false, // 关闭把文件的路径转换成相对的
     paste_data_images: true,
+    file_picker_types: "media",
     // image_dimensions: false, // 禁用输入图片宽高
     // content_style: "img {max-width:100%;}",
     images_upload_handler(blobInfo, succFun, failFun) {
@@ -123,6 +124,32 @@ onMounted(() => {
       const formData = new FormData();
       formData.append("file", file, file.name); // 此处与源文档不一样
       xhr.send(formData);
+    },
+    file_picker_callback(cb, value, meta) {
+      //以下是原生上传文件
+      let input = document.createElement("input");
+      input.setAttribute("type", "file");
+      input.click();
+      input.onchange = function () {
+        const xhr = new XMLHttpRequest();
+        xhr.withCredentials = false;
+        xhr.open("POST", uploadUrl);
+        xhr.setRequestHeader("Authorization", token);
+        xhr.onload = function () {
+          if (xhr.status !== 200) {
+            return;
+          }
+          const json = JSON.parse(xhr.responseText);
+          if (!json || typeof json.data !== "string") {
+            return;
+          }
+          cb(json.data, { text: json.data });
+        };
+        const formData = new FormData();
+        const file = input.files[0];
+        formData.append("file", file, file.name); // 此处与源文档不一样
+        xhr.send(formData);
+      };
     }
   };
   loadTinymce(tinymce => {

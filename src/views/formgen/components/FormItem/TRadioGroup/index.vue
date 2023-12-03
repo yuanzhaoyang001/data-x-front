@@ -47,7 +47,7 @@
 
 <script setup name="TRadioGroup" lang="ts">
 import Vote from "../TVote/vote.vue";
-import { nextTick, onMounted, ref, watch } from "vue";
+import { nextTick, onMounted, ref, toValue, watch } from "vue";
 import { useFormItemExam } from "../hooks/useExamHook";
 import { formEmits, formItemProps, useFormItem } from "../hooks/useFormItemHook";
 import { BasicComponent } from "../../GenerateForm/types/form";
@@ -127,8 +127,9 @@ const handleClick = (option: any) => {
   // 分值
   props.models[`${props.item?.vModel}score`] = option.value === changeValue.value ? option.score : 0;
   // 自动下一页
+  console.log(toValue(changeValue));
   nextTick(() => {
-    if (changeValue) {
+    if (toValue(changeValue)) {
       autoNextPage(emits);
     }
   });

@@ -14,7 +14,10 @@
     <div v-else>
       <el-result icon="success">
         <template #extra>
-          <div v-html="tipTitle"></div>
+          <div
+            style="max-width: 80%; margin: 0 auto"
+            v-html="tipTitle"
+          ></div>
         </template>
       </el-result>
     </div>

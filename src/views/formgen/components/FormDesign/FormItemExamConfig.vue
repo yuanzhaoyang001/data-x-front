@@ -135,7 +135,7 @@ export default {
   watch: {
     activeData: {
       handler(val) {
-        if (!val.examConfig) {
+        if (!val.examConfig && this.isSupport) {
           this.activeData["examConfig"] = {
             scoringType: null,
             score: 1,

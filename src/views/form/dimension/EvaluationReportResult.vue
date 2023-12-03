@@ -269,6 +269,7 @@ const getCharData = computed(() => {
   } else {
     // 提取
     config.radar = {
+      radius: [50, 150],
       indicator:
         dimensionList.value?.map((item: DimensionInfoRow) => {
           return {
@@ -337,6 +338,7 @@ const getCharData = computed(() => {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 40px;
   }
 }
 
@@ -346,5 +348,11 @@ const getCharData = computed(() => {
       width: 100%;
     }
   }
+}
+
+:deep(.chart-wrap .echarts) {
+  height: 100%;
+  min-height: 500px;
+  width: 655px;
 }
 </style>

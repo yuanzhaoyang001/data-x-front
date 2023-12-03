@@ -10,8 +10,7 @@ import { plugins, toolbar } from "@/views/formgen/components/tinymce/config.js";
 import _ from "lodash-es";
 import { baseUrl, getToken } from "@/utils/auth";
 import loadTinymce from "@/views/formgen/utils/loadTinymce";
-import { onMounted, onUnmounted, watch } from "vue";
-import { useAttrs } from "vue";
+import { onMounted, onUnmounted, useAttrs, watch } from "vue";
 
 const props = defineProps({
   id: {
@@ -83,6 +82,32 @@ onMounted(() => {
       const formData = new FormData();
       formData.append("file", file, file.name); // 此处与源文档不一样
       xhr.send(formData);
+    },
+    file_picker_callback(cb, value, meta) {
+      //以下是原生上传文件
+      let input = document.createElement("input");
+      input.setAttribute("type", "file");
+      input.click();
+      input.onchange = function () {
+        const xhr = new XMLHttpRequest();
+        xhr.withCredentials = false;
+        xhr.open("POST", uploadUrl);
+        xhr.setRequestHeader("Authorization", token);
+        xhr.onload = function () {
+          if (xhr.status !== 200) {
+            return;
+          }
+          const json = JSON.parse(xhr.responseText);
+          if (!json || typeof json.data !== "string") {
+            return;
+          }
+          cb(json.data, { text: json.data });
+        };
+        const formData = new FormData();
+        const file = input.files[0];
+        formData.append("file", file, file.name); // 此处与源文档不一样
+        xhr.send(formData);
+      };
     }
   };
   loadTinymce(tinymce => {

@@ -149,10 +149,13 @@ const handleDelete = (index: number) => {
 .setting-wrap {
   padding: 20px;
   color: var(--el-text-color-primary);
+  height: 100%;
 }
 
 .dimension-list {
   margin-top: 10px;
+  height: 70%;
+  overflow: auto;
 
   .dimension-item {
     margin-top: 10px;

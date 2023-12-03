@@ -33,7 +33,7 @@
       >
         ({{ $t("formgen.formItem.max") }}:{{ currentItem.examConfig.score }} {{ $t("formgen.formItem.text") }})
         <span
-          v-if="currentItem.examConfig.answer"
+          v-if="currentItem.examConfig.answer && currentItem.examConfig.scoringType !== 4"
           style="color: #13ce66; margin-left: 20px"
         >
           {{ $t("formgen.formItem.answer") }}：{{ getExamAnswer }}

@@ -134,7 +134,7 @@ const userFormStore = useUserForm();
 onUnmounted(() => {
   // Stop and clear the interval when the component is unmounted (destroyed)
   stopInterval();
-  userFormStore.setCurrentPage(props.currPageNum as number);
+  userFormStore.setCurrentPage((props.currPageNum + 1) as number);
 });
 </script>
 <style scoped>

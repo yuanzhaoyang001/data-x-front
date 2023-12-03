@@ -29,7 +29,7 @@ export function parseText(text: string): BasicComponent[] {
       }
       let tempFieldConfig: BasicComponent = JSON.parse(JSON.stringify(fieldConfig));
       // 找到题目数据定义
-      tempFieldConfig.config.formId = `${toLower(tempFieldConfig.typeId)}-${new Date().getTime() + i}`;
+      tempFieldConfig.config.formId = `${toLower(tempFieldConfig.typeId)}${new Date().getTime() + i}`;
       // 分数解析出来
       const score = extractAndCountParentheses(title);
       if (score) {

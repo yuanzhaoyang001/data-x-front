@@ -501,6 +501,7 @@
     "portraitOption": "纵向",
     "printDefaultName": "未命名模版",
     "printDirectionLabel": "打印方向",
+    "printDirectionField": "打印字段",
     "printPageSize": "打印纸张大小",
     "printPageSizePlaceholder": "请选择打印纸张大小",
     "rightMarginLabel": "右边距",

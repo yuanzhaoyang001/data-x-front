@@ -80,8 +80,10 @@ export function useFormItem(props: any, emits: any) {
     if (autoNext) {
       // 延迟一下 不然太快
       setTimeout(() => {
+        console.log(currentPage.value);
         emits("next", currentPage.value);
-      }, 500);
+        console.log("下一页");
+      }, 200);
     }
   };
 
