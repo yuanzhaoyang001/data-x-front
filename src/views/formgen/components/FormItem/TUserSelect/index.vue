@@ -87,13 +87,16 @@ export default {
       this.dialogVisible = true;
     },
     handleSubmit() {
-      console.log(this.$refs.empTree.getCheckedNodes(true));
-      this.changeValue = this.$refs.empTree.getCheckedNodes(true).map(item => {
-        return { name: item.name, nickName: item.nickName, id: item.id };
-      });
+      console.log(this.$refs.empTree.getCheckedNodes(false));
+      this.changeValue = this.$refs.empTree
+        .getCheckedNodes(true)
+        .filter(item => !item.id.startsWith("dept"))
+        .map(item => {
+          return { name: item.name, nickName: item.nickName, id: item.id };
+        });
       this.dialogVisible = false;
       if (this.changeValue) {
-        this.showValue = this.changeValue.map(item => item.nickName).join(",");
+        this.showValue = this.changeValue.map(item => item.nickName || item.name).join(",");
       }
     }
   }

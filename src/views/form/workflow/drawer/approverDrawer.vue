@@ -370,12 +370,20 @@ export default {
       if (val && !val.formProperties) {
         val.formProperties = this.formProperties;
       } else {
+        const tempFormProperties = [...val.formProperties];
+        val.formProperties = [];
         for (let i = 0; i < this.formProperties.length; i++) {
           let prop = this.formProperties[i];
-          // 不存在就加入
-          let index = val.formProperties.findIndex(item => item.id == prop.id);
-          if (index < 0) {
+          // 找到该项 把状态同步上来
+          let item = tempFormProperties.find(item => item.id === prop.id);
+          if (item) {
             val.formProperties.push(prop);
+          } else {
+            val.formProperties.push({
+              ...prop,
+              readable: false,
+              writeable: false
+            });
           }
         }
       }

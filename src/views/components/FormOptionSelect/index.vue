@@ -8,7 +8,7 @@
       v-for="option in options"
       :key="option.value"
       :label="option.label"
-      :value="option.value"
+      :value="option.label"
     />
   </el-select>
 </template>
@@ -29,7 +29,7 @@ const props = defineProps({
     default: () => {}
   }
 });
-const dataValue = ref();
+const dataValue = ref(props.value);
 const options = ref<any[]>([]);
 
 const getOptions = async (item: any) => {
@@ -72,8 +72,10 @@ const getOptions = async (item: any) => {
 
 watch(
   () => props.item,
-  () => {
-    getOptions(props.item?.field?.scheme);
+  val => {
+    if (val && val.field) {
+      getOptions(props.item?.field?.scheme);
+    }
   },
   {
     immediate: true,

@@ -253,13 +253,15 @@ export default {
       this.activeData.config.options = finalOptions;
     },
     addSelectItem() {
-      const lastItem = _.last(this.activeData.config.options) || { value: 0 };
-      const value =
-        lastItem.value !== 0 ? _.max(_.values(this.activeData.config.options.map(item => item.value))) + 1 : lastItem.value + 1;
+      // 找到最大值
+      let max = 1;
+      if (this.activeData.config.options) {
+        max = Math.max(this.activeData.config.options.map(item => item.value));
+      }
       this.activeData.config.options.push({
         label: "",
         type: "option",
-        value: lastItem ? value : 1
+        value: max
       });
     },
     openBatchEditDialogHandle() {

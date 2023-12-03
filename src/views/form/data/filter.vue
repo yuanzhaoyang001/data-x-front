@@ -294,17 +294,6 @@ export default {
     };
   },
   watch: {
-    formDataFilter: {
-      deep: true,
-
-      handler: function (val) {
-        if (val) {
-          this.filterParams = val;
-        }
-      },
-
-      immediate: true
-    },
     filterParams: {
       deep: true,
       handler: function (val) {
@@ -313,7 +302,15 @@ export default {
       immediate: true
     }
   },
-  mounted() {
+  beforeMount() {
+    this.filterParams = {
+      ...this.formDataFilter,
+      conditionList: this.formDataFilter.conditionList
+        ? this.formDataFilter.conditionList.map(item => {
+            return { ...item, field: this.fields.find(field => field.value === item.formItemId) };
+          })
+        : []
+    };
     getEmployeeListRequest().then(res => {
       this.userList = [{ userName: "0", nickName: i18n.global.t("form.dataFilter.thisUser") }].concat(res.data);
     });

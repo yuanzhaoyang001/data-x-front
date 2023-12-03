@@ -27,6 +27,7 @@
               v-model="dataValue[scope.row.id][col.id]"
               :border="false"
               clearable
+              :disabled="disabledProp()"
               style="width: 100%"
             />
           </template>

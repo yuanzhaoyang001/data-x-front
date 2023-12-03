@@ -52,6 +52,18 @@
             />
           </el-form-item>
           <el-form-item
+            :label="$t('system.userManagement.nickName')"
+            prop="nickName"
+          >
+            <el-input
+              v-model="queryParams.nickName"
+              :placeholder="$t('system.userManagement.nickNamePlaceholder')"
+              clearable
+              style="width: 240px"
+              @keyup.enter.native="handleQuery"
+            />
+          </el-form-item>
+          <el-form-item
             label-width="110px"
             :label="$t('system.userManagement.phoneNumber')"
             prop="phonenumber"

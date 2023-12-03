@@ -341,6 +341,7 @@
               <el-select
                 size="default"
                 v-model="dataReminderForm.pushConfig.pushChannelId"
+                @change="handleChangePushChannelId"
               >
                 <el-option
                   v-for="item in msgTemplateList"
@@ -655,24 +656,29 @@ export default {
       this.dataReminderForm.reminderExt.timeFieldTimeValue = null;
     },
     handleFilterChange(filter) {
-      filter.conditionList = filter.conditionList
-        .filter(item => {
-          return item.formItemId && item.method;
-        })
-        .map(item => {
-          return {
-            formItemId: item.formItemId,
-            method: item.method,
-            value: item.value
-          };
-        });
-      this.dataReminderForm.reminderConditionValue = filter;
+      this.dataReminderForm.reminderConditionValue = {
+        ...filter,
+        conditionList: filter.conditionList
+          .filter(item => {
+            return item.formItemId && item.method;
+          })
+          .map(item => {
+            return {
+              formItemId: item.formItemId,
+              method: item.method,
+              value: item.value
+            };
+          })
+      };
     },
     handleShowReminderPersons() {
       this.$refs.reminderPersons.show(this.dataReminderForm.reminderPersons);
     },
     handleMsgParamsConfig() {
       this.$refs.msgTemplateConfig.show(this.dataReminderForm.pushConfig.templateParamMapping);
+    },
+    handleChangePushChannelId(val) {
+      this.dataReminderForm.pushConfig.pushChannelType = this.msgTemplateList.find(item => item.id === val).templateType;
     },
     handleSaveReminder() {
       // 检查是否选择了推送人
