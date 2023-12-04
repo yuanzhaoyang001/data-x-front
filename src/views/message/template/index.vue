@@ -6,7 +6,7 @@
     />
     <el-form
       v-show="showSearch"
-      ref="queryForm"
+      ref="queryFormRef"
       class="mt10"
       :model="queryParams"
       :inline="true"
@@ -235,7 +235,7 @@
       append-to-body
     >
       <el-form
-        ref="form"
+        ref="formRef"
         :model="form"
         :rules="rules"
         label-width="120px"
@@ -315,15 +315,10 @@
               </el-button>
               <form-tinymce
                 style="width: 600px; margin-top: 5px"
-                ref="tinymce"
+                ref="tinymceRef"
                 v-model:value="form.templateContent"
                 :toolbar="getToolbar"
                 :key="form.templateType"
-                @input="
-                  val => {
-                    val = form.templateContent = val;
-                  }
-                "
               />
             </div>
             <div
@@ -359,7 +354,7 @@
       append-to-body
     >
       <el-form
-        ref="sendForm"
+        ref="sendFormRef"
         :model="sendForm"
         label-width="130px"
       >
@@ -457,7 +452,8 @@
   </div>
 </template>
 
-<script>
+<script name="MsgTemplate" setup>
+import { computed, onMounted, reactive, ref } from "vue";
 import {
   addMsgTemplate,
   delMsgTemplate,
@@ -470,235 +466,215 @@ import {
 import FormTinymce from "@/views/formgen/components/tinymce/index.vue";
 import { customAlphabet } from "nanoid";
 import { i18n } from "@/i18n";
+import { resetFormRef } from "@/utils/tduck";
+import { MessageUtil } from "@/utils/messageUtil";
+import { ElMessageBox } from "element-plus";
 
 const nanoid = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 6);
 
-export default {
-  name: "MsgTemplate",
-  components: { FormTinymce },
-  data() {
-    return {
-      //详情内容
-      dialogContent: "",
-      //详情弹窗
-      dialogVisible: false,
-      // 遮罩层
-      loading: true,
-      // 导出遮罩层
-      exportLoading: false,
-      // 选中数组
-      ids: [],
-      // 非单个禁用
-      single: true,
-      // 非多个禁用
-      multiple: true,
-      // 显示搜索条件
-      showSearch: true,
-      // 总条数
-      total: 0,
-      // message表格数据
-      msgTemplateList: [],
-      // 弹出层标题
-      title: "",
-      // 是否显示弹出层
-      open: false,
-      // 是否显示弹出层
-      sendOpen: false,
-      // 查询参数
-      queryParams: {
-        current: 1,
-        size: 10,
-        templateName: null,
-        templateCode: null,
-        templateType: null,
-        templateContent: null
-      },
-      // 表单参数
-      form: {},
-      sendForm: {},
-      // 表单校验
-      rules: {
-        templateName: [
-          {
-            required: true,
-            message: i18n.global.t("system.noticeTemplate.templateName"),
-            trigger: "blur"
-          }
-        ],
-        templateCode: [
-          {
-            required: true,
-            message: i18n.global.t("system.noticeTemplate.templateCodeRequired"),
-            trigger: "blur"
-          }
-        ],
-        templateType: [
-          { required: true, message: i18n.global.t("system.noticeTemplate.templateTypeRequired"), trigger: "change" }
-        ],
-        templateContent: [
-          { required: true, message: i18n.global.t("system.noticeTemplate.templateContentRequired"), trigger: "blur" }
-        ],
-        thirdTemplateId: [
-          {
-            required: true,
-            message: i18n.global.t("system.noticeTemplate.inputRequired"),
-            trigger: "blur"
-          }
-        ]
-      }
-    };
-  },
-  computed: {
-    getToolbar() {
-      if (this.form.templateType == 2) {
-        return " styleselect fontsizeselect bold italic underline strikethrough undo redo  removeformat alignleft aligncenter alignright  subscript superscript  hr  charmap    forecolor backcolor   ";
-      }
-      return "  ";
+// Define state
+const dialogContent = ref("");
+const dialogVisible = ref(false);
+const loading = ref(true);
+const ids = ref([]);
+const single = ref(true);
+const multiple = ref(true);
+const showSearch = ref(true);
+const total = ref(0);
+const msgTemplateList = ref([]);
+const title = ref("");
+const open = ref(false);
+const sendOpen = ref(false);
+const queryParams = reactive({
+  current: 1,
+  size: 10,
+  templateName: null,
+  templateCode: null,
+  templateType: null,
+  templateContent: null
+});
+const form = ref({});
+const sendForm = ref();
+const rules = {
+  templateName: [{ required: true, message: i18n.global.t("system.noticeTemplate.templateName"), trigger: "blur" }],
+  templateCode: [
+    {
+      required: true,
+      message: i18n.global.t("system.noticeTemplate.templateCodeRequired"),
+      trigger: "blur"
     }
-  },
-  created() {
-    this.getList();
-  },
-  methods: {
-    /** 查询message列表 */
-    getList() {
-      this.loading = true;
-      pageMsgTemplate(this.queryParams).then(response => {
-        this.msgTemplateList = response.data.records;
-        this.total = response.data.total;
-        this.loading = false;
-      });
-    },
-    handleInsertVariable() {
-      // 随机id
-      this.$refs.tinymce.editor.insertContent("${" + nanoid() + "}");
-      this.$refs.tinymce.editor.blur();
-    },
-    // 取消按钮
-    cancel() {
-      this.open = false;
-      this.reset();
-    },
-    // 表单重置
-    reset() {
-      this.form = {
-        id: null,
-        templateName: null,
-        templateCode: null,
-        templateType: null,
-        templateContent: null,
-        thirdTemplateId: null,
-        createTime: null,
-        createBy: null,
-        updateTime: null,
-        updateBy: null
-      };
-      this.resetForm("form");
-    },
-    /** 搜索按钮操作 */
-    handleQuery() {
-      this.queryParams.current = 1;
-      this.getList();
-    },
-    /** 重置按钮操作 */
-    resetQuery() {
-      this.resetForm("queryForm");
-      this.handleQuery();
-    },
-    // 多选框选中数据
-    handleSelectionChange(selection) {
-      this.ids = selection.map(item => item.id);
-      this.single = selection.length !== 1;
-      this.multiple = !selection.length;
-    },
-    /** 新增按钮操作 */
-    handleAdd() {
-      this.reset();
-      this.open = true;
-      this.title = i18n.global.t("system.noticeTemplate.addTemplate");
-    },
-    /** 修改按钮操作 */
-    handleUpdate(row) {
-      this.reset();
-      const id = row.id || this.ids;
-      getMsgTemplate(id).then(response => {
-        this.form = response.data;
-        this.open = true;
-        this.title = i18n.global.t("system.noticeTemplate.modifyTemplate");
-      });
-    },
-    /** 修改按钮操作 */
-    handleOpenSend(row) {
-      this.sendOpen = true;
-      this.sendForm.templateCode = row.templateCode;
-      this.sendForm.msgType = row.templateType;
-    },
-    handleSendMsg() {
-      this.$refs["sendForm"].validate(valid => {
-        if (valid) {
-          sendTemplateMsg(this.sendForm).then(response => {
-            this.msgSuccess(i18n.global.t("formI18n.all.success"));
-            this.sendOpen = false;
-          });
-        }
-      });
-    },
-    /** 提交按钮 */
-    submitForm() {
-      this.$refs["form"].validate(valid => {
-        if (valid) {
-          if (this.form.id != null) {
-            updateMsgTemplate(this.form).then(response => {
-              this.msgSuccess(i18n.global.t("formI18n.all.success"));
-              this.open = false;
-              this.getList();
-            });
-          } else {
-            addMsgTemplate(this.form).then(response => {
-              this.msgSuccess(i18n.global.t("formI18n.all.success"));
-              this.open = false;
-              this.getList();
-            });
-          }
-        }
-      });
-    },
-    /** 删除按钮操作 */
-    handleDelete(row) {
-      const ids = row.id || this.ids;
-      this.$confirm(i18n.global.t("system.noticeTemplate.isDelete"), i18n.global.t("formI18n.all.waring"))
-        .then(function () {
-          return delMsgTemplate(ids);
-        })
-        .then(() => {
-          this.getList();
-          this.msgSuccess(i18n.global.t("formI18n.all.success"));
-        })
-        .catch(() => {});
-    },
-    /* 详情弹窗*/
-    handleDesc(content) {
-      this.dialogVisible = true;
-      this.dialogContent = content;
-    },
-    handleRandCode() {
-      this.form.templateCode = nanoid();
-    },
-    handleSyncWxMpTemplate() {
-      this.$confirm(i18n.global.t("system.noticeTemplate.syncWxMpTemplate"), i18n.global.t("formI18n.all.waring"))
-        .then(function () {
-          return syncWxTemplateMsg({});
-        })
-        .then(() => {
-          this.getList();
-          this.msgSuccess(i18n.global.t("formI18n.all.success"));
-        })
-        .catch(() => {});
+  ],
+  templateType: [
+    {
+      required: true,
+      message: i18n.global.t("system.noticeTemplate.templateTypeRequired"),
+      trigger: "change"
     }
+  ],
+  templateContent: [
+    {
+      required: true,
+      message: i18n.global.t("system.noticeTemplate.templateContentRequired"),
+      trigger: "blur"
+    }
+  ],
+  thirdTemplateId: [{ required: true, message: i18n.global.t("system.noticeTemplate.inputRequired"), trigger: "blur" }]
+};
+
+// Define computed properties
+const getToolbar = computed(() => {
+  // 类型不一致
+  if (form.value.templateType == 2) {
+    return " styleselect fontsizeselect bold italic underline strikethrough undo redo  removeformat alignleft aligncenter alignright  subscript superscript  hr  charmap    forecolor backcolor   ";
   }
+  return "  ";
+});
+
+const getList = () => {
+  loading.value = true;
+  pageMsgTemplate(queryParams).then(response => {
+    msgTemplateList.value = response.data.records;
+    total.value = response.data.total;
+    loading.value = false;
+  });
+};
+
+onMounted(() => {
+  getList();
+});
+
+const tinymceRef = ref(null);
+
+const formRef = ref(null);
+
+const handleInsertVariable = () => {
+  tinymceRef.value.handleInsertContent("${" + nanoid() + "}");
+};
+
+const cancel = () => {
+  open.value = false;
+  reset();
+};
+
+const reset = () => {
+  form.value = {
+    id: null,
+    templateName: null,
+    templateCode: null,
+    templateType: null,
+    templateContent: null,
+    thirdTemplateId: null,
+    createTime: null,
+    createBy: null,
+    updateTime: null,
+    updateBy: null
+  };
+  resetFormRef(formRef.value);
+};
+
+const handleQuery = () => {
+  queryParams.current = 1;
+  getList();
+};
+
+const queryFormRef = ref(null);
+
+const resetQuery = () => {
+  resetFormRef(queryFormRef);
+  handleQuery();
+};
+
+const handleSelectionChange = selection => {
+  ids.value = selection.map(item => item.id);
+  single.value = selection.length !== 1;
+  multiple.value = !selection.length;
+};
+
+const handleAdd = () => {
+  reset();
+  open.value = true;
+  title.value = i18n.global.t("system.noticeTemplate.addTemplate");
+};
+
+const handleUpdate = row => {
+  reset();
+  const id = row.id || ids.value;
+  getMsgTemplate(id).then(response => {
+    form.value = response.data;
+    open.value = true;
+    title.value = i18n.global.t("system.noticeTemplate.modifyTemplate");
+  });
+};
+
+const handleOpenSend = row => {
+  sendOpen.value = true;
+  sendForm.value.templateCode = row.templateCode;
+  sendForm.value.msgType = row.templateType;
+};
+
+const sendFormRef = ref(null);
+
+const handleSendMsg = () => {
+  sendFormRef.value.validate(valid => {
+    if (valid) {
+      sendTemplateMsg(sendForm.value).then(() => {
+        MessageUtil.success(i18n.global.t("formI18n.all.success"));
+        sendOpen.value = false;
+      });
+    }
+  });
+};
+
+const submitForm = () => {
+  formRef.value.validate(valid => {
+    if (valid) {
+      if (form.value.id != null) {
+        updateMsgTemplate(form.value).then(() => {
+          MessageUtil.success(i18n.global.t("formI18n.all.success"));
+          open.value = false;
+          getList();
+        });
+      } else {
+        addMsgTemplate(form.value).then(() => {
+          MessageUtil.success(i18n.global.t("formI18n.all.success"));
+          open.value = false;
+          getList();
+        });
+      }
+    }
+  });
+};
+
+const handleDelete = row => {
+  const idsToDelete = row.id || ids.value;
+  ElMessageBox.confirm(i18n.global.t("system.noticeTemplate.isDelete"), i18n.global.t("formI18n.all.waring"))
+    .then(() => delMsgTemplate(idsToDelete))
+    .then(() => {
+      getList();
+      MessageUtil.success(i18n.global.t("formI18n.all.success"));
+    })
+    .catch(() => {});
+};
+
+const handleDesc = content => {
+  dialogVisible.value = true;
+  dialogContent.value = content;
+};
+
+const handleRandCode = () => {
+  form.value.templateCode = nanoid();
+};
+
+const handleSyncWxMpTemplate = () => {
+  ElMessageBox.confirm(i18n.global.t("system.noticeTemplate.syncWxMpTemplate"), i18n.global.t("formI18n.all.waring"))
+    .then(() => syncWxTemplateMsg({}))
+    .then(() => {
+      getList();
+      MessageUtil.success(i18n.global.t("formI18n.all.success"));
+    })
+    .catch(() => {});
 };
 </script>
-
 <style>
 .tips-text {
   color: #909399;

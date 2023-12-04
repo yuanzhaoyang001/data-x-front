@@ -13,14 +13,16 @@
           修改
         </el-button>
       </div>
-      <biz-project-form
-        v-if="formConfig.formKey"
-        :form-config="formConfig"
-        :form-data="formData"
-        :key="projectFormKey"
-        ref="bizProjectFormRef"
-        @submit="handleSubmitFormData"
-      />
+      <el-scrollbar style="height: calc(100vh - 20px)">
+        <biz-project-form
+          v-if="formConfig.formKey"
+          :key="projectFormKey"
+          ref="bizProjectFormRef"
+          :form-config="formConfig"
+          :form-data="formData"
+          @submit="handleSubmitFormData"
+        />
+      </el-scrollbar>
     </div>
     <div
       v-if="updateSuccess"
@@ -93,6 +95,7 @@ const handleSubmitFormData = (data: any) => {
   box-shadow: var(--el-box-shadow);
   line-height: 40px;
   height: 40px;
+
   .el-button {
     margin-left: 20px;
   }

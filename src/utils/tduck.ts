@@ -1,8 +1,6 @@
-/**
- * 通用js方法封装处理
- * Copyright (c) 2019 tduck
- */
 import { MessageUtil } from "@/utils/messageUtil";
+import type { FormInstance } from "element-plus";
+import { Ref } from "vue";
 
 // 日期格式化
 export function parseTime(time: any, pattern?: string): any {
@@ -55,6 +53,15 @@ export function resetForm(refName: string): void {
     this.$refs[refName].resetFields();
   }
 }
+
+/**
+ * 表单重置
+ * @param formEl
+ */
+export const resetFormRef = (formEl: Ref<FormInstance> | undefined) => {
+  if (!formEl) return;
+  formEl.value.resetFields();
+};
 
 // 添加日期范围
 export function addDateRange(params: any, dateRange: any[], propName?: string): any {
