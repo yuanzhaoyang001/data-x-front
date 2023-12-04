@@ -45,6 +45,14 @@
         >
           {{ $t("form.printTemplate.exportPdfText") }}
         </el-button>
+        <el-button
+          icon="ele-Document"
+          size="default"
+          type="primary"
+          @click="handleDownload(2)"
+        >
+          {{ $t("form.printTemplate.exportExcelText") }}
+        </el-button>
       </div>
       <iframe
         :src="previewUrl"
@@ -62,7 +70,7 @@ import { downloadFormPrintTemplate, listFormPrintTemplate, ReportPrintEntity } f
 import { MessageUtil } from "@/utils/messageUtil";
 import { i18n } from "@/i18n";
 import { download } from "@/utils/tduck";
-import { downloadFormPoster, listFormPoster, PosterEntity } from "@/api/project/poster";
+import { listFormPoster, PosterEntity } from "@/api/project/poster";
 
 const route = useRoute();
 
@@ -126,17 +134,6 @@ const handleDownload = async (downloadType: number) => {
   } else {
     download(res, "template", ".xlsx");
   }
-};
-
-const handleDownloadPoster = async (poster: PosterEntity) => {
-  if (!props.dataIds || !props.dataIds.length) {
-    MessageUtil.error(i18n.global.t("form.formData.selectData"));
-    return;
-  }
-  downloadFormPoster({
-    selectedIds: props.dataIds as number[],
-    posterKey: poster.posterKey as string
-  });
 };
 
 function showClick() {

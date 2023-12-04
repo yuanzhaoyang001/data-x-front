@@ -66,7 +66,7 @@ const handleInputChange = (val: any) => {
 
 // 检查开启了显示答案没
 watch(
-  () => props.item?.examConfig!.showAnswer,
+  () => props.item?.examConfig?.showAnswer,
   () => {
     classList.value = examHook.getExamClass(changeValue.value, null);
   }

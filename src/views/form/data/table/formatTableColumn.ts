@@ -292,17 +292,18 @@ export function formatMatrixDropdownData(value, item) {
  * @param item
  * @returns {string|null}
  */
-export function formatSubFormData(value, item) {
+export function formatSubFormData(value: any, item: any) {
   if (!value) {
     return null;
   }
-  let keyLabelObj = {};
+  // 维护标题id关系
+  let keyLabelObj: any = {};
   let childList = item.scheme.childList;
-  childList.forEach(c => {
+  childList.forEach((c: any) => {
     keyLabelObj[c.vModel] = removeHtmlTag(c.config.label);
   });
-  let subFormValue = value.map(subValue => {
-    let tempObj = {};
+  let subFormValue = value.map((subValue: any) => {
+    let tempObj: any = {};
     Object.keys(subValue).forEach(sKey => {
       // 数字结尾的key不显示
       if (/^[a-zA-Z].*\d$/.test(sKey)) {
@@ -315,5 +316,15 @@ export function formatSubFormData(value, item) {
     });
     return tempObj;
   });
-  return JSON.stringify(subFormValue);
+  return formatJsonData(subFormValue);
+}
+
+function formatJsonData(data: any[]) {
+  return data
+    .map((obj: any) => {
+      return Object.keys(obj)
+        .map(key => key + " : " + obj[key])
+        .join(";");
+    })
+    .join(" | ");
 }
