@@ -204,7 +204,7 @@ const handleToDimensionReport = () => {
   const href = router.resolve({
     path: "/form/dimension/result",
     query: {
-      key: props.dataId
+      key: examResultData.value?.dataUniqueId
     }
   });
   window.open(href.href, "_blank");

@@ -104,6 +104,10 @@ export interface FormExamResultVO {
   examUniqueId?: string;
 
   formKey?: string;
+  /**
+   * 数据唯一id
+   */
+  dataUniqueId?: number;
 }
 
 /**
