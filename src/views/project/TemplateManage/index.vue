@@ -197,7 +197,7 @@ const handleDelete = row => {
     type: "warning"
   })
     .then(() => {
-      deleteFormTemplateRequest(id).then(res => {
+      deleteFormTemplateRequest(row).then(res => {
         getList();
         ElMessage({
           type: "success",

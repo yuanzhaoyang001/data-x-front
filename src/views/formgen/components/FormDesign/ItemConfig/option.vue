@@ -306,6 +306,7 @@ export default {
       }
       this.activeData.config.options.push({
         label: i18n.global.t("formgen.option.others"),
+
         type: "input",
         value: max
       });
