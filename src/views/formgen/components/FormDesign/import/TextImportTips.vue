@@ -131,41 +131,6 @@ const formConf = ref({
 </script>
 
 <style lang="scss" scoped>
-.body {
-  height: 100%;
-}
-
-:deep(.el-dialog__body) {
-  padding: 0 !important;
-  height: 100%;
-  margin-bottom: 0 !important;
-}
-
-:deep(.el-tabs__content) {
-  height: 100%;
-}
-
-.right {
-  height: 100%;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  padding: 0 20px 40px;
-}
-
-:deep(.import-text-input .el-textarea__inner) {
-  box-shadow: none;
-  resize: none;
-}
-
-:deep(.input-wrap) {
-  border: var(--el-border);
-}
-</style>
-<style lang="scss">
-.import-item-dialog .el-dialog__body {
-  height: 85vh;
-  padding: 10px 20px;
-}
-
 .item-demo {
   display: flex;
   flex-direction: row;

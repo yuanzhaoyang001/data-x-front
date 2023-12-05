@@ -1,9 +1,17 @@
 <template>
   <div>
+    <el-form-item :label="$t('formgen.npsConfig.startNum')">
+      <el-input-number
+        v-model="activeData.table.min"
+        :max="10"
+        :min="0"
+        label=""
+      />
+    </el-form-item>
     <el-form-item :label="$t('formgen.npsConfig.number')">
       <el-input-number
         v-model="activeData.table.level"
-        :min="1"
+        :min="0"
         :max="10"
         label=""
       />

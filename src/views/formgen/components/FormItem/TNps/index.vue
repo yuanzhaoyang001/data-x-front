@@ -1,8 +1,8 @@
 <template>
-  <div class="w100">
+  <div class="w100 h100">
     <div class="t-nps-box">
       <span
-        v-for="n in table.level"
+        v-for="n in createArray(table?.min == undefined ? 1 : table?.min, table?.level)"
         class="item"
         :key="n"
         @mousemove="setCurrentHoverValue(n)"
@@ -14,56 +14,52 @@
     </div>
     <div class="tip-text">
       <div>
-        {{ table.copyWriting.min }}
+        {{ table?.copyWriting.min }}
       </div>
       <div>
-        {{ table.copyWriting.max }}
+        {{ table?.copyWriting.max }}
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import mixin from "../mixin";
+<script lang="ts" name="TNps" setup>
+import { ref } from "vue";
+import { formEmits, formItemProps, useFormItem } from "@/views/formgen/components/FormItem/hooks/useFormItemHook";
 
-export default {
-  name: "TNps",
-  mixins: [mixin],
-  props: {
-    table: {
-      type: Object,
-      default: () => {}
-    }
-  },
-  data() {
-    return {
-      currentHoverValue: 0,
-      dataValue: {}
-    };
-  },
-  watch: {
-    table: {
-      handler(value) {
-        this.initValue();
-      },
-      deep: true
-    }
-  },
-  methods: {
-    initValue() {
-      this.dataValue = this.value;
-    },
-    setCurrentHoverValue(val) {
-      if (val < this.changeValue) {
-        return;
-      }
-      this.currentHoverValue = val;
-    },
-    handleClick(val) {
-      this.currentHoverValue = val;
-      this.changeValue = val;
-    }
+const props = defineProps({
+  ...formItemProps,
+  table: {
+    type: Object,
+    default: () => {}
   }
+});
+
+const emits = defineEmits(formEmits);
+
+const formItemHook = useFormItem(props, emits);
+
+const { changeValue } = formItemHook;
+
+const currentHoverValue = ref(0);
+
+const setCurrentHoverValue = (val: number) => {
+  if (val < changeValue.value) {
+    return;
+  }
+  currentHoverValue.value = val;
+};
+const handleClick = (val: number) => {
+  currentHoverValue.value = val;
+  changeValue.value = val;
+};
+
+const createArray = (start: number, end: number) => {
+  let array = [];
+  for (let i = start; i <= end; i++) {
+    array.push(i);
+  }
+  return array;
 };
 </script>
 
@@ -80,15 +76,14 @@ export default {
   display: flex;
   align-items: center;
   width: 100%;
+  height: var(--el-component-size);
 
   .item {
     transition: all 0.3s ease;
-    height: var(--el-component-size-small);
-    line-height: var(--el-component-size-small);
+    height: var(--el-component-size);
+    line-height: var(--el-component-size);
     flex: 1;
-    width: 1px;
     text-align: center;
-    background-color: #f2f3f9;
     display: inline-block;
     color: #314666;
     border: 1px solid rgba(0, 0, 0, 0.06);
@@ -102,7 +97,7 @@ export default {
   }
 
   .active {
-    background-color: var(--form-theme-color);
+    background-color: var(--form-theme-color, #409eff);
     color: #fff;
   }
 }

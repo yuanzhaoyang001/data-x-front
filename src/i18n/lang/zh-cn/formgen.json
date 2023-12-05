@@ -391,7 +391,8 @@
   "npsConfig": {
     "maxText": "最高分文案",
     "minText": "最低分文案",
-    "number": "量级设置"
+    "number": "量级设置",
+    "startNum": "起始值"
   },
   "number": {
     "enterStepLength": "输入每次增加的数值",

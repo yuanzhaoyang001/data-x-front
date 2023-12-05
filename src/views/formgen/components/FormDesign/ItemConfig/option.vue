@@ -256,7 +256,7 @@ export default {
       // 找到最大值
       let max = 1;
       if (this.activeData.config.options) {
-        max = Math.max(this.activeData.config.options.map(item => item.value));
+        max = Math.max(...this.activeData.config.options.map(item => item.value), 1) + 1;
       }
       this.activeData.config.options.push({
         label: "",
@@ -300,13 +300,14 @@ export default {
       this.textEditDialogVisible = false;
     },
     addSelectOtherItem() {
-      const lastItem = _.last(this.activeData.config.options) || { value: 0 };
-      const value =
-        lastItem.value !== 0 ? _.max(_.values(this.activeData.config.options.map(item => item.value))) + 1 : lastItem.value + 1;
+      let max = 1;
+      if (this.activeData.config.options) {
+        max = Math.max(...this.activeData.config.options.map(item => item.value), 1) + 1;
+      }
       this.activeData.config.options.push({
         label: i18n.global.t("formgen.option.others"),
         type: "input",
-        value: value
+        value: max
       });
     }
   }

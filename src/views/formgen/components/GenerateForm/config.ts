@@ -663,6 +663,8 @@ export const advancedComponents = [
         max: i18n.global.t("formgen.config.max"),
         min: i18n.global.t("formgen.config.min")
       },
+      // 起始值
+      min: 1,
       level: 10
     },
     style: {},
