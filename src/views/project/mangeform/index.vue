@@ -170,7 +170,7 @@ const queryParams = reactive<FormRey>({
   beginDateTime: "",
   endDateTime: "",
   status: [],
-  type: 1
+  type: null
 });
 
 const { projectStatusList, projectTypeList } = useForm();

@@ -111,7 +111,7 @@ export interface FormRey {
   endDateTime: string;
   status: number | number[];
   folderId?: number;
-  type?: number;
+  type?: number | null;
   formKey?: string;
   textName?: string;
   userName?: string;

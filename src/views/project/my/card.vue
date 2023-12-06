@@ -106,6 +106,12 @@
                   >
                     <span class="card-time">{{ $t("client.card.createTime") }}：{{ formatDateFilter(p.createTime) }}</span>
                   </div>
+                  <div
+                    class="card-time-div"
+                    @click="toProjectHandle(p, 'editor/index')"
+                  >
+                    <span class="card-time">{{ $t("client.card.createBy") }}：{{ p.createUserName }}</span>
+                  </div>
                 </el-row>
                 <div class="status">
                   <span

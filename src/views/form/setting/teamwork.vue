@@ -46,7 +46,7 @@
           </el-table-column>
           <el-table-column
             :label="$t('form.setting.operation')"
-            align="center"
+            width="250"
             class-name="small-padding fixed-width operation-btn-group"
           >
             <template #default="scope">

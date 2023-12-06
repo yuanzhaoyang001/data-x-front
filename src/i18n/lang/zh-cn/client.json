@@ -2,6 +2,7 @@
   "card": {
     "copy": "复制",
     "createTime": "创建时间",
+    "createBy": "创建人",
     "data": "数据",
     "delFolderText": "确认删除该文件夹？",
     "delete": "删除",
