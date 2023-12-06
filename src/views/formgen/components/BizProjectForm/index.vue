@@ -121,6 +121,7 @@ onMounted(async () => {
         document.title = htmlDecodeByRegExp(removeHtmlTag(res.data.form.name));
         formConf.value.description = res.data.form.description;
         formConf.value.formType = res.data.form.type;
+        formConf.value.formKey = res.data.form.formKey;
       }
       formConf.value.logicShowRules = logicTriggerRules;
       formConf.value.hiddenFormItemIds = [...hiddenFormItemIds.keys()] || [];

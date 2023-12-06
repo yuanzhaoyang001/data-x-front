@@ -6,7 +6,7 @@
     <el-card>
       <template #header>
         <div class="clearfix text-center">
-          <h1 class="text-center">Tduck授权中心</h1>
+          <h1 class="text-center">TduckX授权中心</h1>
         </div>
       </template>
       <div class="license-content">
@@ -18,6 +18,7 @@
           <template #extra>
             <el-button
               type="primary"
+              size="default"
               @click="handleCopy"
             >
               一键复制
@@ -85,12 +86,10 @@
 <script>
 import request from "@/utils/request";
 import { baseUrl } from "@/utils/auth";
+import { NextLoading } from "@/utils/loading";
 
 export default {
   name: "License",
-  components: {
-    ElIconUpload
-  },
   data() {
     return {
       deviceInfo: {},
@@ -106,6 +105,7 @@ export default {
   created() {
     this.getDeviceInfo();
     this.getLicenseInfo();
+    NextLoading.done(600);
   },
   methods: {
     handleUploadSuccess(res, file) {
@@ -158,12 +158,12 @@ export default {
   align-content: center;
   justify-content: center;
 
-  .el-card {
-    padding: 50px 100px;
-  }
+  //.el-card {
+  //  padding: 50px 100px;
+  //}
 
   :deep(.el-descriptions-item__cell) {
-    padding: 15px 90px;
+    padding: 15px 100px;
   }
 
   .upload-licnse {
@@ -173,5 +173,9 @@ export default {
       text-align: center;
     }
   }
+}
+
+.license-content {
+  margin: 20px 100px;
 }
 </style>

@@ -141,5 +141,18 @@ export const staticRoutes: Array<RouteRecordRaw> = [
     meta: {
       title: "登录"
     }
+  },
+  {
+    path: "/license",
+    name: "license",
+    component: () => import("@/views/system/ops/license.vue"),
+    meta: {
+      title: "授权中心",
+      requireLogin: false,
+      icon: "iconfont icon-shouye ",
+      isHide: false,
+      isKeepAlive: false,
+      isAffix: false
+    }
   }
 ];

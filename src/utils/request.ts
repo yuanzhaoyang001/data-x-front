@@ -66,6 +66,12 @@ class RequestHttp {
                 window.location.href = "/";
               })
               .catch(() => {});
+          } else if (res.code === 410) {
+            // 当前url包含 license 就不在跳转
+            if (location.href.indexOf("license") > -1) {
+              return Promise.reject("error");
+            }
+            location.href = `/license`;
           } else if (res.code === 500) {
             ElMessage.error(res.msg);
           }
