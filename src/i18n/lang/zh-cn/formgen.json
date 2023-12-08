@@ -64,6 +64,7 @@
     "DESC_TEXT": "文本描述",
     "DESC_TEXT_EXAMPLE": "这是一段示例文本",
     "DIVIDER": "分割线",
+    "MAP_NAVIGATION": "地图导航",
     "Enter_HORIZONTAL_INPUT": "请输入横向填空内容",
     "FACE_IDENTIFY": "人脸验证",
     "FUNCTION_CALC": "函数计算",
@@ -365,6 +366,7 @@
     "content3": "默认开启搜索，关闭后搜索框禁用",
     "disableSearch": "禁用搜索",
     "latitudeAndLongitude": "获取经纬度",
+    "setMapAddress": "设置导航地址",
     "mapSelection": "开启选点"
   },
   "matrix": {

@@ -13,7 +13,6 @@ export function useComponents() {
     if (type == 4) {
       return allExamComponents;
     } else if (type === 5) {
-      debugger;
       console.log("aaa");
       return allMarketingComponents;
     }

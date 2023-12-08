@@ -12,7 +12,31 @@ import {
 export const allMarketingComponents = [
   {
     title: i18n.global.t("formgen.config.marketingComponents"),
-    list: []
+    list: [
+      {
+        typeId: "MAP_NAVIGATION",
+        config: {
+          label: i18n.global.t("formgen.config.MAP_NAVIGATION"),
+          defaultValue: "",
+          displayType: true,
+          showLabel: true,
+          showDefaultValue: false,
+          showRequired: false,
+          showClearable: false,
+          showRegList: false,
+          tag: "map-navigation",
+          tagIcon: "divider",
+          span: 24,
+          required: false,
+          regList: [],
+          changeTag: false
+        },
+        navigationAddress: "橘子洲风景名胜区",
+        // 经纬度
+        location: [112.963081, 28.196505],
+        style: { width: "100%" }
+      }
+    ]
   },
   {
     title: i18n.global.t("formgen.config.basicComponents"),

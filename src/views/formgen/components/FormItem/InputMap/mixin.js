@@ -1,4 +1,4 @@
-import MapLoader from "./amap.js";
+import MapLoader from "./amap.ts";
 
 export default {
   props: {

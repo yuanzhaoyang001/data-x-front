@@ -91,7 +91,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch, toValue } from "vue";
+import { computed, ref, toValue, watch } from "vue";
 import { isLabelTag } from "./FormItemLabel";
 import { isMobile } from "../../utils";
 import { camelCase, upperFirst } from "lodash-es";
@@ -124,6 +124,7 @@ Object.keys(modules).forEach(key => {
 const itemComponent = computed(() => {
   const { tag } = props.item.config;
   let name = upperFirst(camelCase(tag));
+  debugger;
   if (isMobile()) {
     let mCom = components[`Mobile${name}`];
     if (mCom) {
