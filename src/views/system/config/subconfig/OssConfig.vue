@@ -47,7 +47,11 @@
         prop="accessKeyId"
         :rules="[{ required: true, message: $t('formI18n.all.pleaseEnter') + ' AccessKeyID', trigger: 'blur' }]"
       >
-        <el-input v-model="form.accessKeyId" />
+        <el-input
+          v-model="form.accessKeyId"
+          show-password
+          type="password"
+        />
       </el-form-item>
       <el-form-item
         v-if="form.ossType !== 'LOCAL'"
@@ -55,7 +59,11 @@
         prop="accessKeySecret"
         :rules="[{ required: true, message: $t('formI18n.all.pleaseEnter') + ' AccessKeySecret', trigger: 'blur' }]"
       >
-        <el-input v-model="form.accessKeySecret" />
+        <el-input
+          v-model="form.accessKeySecret"
+          show-password
+          type="password"
+        />
       </el-form-item>
       <el-form-item
         v-if="form.ossType === 'ALIYUN' || form.ossType === 'S3'"
