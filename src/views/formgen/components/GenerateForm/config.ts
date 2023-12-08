@@ -1,5 +1,4 @@
 // 表单属性【右面板】
-import { allComponents as allExamComponents, examConf, getExamComponentsObj } from "./examConfig";
 import { baseUrl } from "@/utils/auth";
 import { i18n } from "@/i18n";
 
@@ -1520,27 +1519,6 @@ export const allComponents = [
 export default { allComponents, composeComponents };
 
 export let componentsObj: any = {};
-
-export function getAllComponents(type: number | null = 1) {
-  if (type == 4) {
-    return allExamComponents;
-  }
-  return allComponents;
-}
-
-export function getFormConfig(type: number = 1) {
-  if (type === 4) {
-    return examConf;
-  }
-  return formConf;
-}
-
-export function getComponentsObj(type = 1) {
-  if (type === 4) {
-    return getExamComponentsObj();
-  }
-  return getAllComponentsObj();
-}
 
 export function getAllComponentsObj() {
   if (!componentsObj || !Object.keys(componentsObj).length) {

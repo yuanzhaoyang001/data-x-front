@@ -2,46 +2,26 @@
   <el-card class="confirmation">
     <h2 class="text-center text-bold">核销中心</h2>
     <el-row
-      :gutter="20"
       class="mt20"
-      justify="center"
       type="flex"
+      justify="center"
     >
-      <el-col
-        :sm="20"
-        :md="16"
-      >
+      <el-col :span="23">
         <el-input
+          style="width: 60%"
           v-model="confirmation.code"
           placeholder="请输入核销码"
         ></el-input>
-      </el-col>
-    </el-row>
-    <el-row
-      :gutter="20"
-      class="mt20"
-      justify="center"
-      type="flex"
-      style="margin-bottom: 20px"
-    >
-      <el-col
-        :xs="{ span: 12, offset: 2 }"
-        :md="{ span: 12, offset: 4 }"
-      >
         <el-button
+          class="ml10"
           icon="ele-Search"
           type="primary"
           @click="handelEnquiryConfirmation"
         >
           点击查询
         </el-button>
-      </el-col>
-      <el-col
-        :xs="{ span: 12, offset: 2 }"
-        :md="{ span: 12, offset: 6 }"
-      >
         <el-button
-          v-if="showStatus"
+          v-if="showStatus == 2"
           icon="ele-Check"
           type="primary"
           @click="handelConfirmation"
@@ -55,61 +35,25 @@
       v-if="showStatus === 2"
       class="view-wrap"
     >
-      <div
-        v-if="confirmationResult"
-        class="view-card"
-      >
-        <generate-form
-          ref="generateForm"
-          :form-conf="formConf"
-          :page-form-model="formModel"
-          style="margin-bottom: 40px"
-        />
-      </div>
-      <div v-else>
-        <el-result
-          v-if="errorMsg"
-          :title="errorMsg"
-          icon="warning"
-        ></el-result>
-      </div>
+      <generate-form
+        ref="generateForm"
+        :form-conf="formConf"
+        :page-form-model="formModel"
+        style="margin-bottom: 40px"
+      />
     </div>
     <div v-if="showStatus === 3">
       <el-result
-        v-if="confirmationResult"
         icon="success"
         title="核销成功"
       ></el-result>
-      <el-result
-        v-else
-        :title="errorMsg"
-        icon="warning"
-      ></el-result>
-
-      <div class="view-wrap">
-        <div
-          v-if="confirmationResult"
-          class="view-card"
-        >
-          <generate-form
-            ref="generateForm"
-            :form-conf="formConf"
-            :page-form-model="formModel"
-            style="margin-bottom: 40px"
-          />
-        </div>
-      </div>
     </div>
-    <el-empty
-      v-if="showStatus === 1"
-      description="请输入核销码进行查询核销"
-    />
   </el-card>
 </template>
 
 <script>
 import GenerateForm from "@/views/formgen/components/GenerateForm/GenerateForm.vue";
-import { useConfirmationCodeRequest, getEnquiryConfirmationCodeRequest } from "@/api/project/form";
+import { getEnquiryConfirmationCodeRequest, useConfirmationCodeRequest } from "@/api/project/form";
 import { removeHtmlTag } from "@/views/formgen/utils";
 
 export default {
@@ -120,8 +64,6 @@ export default {
     return {
       // 1.未查询 2。查询了 3.核销了
       showStatus: 1,
-      // 操作状态是否成功
-      confirmationResult: false,
       confirmation: {
         formKey: "",
         code: ""
@@ -159,9 +101,10 @@ export default {
       }
       this.confirmation.formKey = this.$route.query.key;
       getEnquiryConfirmationCodeRequest(this.confirmation).then(res => {
-        this.confirmationResult = res.code === 200;
-        this.showStatus = 2;
-        this.errorMsg = res.msg;
+        if (res.msg) {
+          this.msgError(res.msg);
+          return;
+        }
         // 显示核销表单的逻辑
         if (res.data) {
           this.formConf.fields = res.data.fields
@@ -177,6 +120,7 @@ export default {
               return item.scheme;
             });
           this.formModel = res.data.data.originalData;
+          this.showStatus = 2;
         }
       });
     },

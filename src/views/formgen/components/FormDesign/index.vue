@@ -233,7 +233,6 @@ import FormSvgIcon from "../SvgIcon/index.vue";
 import FormQuestion from "./FormQuestion.vue";
 import FormOutline from "./FormOutline.vue";
 import { deepClone, jsonSimpleClone, removeHtmlTag } from "../../utils";
-import { getAllComponents, getComponentsObj, getFormConfig } from "../GenerateForm/config";
 import { FormActiveType, FormConfType } from "./types";
 import { useFormInfo } from "@/stores/formInfo";
 import { useFormDesign } from "./hooks/useFormDesign";
@@ -242,6 +241,7 @@ import { ElLoading, ElMessage } from "element-plus";
 import { i18n } from "@/i18n";
 import { useExamForm } from "./hooks/useExamForm";
 import mittBus from "@/utils/mitt";
+import { useComponents } from "./hooks/useComponents";
 
 const { setIsSaving } = useFormInfo();
 let oldActiveId = ref<string | null>(null);
@@ -259,6 +259,8 @@ const centerScrollbarRef = ref<any>(null);
 const centerRowsRef = ref<HTMLDivElement>();
 
 const formConf = ref<FormConfType | null>(null);
+
+const { getAllComponents, getComponentsObj, getFormConfig } = useComponents();
 
 const leftComponents = computed(() => {
   return getAllComponents(formType.value);

@@ -25,6 +25,14 @@
         <h4>{{ $t("form.createForm.examForm") }}</h4>
         <span>{{ $t("form.createForm.examFormText") }}</span>
       </div>
+      <div
+        class="container-form-sort"
+        @click="handleCreateForm(5)"
+      >
+        <div class="container-form-img"><img src="@/assets/images/form/exam.png" /></div>
+        <h4>{{ $t("form.createForm.marketingForm") }}</h4>
+        <span>{{ $t("form.createForm.examFormText") }}</span>
+      </div>
     </div>
   </el-dialog>
 </template>
