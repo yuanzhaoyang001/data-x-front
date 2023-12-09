@@ -833,7 +833,7 @@
     "showScoreCardTooltip": "勾选后，正确答案和解析页面将会显示成绩单。",
     "submitAfterAnswerLabel": "提交答卷后",
     "submitJumpLabel": "提交后跳转网页地址",
-    "submitJumpLogicLabel": "提交后跳转逻辑",
+    "submitJumpLogicLabel": "提交后逻辑",
     "submitSettingDescription": "自定义表单提交成功后的提示内容，以及可以跳转指定链接",
     "submitSettingLabel": "提交设置",
     "submitShowTypeLabel": "提交后显示方式",
