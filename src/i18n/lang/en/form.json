@@ -872,7 +872,7 @@
     "showScoreCardTooltip": "Check this box to display a scorecard and explanation page after submitting answers.",
     "submitAfterAnswerLabel": "After submitting the answer sheet",
     "submitJumpLabel": "Jump URL after Submission",
-    "submitJumpLogicLabel": "Jump Logic after Submission",
+    "submitJumpLogicLabel": "Logic after Submission",
     "submitSettingDescription": "Custom prompt message after form submission, and can jump to a specified link.",
     "submitSettingLabel": "Submission ",
     "submitShowTypeLabel": "Display After Submit",
