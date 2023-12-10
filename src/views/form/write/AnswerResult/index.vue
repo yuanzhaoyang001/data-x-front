@@ -38,7 +38,7 @@
 
 <script setup lang="ts" nmae="AnswerResult">
 import { useRoute } from "vue-router";
-import { onMounted, ref } from "vue";
+import { onMounted, provide, ref } from "vue";
 import { getFormDataRequest, updateFormDataByDataIdRequest, UserFormData } from "@/api/project/data";
 import BizProjectForm from "@/views/formgen/components/BizProjectForm/index.vue";
 import { ResultData } from "@/api/types";
@@ -49,6 +49,8 @@ const formConfig = ref({
   formKey: "",
   disabled: true
 });
+
+provide("formDisabled", formConf.disabled);
 
 const showUpdateBtn = ref(false);
 

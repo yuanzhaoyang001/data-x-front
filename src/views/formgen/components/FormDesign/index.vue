@@ -98,7 +98,7 @@
         <div
           v-if="formConf"
           ref="centerRowsRef"
-          class="center-board-row"
+          class="center-board-row t-form-theme-wrap"
         >
           <div
             v-if="editFormInfo"
@@ -242,6 +242,7 @@ import { i18n } from "@/i18n";
 import { useExamForm } from "./hooks/useExamForm";
 import mittBus from "@/utils/mitt";
 import { useComponents } from "./hooks/useComponents";
+import { setThemeVars } from "@/views/formgen/utils/theme";
 
 const { setIsSaving } = useFormInfo();
 let oldActiveId = ref<string | null>(null);
@@ -325,6 +326,8 @@ const dragSort = inject<Function>("dragSort", formDesignHook.handleDragSort);
 const checkPublicForm = inject<Function>("checkPublicForm", formDesignHook.handleCheckPublicForm);
 
 onMounted(async () => {
+  // 加载主题
+  setThemeVars(null);
   // 复制对象 避免修改改变原始对象
   formConf.value = JSON.parse(JSON.stringify(getFormConfig((route.query.type as any) || 1)));
   formConf.value!.formKey = formKey.value;

@@ -8,12 +8,9 @@ import { allComponents, formConf, getAllComponentsObj } from "@/views/formgen/co
 
 export function useComponents() {
   function getAllComponents(type: number | null = 1) {
-    console.log("aaa");
-    console.log(type);
     if (type == 4) {
       return allExamComponents;
     } else if (type === 5) {
-      console.log("aaa");
       return allMarketingComponents;
     }
     return allComponents;

@@ -31,7 +31,7 @@
       >
         <div class="container-form-img"><img src="@/assets/images/form/exam.png" /></div>
         <h4>{{ $t("form.createForm.marketingForm") }}</h4>
-        <span>{{ $t("form.createForm.examFormText") }}</span>
+        <span>{{ $t("form.createForm.marketingFormText") }}</span>
       </div>
     </div>
   </el-dialog>

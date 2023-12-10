@@ -124,7 +124,6 @@ Object.keys(modules).forEach(key => {
 const itemComponent = computed(() => {
   const { tag } = props.item.config;
   let name = upperFirst(camelCase(tag));
-  debugger;
   if (isMobile()) {
     let mCom = components[`Mobile${name}`];
     if (mCom) {
