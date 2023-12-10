@@ -37,6 +37,8 @@
   "createForm": {
     "examForm": "Exam Form",
     "examFormText": "Create exam questions, score submission for self-grading",
+    "marketingForm": "Marketing implementation",
+    "marketingFormText": "Marketing or advertising campaign design",
     "normalForm": "Normal Form",
     "normalFormText": "Consumer Survey,Appointment,Voting Receipt, Marketing Page",
     "reservation": "360° Feedback",
@@ -260,6 +262,7 @@
     "correct": "correct",
     "currentRanking": "Current ranking",
     "currentScore": "Current score",
+    "dimensionReport": "Dimension report",
     "dimensionResultAndSuggestion": "Dimensional Results and Suggestions",
     "dimensionSetting": "Dimension Settings",
     "isCorrect": "Is it correct",

@@ -1,6 +1,7 @@
 {
   "card": {
     "copy": "Copy",
+    "createBy": "Creator",
     "createTime": "Creation Time",
     "data": "Data",
     "delFolderText": "Are you sure to delete this folder?",

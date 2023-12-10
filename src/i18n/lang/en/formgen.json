@@ -56,9 +56,12 @@
   },
   "config": {
     "BUTTON": "Button",
+    "CAROUSEL_TABLE": "Scroll List",
     "CASCADER": "Cascader",
     "CHECKBOX": "CheckBox",
     "CONFIRMATION_CODE": "Write-off",
+    "CONTACT_US": "contact us",
+    "COUNT_DOWN": "Countdown",
     "DATE": "Date",
     "DEPT_SELECT": "Dept",
     "DESC_TEXT": "DescText",
@@ -75,6 +78,7 @@
     "IMAGE_UPLOAD": "ImgUpload",
     "INPUT": "TextBox",
     "INPUT_MAP": "Location",
+    "MAP_NAVIGATION": "Map navigation",
     "MATRIX_DROPDOWN": "MatrixOption",
     "MATRIX_INPUT": "MatrixInput",
     "MATRIX_SCALE": "MatrixScale",
@@ -92,6 +96,7 @@
     "RESERVE_DAY": "ReserveDay",
     "RESERVE_TIME_RANGE": "ReserveTime",
     "SCAN": "Scan",
+    "SCROLL_TEXT": "Scrolling text",
     "SELECT": "Select",
     "SELECT_DATE": "Please select ",
     "SIGN_PAD": "Sign",
@@ -105,6 +110,7 @@
     "UPLOAD": "Upload",
     "USER_SELECT": "User",
     "VALIDATE_CODE": "CheckCode",
+    "VIDEO": "video",
     "advancedComponents": "Advanced Components",
     "basicComponents": "Basic Components",
     "buttonText": "Click",
@@ -119,6 +125,7 @@
     "examTile": "<h3 style=\"text-align: center\" data-mce-style=\"text-align: center\">Exam title</h3>",
     "goods1": "Goods1",
     "location": "Please select a location ",
+    "marketingComponents": "Marketing components",
     "matrixComponents": "Matrix Components",
     "max": "Very satisfied",
     "min": "Very dissatisfied",
@@ -139,13 +146,32 @@
     "barCode": "Barcode",
     "choiceTime": "Please choose the time",
     "codeType": "Seal code type",
+    "confirmUrl": "Verification address",
     "day": " Day",
     "definiteDate": "Fixed validity",
     "enterText": "Please enter the description text",
     "movementDate": "Dynamic validity",
     "qrCode": "QR code",
     "showText": "Seal prompt text",
-    "validityType": "Validity type"
+    "validityType": "Validity type",
+    "winOpen": "Open a new window"
+  },
+  "contactUs": {
+    "buttonText1": "Button Text",
+    "contact": "Contact information",
+    "contactContent": "Contact content",
+    "name": "name",
+    "namePlaceholder": "Please enter a name",
+    "phoneNumber": "telephone number",
+    "wechatNumber": "QR code"
+  },
+  "countdown": {
+    "end": "Countdown ends copy",
+    "endTimePlaceholder": "Please select the end time",
+    "notStart": "Countdown has not started copywriting",
+    "startTimePlaceholder": "Please select the start time",
+    "started": "Countdown to Chinese version",
+    "timeRange": "Starting and ending time"
   },
   "datePicker": {
     "content": "Default time is the time filled in at that time",
@@ -362,7 +388,14 @@
     "content3": "Search box is disabled by default when search is turned off",
     "disableSearch": "Disable search",
     "latitudeAndLongitude": "Get lat and lon",
-    "mapSelection": "Map Selection"
+    "mapSelection": "Map Selection",
+    "setMapAddress": "Set navigation address"
+  },
+  "marqueeList": {
+    "dataList": "Data List",
+    "maxHeight": "height",
+    "title": "title",
+    "vertical": "Vertical scrolling"
   },
   "matrix": {
     "addOptionLabel": "Add Option",
@@ -391,7 +424,8 @@
   "npsConfig": {
     "maxText": "Maximum score",
     "minText": "Lowest",
-    "number": "Scale setting"
+    "number": "Scale setting",
+    "startNum": "Starting value"
   },
   "number": {
     "enterStepLength": "Enter the value increased each time",
@@ -534,6 +568,16 @@
     "enableWxScan": "Enable WeChat scan code",
     "strLength": "Truncate character length"
   },
+  "scrollText": {
+    "bold": "Bold",
+    "color": "colour",
+    "colorType": "Color Type",
+    "fontSize": "font size",
+    "gradient": "Gradient",
+    "italic": "italic",
+    "speed": "Rolling speed",
+    "title": "characters"
+  },
   "select": {
     "multiChoose": "Multi Choose",
     "search": "Search"
@@ -550,6 +594,10 @@
   "subform": {
     "enterTitile": "Enter Titile",
     "title": "Titile"
+  },
+  "tinymce": {
+    "placeholder": "Please enter the content",
+    "title": "Rich text editing"
   },
   "topLoginUser": {
     "tip1": "Starting with",
@@ -586,5 +634,14 @@
   "validateCode": {
     "errorText": "The verification code is incorrect",
     "placeholderText": "Please enter a verification code"
+  },
+  "video": {
+    "iframeCode": "Video iframe code",
+    "iframeCodeDesc": "Support insertion: Bilibili, Tencent Video, Youku Video, YouTube, and Vimeo. Click on Share - Embed Code - Copy and paste here on the video website.",
+    "uploadVideo": "Upload video",
+    "videoType": "Video type",
+    "videoType1": "Local video",
+    "videoType2": "External video",
+    "videoUrl": "Video address"
   }
 }
