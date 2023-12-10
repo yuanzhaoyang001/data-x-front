@@ -111,4 +111,17 @@ const handleContactBtn = () => {
   padding-left: 20px;
   vertical-align: middle;
 }
+
+@media screen and (max-width: 768px) {
+  .logo,
+  .btn {
+    flex: 0 0 30%;
+  }
+
+  .name {
+    flex: 1;
+    padding-left: 20px;
+    vertical-align: middle;
+  }
+}
 </style>

@@ -10,7 +10,10 @@
       :style="{ maxHeight: `${maxHeight}px`, height: `${maxHeight}px` }"
       class="marquee-list"
     >
-      <Vue3Marquee :vertical="vertical">
+      <Vue3Marquee
+        :vertical="vertical"
+        style="width: 100%"
+      >
         <div v-html="dataList" />
       </Vue3Marquee>
     </div>
@@ -43,11 +46,19 @@ const props = defineProps({
 <style lang="scss" scoped>
 .marquee-wrap {
   height: 100%;
+  width: 100%;
 }
 
 .marquee-list {
   width: 80%;
-  margin: 0 30px;
-  margin-top: 20px;
+  margin: 10px auto;
+  word-break: break-all;
+}
+
+@media screen and (max-width: 768px) {
+  .marquee-list {
+    width: 100%;
+    margin: 2px auto;
+  }
 }
 </style>
