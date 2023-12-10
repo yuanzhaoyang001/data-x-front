@@ -91,7 +91,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch, toValue } from "vue";
+import { computed, ref, toValue, watch } from "vue";
 import { isLabelTag } from "./FormItemLabel";
 import { isMobile } from "../../utils";
 import { camelCase, upperFirst } from "lodash-es";

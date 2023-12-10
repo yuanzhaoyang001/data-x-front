@@ -36,9 +36,11 @@
   },
   "createForm": {
     "examForm": "考试测评",
+    "marketingForm": "营销落地",
+    "marketingFormText": "营销或广告活动设计",
     "examFormText": "创建考试题型，设置答案、分数提交后进行评分",
     "normalForm": " 普通表单",
-    "normalFormText": "消费者调查，预约报名，投票 收款，营销页...",
+    "normalFormText": "消费者调查，预约报名，投票 收款...",
     "reservation": "360°评估",
     "reservationText": "汇总多视角的专业评价信息，助力有效决策...",
     "title": " 选择您想要应用的场景"

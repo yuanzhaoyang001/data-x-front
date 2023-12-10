@@ -43,7 +43,10 @@
       </el-button>
     </div>
     <!--    核销码-->
-    <div v-if="resultData.confirmationCodeInfo">
+    <div
+      v-if="resultData.confirmationCodeInfo"
+      class="text-center"
+    >
       <div v-html="resultData.confirmationCodeInfo.descText"></div>
       <div
         v-if="resultData.confirmationCodeInfo.type === 'QR_CODE'"

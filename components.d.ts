@@ -39,6 +39,7 @@ declare module 'vue' {
     VanRadioGroup: typeof import('vant/es')['RadioGroup']
     VanSlider: typeof import('vant/es')['Slider']
     VanSubmitBar: typeof import('vant/es')['SubmitBar']
+    Vue3Marquee: typeof import('./src/components/Vue3Marquee/index.vue')['default']
     Week: typeof import('./src/components/Crontab/week.vue')['default']
     Year: typeof import('./src/components/Crontab/year.vue')['default']
   }

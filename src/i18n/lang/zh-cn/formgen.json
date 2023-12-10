@@ -64,6 +64,12 @@
     "DESC_TEXT": "文本描述",
     "DESC_TEXT_EXAMPLE": "这是一段示例文本",
     "DIVIDER": "分割线",
+    "MAP_NAVIGATION": "地图导航",
+    "CONTACT_US": "联系我们",
+    "VIDEO": "视频",
+    "COUNT_DOWN": "倒计时",
+    "CAROUSEL_TABLE": "滚动列表",
+    "SCROLL_TEXT": "滚动文字",
     "Enter_HORIZONTAL_INPUT": "请输入横向填空内容",
     "FACE_IDENTIFY": "人脸验证",
     "FUNCTION_CALC": "函数计算",
@@ -107,6 +113,7 @@
     "VALIDATE_CODE": "验证码",
     "advancedComponents": "进阶组件",
     "basicComponents": "基础组件",
+    "marketingComponents": "营销组件",
     "buttonText": "点击跳转",
     "clickUpload": "点击上传",
     "col1": "值1",
@@ -139,6 +146,8 @@
     "barCode": "条形码",
     "choiceTime": "请选择时间",
     "codeType": "核销码类型",
+    "confirmUrl": "核销地址",
+    "winOpen": "新窗口打开",
     "day": " Day",
     "definiteDate": "固定有效期",
     "enterText": "请输入描述文本",
@@ -362,6 +371,7 @@
     "content3": "默认开启搜索，关闭后搜索框禁用",
     "disableSearch": "禁用搜索",
     "latitudeAndLongitude": "获取经纬度",
+    "setMapAddress": "设置导航地址",
     "mapSelection": "开启选点"
   },
   "matrix": {
@@ -587,5 +597,51 @@
   "topLoginUser": {
     "tip1": "正在以",
     "tip2": "身份填写"
+  },
+  "contactUs": {
+    "name": "名称",
+    "namePlaceholder": "请输入名称",
+    "buttonText1": "按钮文字",
+    "contact": "联系方式",
+    "wechatNumber": "二维码",
+    "phoneNumber": "电话号码",
+    "contactContent": "联系内容"
+  },
+  "video": {
+    "iframeCode": "视频iframe代码",
+    "iframeCodeDesc": "支持插入： bilibili、腾讯视频、优酷视频、YouTube和Vimeo。 在视频网站中点击分享-嵌入代码-复制后在此粘贴。",
+    "videoType": "视屏类型",
+    "videoType1": "本地视频",
+    "videoType2": "外部视频",
+    "uploadVideo": "上传视频",
+    "videoUrl": "视频地址"
+  },
+  "countdown": {
+    "timeRange": "起止时间",
+    "startTimePlaceholder": "请选择开始时间",
+    "endTimePlaceholder": "请选择结束时间",
+    "notStart": "倒计时未开始文案",
+    "started": "倒计时进行中文案",
+    "end": "倒计时结束文案"
+  },
+  "tinymce": {
+    "title": "富文本编辑",
+    "placeholder": "请输入内容"
+  },
+  "marqueeList": {
+    "title": "标题",
+    "maxHeight": "高度",
+    "dataList": "数据列表",
+    "vertical": "垂直滚动"
+  },
+  "scrollText": {
+    "title": "文字",
+    "fontSize": "字体大小",
+    "colorType": "颜色类型",
+    "color": "颜色",
+    "gradient": "渐变",
+    "speed": "滚动速度",
+    "bold": "加粗",
+    "italic": "斜体"
   }
 }

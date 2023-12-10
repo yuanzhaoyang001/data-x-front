@@ -57,6 +57,17 @@
         <el-radio label="QR_CODE">{{ $t("formgen.confirmationCode.qrCode") }}</el-radio>
       </el-radio-group>
     </el-form-item>
+    <el-form-item
+      v-if="activeData.confirmationCodeType !== undefined"
+      :label="$t('formgen.confirmationCode.confirmUrl')"
+    >
+      <a
+        :href="getConfirmationUrl()"
+        target="_blank"
+      >
+        {{ $t("formgen.confirmationCode.winOpen") }}
+      </a>
+    </el-form-item>
     <div class="descriptive-text">
       <el-divider>{{ $t("formgen.confirmationCode.showText") }}</el-divider>
       <div>
@@ -81,7 +92,11 @@ export default {
     tinymce
   },
   props: ["activeData"],
-  methods: {}
+  methods: {
+    getConfirmationUrl() {
+      return window.location.origin + "/project/confirmation?key=" + this.$route.query.key;
+    }
+  }
 };
 </script>
 

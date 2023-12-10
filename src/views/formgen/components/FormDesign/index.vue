@@ -98,7 +98,7 @@
         <div
           v-if="formConf"
           ref="centerRowsRef"
-          class="center-board-row"
+          class="center-board-row t-form-theme-wrap"
         >
           <div
             v-if="editFormInfo"
@@ -233,7 +233,6 @@ import FormSvgIcon from "../SvgIcon/index.vue";
 import FormQuestion from "./FormQuestion.vue";
 import FormOutline from "./FormOutline.vue";
 import { deepClone, jsonSimpleClone, removeHtmlTag } from "../../utils";
-import { getAllComponents, getComponentsObj, getFormConfig } from "../GenerateForm/config";
 import { FormActiveType, FormConfType } from "./types";
 import { useFormInfo } from "@/stores/formInfo";
 import { useFormDesign } from "./hooks/useFormDesign";
@@ -242,6 +241,8 @@ import { ElLoading, ElMessage } from "element-plus";
 import { i18n } from "@/i18n";
 import { useExamForm } from "./hooks/useExamForm";
 import mittBus from "@/utils/mitt";
+import { useComponents } from "./hooks/useComponents";
+import { setThemeVars } from "@/views/formgen/utils/theme";
 
 const { setIsSaving } = useFormInfo();
 let oldActiveId = ref<string | null>(null);
@@ -259,6 +260,8 @@ const centerScrollbarRef = ref<any>(null);
 const centerRowsRef = ref<HTMLDivElement>();
 
 const formConf = ref<FormConfType | null>(null);
+
+const { getAllComponents, getComponentsObj, getFormConfig } = useComponents();
 
 const leftComponents = computed(() => {
   return getAllComponents(formType.value);
@@ -323,6 +326,8 @@ const dragSort = inject<Function>("dragSort", formDesignHook.handleDragSort);
 const checkPublicForm = inject<Function>("checkPublicForm", formDesignHook.handleCheckPublicForm);
 
 onMounted(async () => {
+  // 加载主题
+  setThemeVars(null);
   // 复制对象 避免修改改变原始对象
   formConf.value = JSON.parse(JSON.stringify(getFormConfig((route.query.type as any) || 1)));
   formConf.value!.formKey = formKey.value;
