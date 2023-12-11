@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="contact-us-setting">
     <el-form-item label="Logo">
       <el-input
         v-model="activeData.logoUrl"
@@ -7,6 +7,33 @@
         clearable
         size="default"
       />
+
+      <div class="mt10">
+        <span class="el-form-item__label">
+          {{ $t("formgen.contactUs.logoHeight") }}
+        </span>
+        <el-input-number
+          v-model="activeData.logoWidth"
+          :max="1000"
+          :min="0"
+          :step="1"
+          controls-position="right"
+          size="small"
+        />
+      </div>
+      <div class="mt10">
+        <span class="el-form-item__label">
+          {{ $t("formgen.contactUs.logoWidth") }}
+        </span>
+        <el-input-number
+          v-model="activeData.logoHeight"
+          :max="1000"
+          :min="0"
+          :step="1"
+          controls-position="right"
+          size="small"
+        />
+      </div>
       <el-upload
         ref="logoUpload"
         :action="getUploadUrl()"
@@ -29,15 +56,22 @@
         </template>
       </el-upload>
     </el-form-item>
-    <el-form-item :label="$t('formgen.contactUs.name')">
-      <el-input
-        v-model="activeData.name"
-        :placeholder="$t('formgen.contactUs.namePlaceholder')"
-      />
-    </el-form-item>
+    <el-divider>{{ $t("formgen.contactUs.name") }}</el-divider>
+    <div>
+      <div>
+        <tinymce
+          :id="activeData.formId"
+          :key="activeData.formId"
+          v-model:value="activeData.name"
+        />
+      </div>
+    </div>
     <el-divider />
     <el-form-item :label="$t('formgen.contactUs.buttonText1')">
       <el-input v-model="activeData.contactBtnText" />
+    </el-form-item>
+    <el-form-item :label="$t('formgen.contactUs.buttonColor')">
+      <el-color-picker v-model="activeData.btnColor" />
     </el-form-item>
     <el-form-item :label="$t('formgen.contactUs.contact')">
       <el-select v-model="activeData.contactType">
@@ -84,6 +118,7 @@
 <script lang="ts" name="ConfigItemContactUs" setup>
 import { closeUploadProgressHandle, getUploadHeader, getUploadUrl, uploadProgressHandle } from "@/utils/uploadFile";
 import { i18n } from "@/i18n";
+import tinymce from "@/views/formgen/components/tinymce/index.vue";
 
 const props = defineProps({
   activeData: {
@@ -116,7 +151,9 @@ const handleUploadQrcodeSuccess = (response: any) => {
 };
 </script>
 <style lang="scss" scoped>
-.input-map-content-container {
-  display: none;
+.contact-us-setting {
+  :deep(.tox .tox-tbtn) {
+    height: 28px;
+  }
 }
 </style>

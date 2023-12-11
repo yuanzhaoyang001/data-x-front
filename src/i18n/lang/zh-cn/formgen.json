@@ -602,10 +602,13 @@
     "name": "名称",
     "namePlaceholder": "请输入名称",
     "buttonText1": "按钮文字",
+    "buttonColor": "按钮颜色",
     "contact": "联系方式",
     "wechatNumber": "二维码",
     "phoneNumber": "电话号码",
-    "contactContent": "联系内容"
+    "contactContent": "联系内容",
+    "logoHeight": "高度",
+    "logoWidth": "宽度"
   },
   "video": {
     "iframeCode": "视频iframe代码",

@@ -5,6 +5,7 @@
         <el-image
           :preview-src-list="[logoUrl]"
           :src="logoUrl"
+          :style="{ width: `${logoWidth}px`, height: `${logoHeight}px` }"
         >
           <template #error>
             <el-icon>
@@ -14,10 +15,11 @@
         </el-image>
       </div>
       <div class="name">
-        {{ name }}
+        <div v-html="name"></div>
       </div>
       <div class="btn">
         <el-button
+          :color="btnColor"
           type="primary"
           @click="handleContactBtn"
         >
@@ -48,9 +50,21 @@ const props = defineProps({
     type: String,
     default: ""
   },
+  logoWidth: {
+    type: Number,
+    default: 100
+  },
+  logoHeight: {
+    type: Number,
+    default: 100
+  },
   contactBtnText: {
     type: String,
     default: ""
+  },
+  btnColor: {
+    type: String,
+    default: "#4c4edb"
   },
   contactType: {
     type: String,

@@ -125,6 +125,38 @@ export const scrollTextComponent = {
   italic: false
 };
 
+export const contactUsComponents = {
+  typeId: "CONTACT_US",
+  config: {
+    label: i18n.global.t("formgen.config.CONTACT_US"),
+    defaultValue: "",
+    displayType: true,
+    showLabel: false,
+    showDefaultValue: false,
+    showRequired: false,
+    showClearable: false,
+    showRegList: false,
+    tag: "t-contact-us",
+    tagIcon: "contactUs",
+    span: 24,
+    required: false,
+    regList: [],
+    changeTag: false
+  },
+  name: "xxxx科技有限公司",
+  logoUrl: "",
+  logoWidth: 100,
+  logoHeight: 100,
+  // 联系方式
+  contactType: "1",
+  // 联系方式内容
+  contactContent: "",
+  // 联系按钮文字
+  contactBtnText: "联系我们",
+  btnColor: "#4c4edb",
+  style: { width: "100%" }
+};
+
 export const allMarketingComponents = [
   {
     title: i18n.global.t("formgen.config.marketingComponents"),
@@ -152,34 +184,7 @@ export const allMarketingComponents = [
         location: [112.963081, 28.196505],
         style: { width: "100%" }
       },
-      {
-        typeId: "CONTACT_US",
-        config: {
-          label: i18n.global.t("formgen.config.CONTACT_US"),
-          defaultValue: "",
-          displayType: true,
-          showLabel: false,
-          showDefaultValue: false,
-          showRequired: false,
-          showClearable: false,
-          showRegList: false,
-          tag: "t-contact-us",
-          tagIcon: "contactUs",
-          span: 24,
-          required: false,
-          regList: [],
-          changeTag: false
-        },
-        name: "xxxx科技有限公司",
-        logoUrl: "",
-        // 联系方式
-        contactType: "1",
-        // 联系方式内容
-        contactContent: "",
-        // 联系按钮文字
-        contactBtnText: "联系我们",
-        style: { width: "100%" }
-      },
+      contactUsComponents,
       videoComponent,
       countDownComponent,
       marqueeListComponent,

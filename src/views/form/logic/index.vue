@@ -155,6 +155,7 @@
                     <FormOptionSelect
                       class="width100"
                       size="default"
+                      valueProp="value"
                       :placeholder="$t('form.logic.option')"
                       v-if="['RADIO', 'CHECKBOX', 'SELECT', 'IMAGE_SELECT'].includes(getFormItemIdType(cItem.formItemId))"
                       v-model="cItem.optionValue"

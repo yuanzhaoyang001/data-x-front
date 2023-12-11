@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="t-form-theme-wrap">
     <div v-if="!updateSuccess">
       <div class="header">
         <p>{{ projectFormKey === "1" ? "我填写的内容" : "修改中" }}</p>
@@ -13,16 +13,15 @@
           修改
         </el-button>
       </div>
-      <el-scrollbar style="height: calc(100vh - 20px)">
-        <biz-project-form
-          v-if="formConfig.formKey"
-          :key="projectFormKey"
-          ref="bizProjectFormRef"
-          :form-config="formConfig"
-          :form-data="formData"
-          @submit="handleSubmitFormData"
-        />
-      </el-scrollbar>
+      <biz-project-form
+        v-if="formConfig.formKey"
+        :key="projectFormKey"
+        ref="bizProjectFormRef"
+        :form-config="formConfig"
+        :form-data="formData"
+        style="height: calc(100vh - 20px)"
+        @submit="handleSubmitFormData"
+      />
     </div>
     <div
       v-if="updateSuccess"
@@ -50,7 +49,7 @@ const formConfig = ref({
   disabled: true
 });
 
-provide("formDisabled", formConf.disabled);
+provide("formDisabled", formConfig.value.disabled);
 
 const showUpdateBtn = ref(false);
 

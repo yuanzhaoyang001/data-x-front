@@ -8,7 +8,7 @@
       v-for="option in options"
       :key="option.value"
       :label="option.label"
-      :value="option.label"
+      :value="option[props.valueProp]"
     />
   </el-select>
 </template>
@@ -27,6 +27,10 @@ const props = defineProps({
   item: {
     type: Object,
     default: () => {}
+  },
+  valueProp: {
+    type: String,
+    default: "label"
   }
 });
 const dataValue = ref(props.value);

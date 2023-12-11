@@ -20,7 +20,7 @@ let loadingInstanceGlobal: any = null;
 /**
  * 上传文件进度条
  */
-export const uploadProgressHandle = (callback: any) => {
+export const uploadProgressHandle = (callback?: any) => {
   const loadingInstance = ElLoading.service({
     lock: true,
     text: "上传中",

@@ -157,20 +157,26 @@
     "winOpen": "Open a new window"
   },
   "contactUs": {
+    "buttonColor": "Button color",
     "buttonText1": "Button Text",
     "contact": "Contact information",
     "contactContent": "Contact content",
+    "logoHeight": "height",
+    "logoWidth": "width",
     "name": "name",
     "namePlaceholder": "Please enter a name",
     "phoneNumber": "telephone number",
     "wechatNumber": "QR code"
   },
   "countdown": {
+    "bgColor": "background color",
     "end": "Countdown ends copy",
     "endTimePlaceholder": "Please select the end time",
+    "icon": "icon",
     "notStart": "Countdown has not started copywriting",
     "startTimePlaceholder": "Please select the start time",
     "started": "Countdown to Chinese version",
+    "textColor": "Text color",
     "timeRange": "Starting and ending time"
   },
   "datePicker": {
