@@ -204,6 +204,7 @@ const iframeUrl = ref("");
 
 onMounted(() => {
   restoreMenu();
+  initI18nOrSize("globalI18n", "disabledI18n");
 });
 
 onUnmounted(() => {
@@ -240,9 +241,11 @@ const restoreMenu = () => {
   }
 };
 
+const tLocale = useTLocale();
+
 const state = reactive({
   isScreenfull: false,
-  disabledI18n: "zh-cn",
+  disabledI18n: tLocale.acceptLanguage,
   disabledSize: "large"
 });
 
