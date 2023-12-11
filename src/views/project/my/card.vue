@@ -109,6 +109,7 @@
                   <div
                     class="card-time-div"
                     @click="toProjectHandle(p, 'editor/index')"
+                    v-if="p.createUserName"
                   >
                     <span class="card-time">{{ $t("client.card.createBy") }}：{{ p.createUserName }}</span>
                   </div>
