@@ -1,8 +1,11 @@
 <template>
   <div class="countdown-wrap">
-    <div class="container">
+    <div
+      :style="{ backgroundColor: bgColor, color: textColor }"
+      class="container"
+    >
       <el-icon size="30">
-        <ele-Timer />
+        <component :is="icon"></component>
       </el-icon>
       <div>
         <p class="text-center">{{ text }}</p>
@@ -15,7 +18,7 @@
   </div>
 </template>
 <script lang="ts" name="TCountDown" setup>
-import { defineProps, onMounted, watch, ref } from "vue";
+import { defineProps, onMounted, ref, watch } from "vue";
 import dayjs from "dayjs";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter.js";
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore.js";
@@ -41,6 +44,18 @@ const props = defineProps({
     default: ""
   },
   endText: {
+    type: String,
+    default: ""
+  },
+  bgColor: {
+    type: String,
+    default: "#4c4edb"
+  },
+  textColor: {
+    type: String,
+    default: "#ffffff"
+  },
+  icon: {
     type: String,
     default: ""
   }
@@ -88,14 +103,12 @@ onMounted(() => {});
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: var(--form-theme-color, #4c4edb);
   height: 70px;
   border-radius: 5px;
-  color: #ffffff;
 }
 
 :deep(.el-statistic__number) {
-  color: #ffffff;
+  color: v-bind("textColor");
   font-size: 20px;
 }
 </style>

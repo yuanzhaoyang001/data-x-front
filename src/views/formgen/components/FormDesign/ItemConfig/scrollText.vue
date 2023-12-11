@@ -1,7 +1,10 @@
 <template>
   <div>
     <el-form-item :label="$t('formgen.scrollText.title')">
-      <el-input v-model="activeData.text" />
+      <el-input
+        v-model="activeData.text"
+        type="textarea"
+      />
     </el-form-item>
     <el-form-item :label="$t('formgen.scrollText.fontSize')">
       <el-input-number v-model="activeData.fontSize" />
@@ -42,11 +45,12 @@
 </template>
 
 <script lang="ts" name="ConfigItemScrollText" setup>
-import type { scrollTextComponent } from "@/views/formgen/components/GenerateForm/marketingConfig";
-
-const props = defineProps<{
-  activeData: scrollTextComponent;
-}>();
+const props = defineProps({
+  activeData: {
+    type: Object,
+    default: () => ({})
+  }
+});
 </script>
 <style lang="scss" scoped>
 .input-map-content-container {

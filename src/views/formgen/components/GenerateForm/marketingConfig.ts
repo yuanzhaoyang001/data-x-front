@@ -61,7 +61,12 @@ export const countDownComponent = {
   // 已经开始文案
   startedText: "",
   // 结束文案
-  endText: ""
+  endText: "",
+  // 背景颜色
+  bgColor: "#4c4edb",
+  // 文字颜色
+  textColor: "#ffffff",
+  icon: ""
 };
 
 // 轮播表格

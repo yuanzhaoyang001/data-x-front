@@ -622,7 +622,10 @@
     "endTimePlaceholder": "请选择结束时间",
     "notStart": "倒计时未开始文案",
     "started": "倒计时进行中文案",
-    "end": "倒计时结束文案"
+    "end": "倒计时结束文案",
+    "bgColor": "背景颜色",
+    "textColor": "文字颜色",
+    "icon": "图标"
   },
   "tinymce": {
     "title": "富文本编辑",

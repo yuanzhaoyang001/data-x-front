@@ -239,7 +239,8 @@ import { ElMessageBox } from "element-plus";
 import ordinary from "@/assets/images/form/ordinary.png";
 import exam from "@/assets/images/form/exam.png";
 import flow from "@/assets/images/form/flow.png";
-// import EmptyPng from "@/assets/images/form/empty.png";
+import EmptyPng from "@/assets/images/form/empty.png";
+import MarktingPng from "@/assets/images/form/markting.png";
 import { i18n } from "@/i18n";
 
 const emit = defineEmits(["enterFolder", "renameFolder", "move", "refresh"]);
@@ -269,13 +270,15 @@ defineProps({
 });
 
 const getFormImageSrc = p => {
-  const Picturesque = p.type;
-  if (Picturesque === 1) {
+  const type = p.type;
+  if (type === 1) {
     return ordinary;
-  } else if (Picturesque === 4) {
+  } else if (type === 4) {
     return exam;
-  } else if (Picturesque === 2) {
+  } else if (type === 2) {
     return flow;
+  } else if (type === 5) {
+    return MarktingPng;
   }
 };
 
