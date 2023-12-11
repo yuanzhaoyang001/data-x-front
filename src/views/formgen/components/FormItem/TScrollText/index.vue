@@ -85,7 +85,6 @@ const getStyle = computed(() => {
 }
 
 .marquee-list {
-  width: 80%;
   margin: 0 30px;
   margin-top: 20px;
 }
