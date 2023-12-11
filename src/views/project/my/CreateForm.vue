@@ -29,7 +29,7 @@
         class="container-form-sort"
         @click="handleCreateForm(5)"
       >
-        <div class="container-form-img"><img src="@/assets/images/form/exam.png" /></div>
+        <div class="container-form-img"><img src="@/assets/images/form/markting.png" /></div>
         <h4>{{ $t("form.createForm.marketingForm") }}</h4>
         <span>{{ $t("form.createForm.marketingFormText") }}</span>
       </div>
