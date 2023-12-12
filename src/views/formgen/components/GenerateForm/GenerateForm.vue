@@ -22,7 +22,7 @@
           :index="index"
           :item="item"
           v-model:models="formModel"
-          :seq-no="getSeqNo(index, item)"
+          :seq-no="item.seqNo"
           v-show="isFieldShow(item)"
           @next="nextPage"
           @prev="prevPage"
@@ -58,8 +58,7 @@
 </template>
 
 <script setup lang="ts" name="GenerateForm">
-import type { Ref } from "vue";
-import { computed, inject, onMounted, ref, watch, watchEffect } from "vue";
+import { computed, inject, nextTick, onMounted, Ref, ref, watch } from "vue";
 import GenerateFormItem from "./GenerateFormItem.vue";
 import { cloneDeep, get, isArray, throttle } from "lodash-es";
 import { execRemoteAPI } from "../../api/execRemoteAPI";
@@ -72,8 +71,7 @@ import { useFormLogic } from "./hooks/useFormLogicHook";
 import type { FormInstance } from "element-plus";
 import { FormItemProp } from "element-plus";
 import { useExamForm } from "@/views/formgen/components/GenerateForm/hooks/useExamHook";
-
-let seqNo = 0;
+import { useFormSeqNo } from "@/views/formgen/components/GenerateForm/hooks/useSeqNoHook";
 
 const props = defineProps({
   // 表单配置
@@ -102,11 +100,6 @@ const formRules = ref({});
 
 const btnLoading = ref(false);
 
-// 监听器：formThemeConfig
-watchEffect(() => {
-  seqNo = formConfCopy.value.startSeqNo || 0;
-});
-
 // 监听器：formModel
 watch(
   formModel,
@@ -127,7 +120,7 @@ const formThemeConfig = inject("formThemeConfig", ref({ showFormNumber: false, s
 watch(
   () => formThemeConfig.value.showFormNumber,
   () => {
-    seqNo = 0;
+    initFormSeqNo(formConfCopy.value.fields);
   },
   { deep: true }
 );
@@ -137,16 +130,18 @@ const getFields = computed(() => {
   return formConfCopy.value.fields.filter((item: any) => !item.hideType);
 });
 
+const { lastSeqNo } = useFormSeqNo();
+
 // 创建阶段
 onMounted(() => {
   // 初始化动态数据 比如SELECT等远程数据
   initDynamicOptions(formConfCopy.value.fields);
   // 初始化默认值
   initFormData(formConfCopy.value.fields, formModel.value);
+  // 初始化序号
+  initFormSeqNo(formConfCopy.value.fields);
   // 构建表单校验规则
   buildRules(formConfCopy.value.fields, formRules);
-  // 特殊处理分页
-  seqNo = formConfCopy.value.startSeqNo || 0;
   // 加载考试设置
   examHook.handleExamSetting();
 });
@@ -269,8 +264,10 @@ const { buildRule } = useFormValidateRule();
 const { logicShowHandle } = useFormLogic(formConfCopy, formModel, formRules, buildRule);
 
 const handleLogicChange = (value: any, field: any, item: any) => {
-  seqNo = formConfCopy.value.startSeqNo || 0;
   logicShowHandle(value, field, item);
+  nextTick(() => {
+    initFormSeqNo(formConfCopy.value.fields);
+  });
 };
 
 /**
@@ -345,7 +342,7 @@ const prevPage = (page: number) => {
   emit("prev", {
     page,
     startSeqNo: formConfCopy.value.startSeqNo,
-    endSeqNo: seqNo,
+    endSeqNo: lastSeqNo.value,
     formModel: formModel.value
   });
 };
@@ -363,7 +360,7 @@ const switchPage = (eventName: string, page: number) => {
     emit(eventName, {
       page,
       startSeqNo: formConfCopy.value.startSeqNo,
-      endSeqNo: seqNo,
+      endSeqNo: lastSeqNo.value,
       formModel: formModel.value
     });
     return true;
@@ -379,18 +376,27 @@ const isFieldShow = (item: any) => {
 };
 
 /**
- * 获取序号
+ * 初始化序号
  * @param index
  * @param item
  */
-const getSeqNo = (index: number, item: any): number | null => {
+const initFormSeqNo = (fields: any[]) => {
   if (!formThemeConfig.value || formThemeConfig.value.showFormNumber !== true) {
+    // 如果是lastSeqNo.value != 0 说明是关掉了序号
+    fields.forEach(item => {
+      item.seqNo = undefined;
+      lastSeqNo.value = 0;
+    });
     return null;
   }
-  if (isFieldShow(item) && !item.displayType) {
-    seqNo++;
-  }
-  return seqNo;
+  let seqNo = formConfCopy.value.startSeqNo || 0;
+  fields.forEach(item => {
+    if (isFieldShow(item) && !item.config.displayType) {
+      seqNo = seqNo + 1;
+      item.seqNo = seqNo;
+      lastSeqNo.value = seqNo;
+    }
+  });
 };
 
 /**

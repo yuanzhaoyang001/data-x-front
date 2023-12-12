@@ -127,7 +127,6 @@ const handleClick = (option: any) => {
   // 分值
   props.models[`${props.item?.vModel}score`] = option.value === changeValue.value ? option.score : 0;
   // 自动下一页
-  console.log(toValue(changeValue));
   nextTick(() => {
     if (toValue(changeValue)) {
       autoNextPage(emits);
