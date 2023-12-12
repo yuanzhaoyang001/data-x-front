@@ -494,7 +494,11 @@ const queryParams = reactive({
   templateContent: null
 });
 const form = ref({});
-const sendForm = ref();
+const sendForm = ref({
+  templateCode: null,
+  receiver: null,
+  msgType: null
+});
 const rules = {
   templateName: [{ required: true, message: i18n.global.t("system.noticeTemplate.templateName"), trigger: "blur" }],
   templateCode: [

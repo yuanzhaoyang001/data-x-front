@@ -76,7 +76,7 @@ const updateSuccess = ref(false);
 
 const handleSubmitFormData = (data: any) => {
   let submitFormData = {
-    originalData: data.formModel,
+    ...data,
     dataId: route.query.id
   };
   updateFormDataByDataIdRequest(submitFormData).then(() => {
