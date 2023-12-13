@@ -4,6 +4,7 @@ import { Session } from "@/utils/storage";
 import qs from "qs";
 import { ResultData } from "@/api/types";
 import { useTLocale } from "@/utils/localeUtil";
+import VerificationBox from "@/components/Verifition/verification.ts";
 
 const config = {
   // 默认地址
@@ -53,7 +54,7 @@ class RequestHttp {
      *  服务器换返回信息 -> [拦截统一处理] -> 客户端JS获取到信息
      */
     this.service.interceptors.response.use(
-      response => {
+      async response => {
         // 对响应数据做点什么
         const res = response.data;
         if (res.code && res.code !== 200) {
@@ -66,6 +67,26 @@ class RequestHttp {
                 window.location.href = "/";
               })
               .catch(() => {});
+          } else if (res.code === 416) {
+            // 需要滑动验证
+            let result = {};
+            await VerificationBox().then(
+              async (value: any) => {
+                if (!response.config.params) {
+                  response.config.params = {};
+                }
+                response.config.params.slideCode = value;
+                if (response.config.data) {
+                  response.config.data = JSON.parse(response.config.data);
+                }
+                result = await this.service.request(response.config);
+              },
+              (error: any) => {
+                console.log(error);
+                return Promise.reject("error");
+              }
+            );
+            return Promise.resolve(result);
           } else if (res.code === 410) {
             // 当前url包含 license 就不在跳转
             if (location.href.indexOf("license") > -1) {
