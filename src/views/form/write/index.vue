@@ -266,9 +266,9 @@ const handleSubmitBefore = async (submitFormData: any) => {
   });
 
   if (isFaceCheck) {
+    saveTempFormData(submitFormData.value, formKey.value);
     const res = await getFaceIdentifyUrl({ url: window.location.href });
     window.location.href = res.data;
-    saveTempFormData(submitFormData.value, formKey.value);
     return false;
   }
 
@@ -279,7 +279,7 @@ const handleSubmitBefore = async (submitFormData: any) => {
 const handleCallBack = async () => {
   const backType = (router.currentRoute.value.query.backType || 0) as number;
 
-  if (backType === 1) {
+  if (backType == 1) {
     const faceRes = await getFaceIdentifyInfo({ token: router.currentRoute.value.query.faceId });
     const tempData = getTempFormData(formKey.value);
 
