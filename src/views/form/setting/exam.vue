@@ -258,6 +258,30 @@
             "
           />
         </div>
+        <div class="setting-item">
+          <p class="label">
+            {{ $t("form.setting.showScoreText") }}
+
+            <el-tooltip
+              :content="$t('form.setting.showScoreTextTooltip')"
+              class="item"
+              effect="dark"
+              placement="top-start"
+            >
+              <el-icon>
+                <ele-QuestionFilled />
+              </el-icon>
+            </el-tooltip>
+          </p>
+          <el-switch
+            v-model="examSettingForm.showScoreText"
+            @change="
+              () => {
+                saveSettingHandle();
+              }
+            "
+          />
+        </div>
         <el-divider>{{ $t("form.setting.randomQuestion") }}</el-divider>
         <div class="setting-item">
           <p class="label">
@@ -351,6 +375,7 @@ const examSettingForm = ref<ExamSetting>({
   showRank: false,
   // 随机抽题规则
   drawQuestionRuleList: [],
+  showScoreText: false,
   // 题库抽题规则
   questionBankDrawRuleList: []
 });

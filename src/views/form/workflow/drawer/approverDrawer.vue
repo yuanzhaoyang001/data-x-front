@@ -315,6 +315,7 @@ import employeesDialog from "../dialog/employeesDialog.vue";
 import roleDialog from "../dialog/roleDialog.vue";
 import postDialog from "../dialog/postDialog.vue";
 import func from "../preload";
+import { cloneDeep } from "lodash-es";
 import { listProjectItemRequest } from "@/api/project/form";
 import { mapActions, mapState, mapStores } from "pinia";
 import { useFormWorkflow } from "@/stores/formWorkflow";
@@ -367,30 +368,8 @@ export default {
   },
   watch: {
     approverConfig1(val) {
-      if (val && !val.formProperties) {
-        val.formProperties = this.formProperties;
-      } else {
-        const tempFormProperties = [...val.formProperties];
-        val.formProperties = [];
-        for (let i = 0; i < this.formProperties.length; i++) {
-          let prop = this.formProperties[i];
-          // 找到该项 把状态同步上来
-          let item = tempFormProperties.find(item => item.id === prop.id);
-          if (item) {
-            val.formProperties.push(prop);
-          } else {
-            val.formProperties.push({
-              ...prop,
-              readable: false,
-              writeable: false
-            });
-          }
-        }
-      }
-      this.approverConfig = { ...val };
-      if (!this.approverConfig.multipleApprovalType) {
-        this.approverConfig.multipleApprovalType = "2";
-      }
+      console.log(val);
+      this.initApproverConfig();
     }
   },
   created() {
@@ -404,10 +383,35 @@ export default {
             writeable: false
           };
         });
+        this.initApproverConfig();
       }
     });
   },
   methods: {
+    initApproverConfig() {
+      const val = this.approverConfig1;
+      if (val && !val.formProperties) {
+        val.formProperties = cloneDeep(this.formProperties);
+      } else {
+        const tempFormProperties = cloneDeep(val.formProperties);
+        val.formProperties = [];
+        for (let i = 0; i < this.formProperties.length; i++) {
+          let prop = this.formProperties[i];
+          // 找到该项 把状态同步上来
+          let item = tempFormProperties.find(item => item.id === prop.id);
+          if (item) {
+            val.formProperties.push(cloneDeep(item));
+          } else {
+            val.formProperties.push({
+              ...cloneDeep(prop),
+              readable: false,
+              writeable: false
+            });
+          }
+        }
+      }
+      this.approverConfig = cloneDeep(val);
+    },
     ...mapActions(useFormWorkflow, ["updateApprover", "updateApproverConfig"]),
     addApprover() {
       this.approverVisible = true;

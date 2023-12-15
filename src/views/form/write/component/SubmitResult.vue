@@ -23,7 +23,7 @@
     </div>
     <!-- 考试分数-->
     <div
-      v-if="resultData.examScoreText && !tipTitle"
+      v-if="resultData.examScoreText && settingConfig?.examSettings?.showScoreText"
       class="text-center"
     >
       {{ resultData.examScoreText }}

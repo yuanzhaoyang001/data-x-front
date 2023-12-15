@@ -68,6 +68,8 @@ export default {
         if (count.length > maxCount) {
           this.$message.error(val + `最多只能选择${maxCount}个`);
           this.dataValue[rowId] = this.oldDataValue[rowId];
+          this.$emit("update:value", {});
+          this.$emit("change", {});
           return;
         }
       }

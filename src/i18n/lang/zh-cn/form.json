@@ -830,6 +830,8 @@
     "showAnswerCardLabel": "显示答题卡",
     "showAnswerCardTooltip": "开启后将会左侧显示答题卡",
     "showRankLabel": "显示排名榜",
+    "showScoreText": "显示考试分数",
+    "showScoreTextTooltip": "开启提交后将会显示考试分数",
     "showRankTooltip": "勾选后，提交答案之后成绩单会显示排行榜按钮。",
     "showScoreCardLabel": "显示成绩单",
     "showScoreCardTooltip": "勾选后，正确答案和解析页面将会显示成绩单。",

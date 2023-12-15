@@ -65,6 +65,8 @@ export interface ExamSetting {
   showRank: boolean;
   // 不允许复制题目
   disableCopyQuestion: boolean;
+  // 显示成绩文案
+  showScoreText: boolean;
   // 随机题目顺序
   randomQuestionOrder: boolean;
   // 随机抽题规则
