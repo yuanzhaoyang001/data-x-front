@@ -1403,6 +1403,7 @@ export const composeComponents = [
       displayType: true,
       imageFit: "contain",
       height: 300,
+      mHeight: 150,
       labelWidth: null,
       defaultValue: null,
       showDefaultValue: false,

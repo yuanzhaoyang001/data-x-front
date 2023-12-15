@@ -31,6 +31,15 @@
       <el-input-number
         v-model="activeData.config['height']"
         :label="$t('formgen.carousel.heightLabel')"
+        :max="10000"
+        :min="50"
+        :step="5"
+      />
+    </el-form-item>
+    <el-form-item :label="$t('formgen.carousel.mheightLabel')">
+      <el-input-number
+        v-model="activeData.config['mHeight']"
+        :label="$t('formgen.carousel.mheightLabel')"
         :min="50"
         :max="10000"
         :step="5"

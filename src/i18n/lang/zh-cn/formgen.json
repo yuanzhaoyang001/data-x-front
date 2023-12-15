@@ -25,6 +25,7 @@
     "coverOption": "覆盖",
     "fillOption": "填充",
     "heightLabel": "高度",
+    "mheightLabel": "移动端高度",
     "imageFitModeLabel": "图片适应模式",
     "imageNameLabel": "图片名称",
     "noneOption": "原始",
