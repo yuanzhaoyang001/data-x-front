@@ -266,7 +266,7 @@ const handleSubmitBefore = async (submitFormData: any) => {
   });
 
   if (isFaceCheck) {
-    saveTempFormData(submitFormData.value, formKey.value);
+    saveTempFormData(submitFormData, formKey.value);
     const res = await getFaceIdentifyUrl({ url: window.location.href });
     window.location.href = res.data;
     return false;
