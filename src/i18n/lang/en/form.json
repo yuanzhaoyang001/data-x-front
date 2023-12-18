@@ -870,6 +870,8 @@
     "showRankTooltip": "Check this box to display a leaderboard button after submitting answers.",
     "showScoreCardLabel": "Show Scorecard",
     "showScoreCardTooltip": "Check this box to display a scorecard and explanation page after submitting answers.",
+    "showScoreText": "Display exam scores",
+    "showScoreTextTooltip": "After opening the submission, the exam score will be displayed",
     "submitAfterAnswerLabel": "After submitting the answer sheet",
     "submitJumpLabel": "Jump URL after Submission",
     "submitJumpLogicLabel": "Logic after Submission",

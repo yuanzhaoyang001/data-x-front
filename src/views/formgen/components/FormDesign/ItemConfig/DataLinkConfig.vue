@@ -34,8 +34,22 @@
             @change="(val: string) => handleFormKeyChange(val, item)"
             v-model="item.linkFormKey"
             :options="allForms"
+            filterable
             :placeholder="$t('formgen.input.pleaseChoose')"
-          />
+          >
+            <template #default="{ item }">
+              <span style="color: var(--el-text-color-secondary); font-size: 13px">
+                <el-tooltip
+                  class="box-item"
+                  effect="dark"
+                  :content="item.label"
+                  placement="right-start"
+                >
+                  <span>{{ item.label }}</span>
+                </el-tooltip>
+              </span>
+            </template>
+          </el-select-v2>
         </el-col>
         <el-col
           :span="3"

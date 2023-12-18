@@ -32,7 +32,7 @@
         />
         <el-alert
           v-if="dateValues[pro.id]"
-          :title="$t('formgen.reserveTimeRange.selected')`：${formatDate(pro.id)}`"
+          :title="`${$t('formgen.reserveTimeRange.selected')}：${formatDate(pro.id)}`"
           type="success"
           @close="handleCancelSelect(pro.id)"
         />

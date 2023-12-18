@@ -23,6 +23,7 @@ const config = {
 
 class RequestHttp {
   service: AxiosInstance;
+
   public constructor(config: AxiosRequestConfig) {
     // 实例化axios
     this.service = axios.create(config);
@@ -64,7 +65,10 @@ class RequestHttp {
             // window.location.href = "/"; // 去登录页
             ElMessageBox.alert("登录状态失效，请重新登录", "提示", {})
               .then(() => {
-                window.location.href = "/";
+                // 获取当前页面的参数
+                const path = window.location.pathname;
+                const queryStr = window.location.href.split("?")[1];
+                window.location.href = `/login?redirect=${path}&params=${queryStr ? JSON.stringify(qs.parse(queryStr)) : ""}`;
               })
               .catch(() => {});
           } else if (res.code === 416) {
@@ -119,19 +123,24 @@ class RequestHttp {
       }
     );
   }
+
   // * 常用请求方法封装
   get<T>(url: string, params?: object, _object = {}): Promise<ResultData<T>> {
     return this.service.get(url, { params, ..._object });
   }
+
   post<T>(url: string, params?: object, _object = {}): Promise<ResultData<T>> {
     return this.service.post(url, params, _object);
   }
+
   put<T>(url: string, params?: object, _object = {}): Promise<ResultData<T>> {
     return this.service.put(url, params, _object);
   }
+
   delete<T>(url: string, params?: any, _object = {}): Promise<ResultData<T>> {
     return this.service.delete(url, { params, ..._object });
   }
+
   download(url: string, params?: object) {
     this.service
       .post(url, params, {

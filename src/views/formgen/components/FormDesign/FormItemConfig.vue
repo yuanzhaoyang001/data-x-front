@@ -341,7 +341,7 @@ export default {
     return {
       formTitleToolbar:
         " styleselect fontsizeselect bold italic underline strikethrough undo redo  removeformat alignleft aligncenter alignright  subscript superscript " +
-        " hr  charmap    forecolor backcolor    ",
+        " hr  charmap    forecolor backcolor   link ",
       loading: null,
       justifyOptions: [
         {
