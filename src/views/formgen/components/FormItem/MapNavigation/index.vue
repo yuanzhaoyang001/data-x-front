@@ -1,6 +1,6 @@
 <template>
   <div class="h100">
-    <div class="pl20 map-header">
+    <div class="map-header">
       <el-icon>
         <ele-MapLocation />
       </el-icon>
