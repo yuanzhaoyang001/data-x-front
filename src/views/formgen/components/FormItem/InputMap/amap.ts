@@ -1,13 +1,14 @@
-// eslint-disable-next-line no-unused-vars
-// const amapKey = process.env.VUE_APP_MAP_KEY
-// eslint-disable-next-line no-unused-vars
-const amapVersion = "2.0";
-const _createScript = url => {
-  const jsapi = document.createElement("script");
-  jsapi.charset = "utf-8";
-  jsapi.src = url;
-  document.head.appendChild(jsapi);
+const _createScript = (url: string) => {
+  const existingScript = document.querySelector(`script[src="${url}"]`);
+  if (!existingScript) {
+    const jsapi = document.createElement("script");
+    jsapi.charset = "utf-8";
+    jsapi.src = url;
+    document.head.appendChild(jsapi);
+  }
 };
+
+let isCallbackSet = false;
 
 export default () =>
   new Promise(resolve => {
@@ -24,8 +25,16 @@ export default () =>
           if (window.AMapUI) {
             clearInterval(interval);
             resolve(window.AMap);
+            isCallbackSet = true;
           }
         }, 50);
       };
+      // 如果是多次调用 aMapInitCallback只会执行一次 这里补充下
+      const interval1 = setInterval(() => {
+        if (isCallbackSet) {
+          clearInterval(interval1);
+          resolve(window.AMap);
+        }
+      }, 50);
     } else resolve(window.AMap);
   });

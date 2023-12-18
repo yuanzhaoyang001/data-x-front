@@ -34,9 +34,10 @@ const props = defineProps({
 
 const mapId = ref(generateId("map-"));
 
-let mapInstance = null;
+const mapInstance = ref(null);
 
-onMounted(() => {
+onMounted(async () => {
+  await MapLoader();
   initMap();
 });
 
@@ -51,7 +52,7 @@ const initMap = () => {
   MapLoader().then(
     AMap => {
       console.log("地图加载成功");
-      mapInstance = new AMap.Map(mapId.value, {
+      mapInstance.value = new AMap.Map(mapId.value, {
         zoom: 15,
         zoomEnable: false,
         dragEnable: false,
@@ -67,7 +68,7 @@ const initMap = () => {
         title: props.navigationAddress,
         zoom: 10
       });
-      mapInstance.add(marker);
+      mapInstance.value?.add(marker);
     },
     e => {
       console.log("地图加载失败", e);

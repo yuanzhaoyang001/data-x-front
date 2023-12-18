@@ -4,7 +4,6 @@
       v-model="showValue"
       class="cursor-none"
       readonly
-      size="default"
     ></el-input>
   </div>
 </template>

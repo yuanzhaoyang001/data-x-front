@@ -99,6 +99,8 @@ onMounted(() => {
     link_title: false,
     statusbar: false,
     convert_urls: false, // 关闭把文件的路径转换成相对的
+    relative_urls: false,
+    remove_script_host: false,
     paste_data_images: true,
     file_picker_types: "media",
     // image_dimensions: false, // 禁用输入图片宽高
