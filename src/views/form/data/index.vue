@@ -59,7 +59,7 @@
           </el-button>
         </print-template-list>
         <el-button
-          v-if="formType === 4"
+          v-if="formType === 4 && checkBtnPerms('examScoreAssign')"
           icon="ele-EditPen"
           size="default"
           type="primary"

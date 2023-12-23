@@ -91,7 +91,7 @@ const hiddenFormItemIds = ref<string[] | null>(null);
 const formLogicData = inject<Ref<any> | null>("formLogicData", null);
 
 onBeforeMount(async () => {
-  let tempLogicData = formLogicData!.value;
+  let tempLogicData = formLogicData && formLogicData!.value;
   if (!tempLogicData) {
     const res = await getFormLogicRequest({ formKey: props.formConfCopy.formKey });
     tempLogicData = res.data;

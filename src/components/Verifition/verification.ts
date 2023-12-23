@@ -8,8 +8,6 @@ function VerificationBox(options = {}) {
     const confirmInstance = createApp(Verification, {
       ...options,
       verifySuccess: (code: string) => {
-        console.log("code");
-        console.log("aa");
         unmount();
         resolve(code);
       },

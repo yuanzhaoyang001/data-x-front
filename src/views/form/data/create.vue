@@ -49,6 +49,7 @@
         <DataTable
           v-if="currentAuthGroup"
           :mode="2"
+          :key="dataTableKey"
           :auth-group="currentAuthGroup.auth"
         />
       </div>

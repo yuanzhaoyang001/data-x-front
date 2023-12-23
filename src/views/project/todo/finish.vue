@@ -2,7 +2,7 @@
   <div>
     <el-form
       v-show="showSearch"
-      ref="queryForm"
+      ref="queryFormRef"
       :inline="true"
       :model="queryParams"
       label-width="98px"
@@ -13,7 +13,7 @@
       >
         <el-input
           style="width: 250px"
-          v-model="queryParams.foFrmName"
+          v-model="queryParams.formName"
           clearable
           :placeholder="$t('project.finish.formNameText')"
           @keyup.enter="handleQuery"
@@ -102,7 +102,7 @@
       >
         <template #default="scope">
           <el-button
-            icon="View"
+            icon="ele-View"
             link
             type="primary"
             @click="handleToView(scope.row)"
@@ -130,104 +130,76 @@
   </div>
 </template>
 
-<script>
+<script setup name="FinishForm">
 import { listMyFillFormRequest } from "@/api/project/data";
+import { onMounted, reactive, ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { resetFormRef } from "@/utils/tduck";
 
-export default {
-  name: "FinishForm",
-  data() {
-    return {
-      // 遮罩层
-      loading: true,
-      // 选中数组
-      ids: [],
-      // 非单个禁用
-      single: true,
-      // 非多个禁用
-      multiple: true,
-      // 显示搜索条件
-      showSearch: true,
-      // 总条数
-      total: 0,
-      // 待填写表单表格数据
-      finishList: [],
-      // 弹出层标题
-      title: "",
-      // 是否显示弹出层
-      open: false,
-      // 查询参数
-      queryParams: {
-        current: 1,
-        size: 10,
-        formName: "",
-        beginDateTime: null,
-        endDateTime: null
-      }
-    };
-  },
-  created() {
-    this.getList();
-  },
-  methods: {
-    getList() {
-      this.loading = true;
-      listMyFillFormRequest(this.queryParams).then(response => {
-        this.finishList = response.data.records;
-        this.total = response.data.total;
-        this.loading = false;
-      });
-    },
-    // 取消按钮
-    cancel() {
-      this.open = false;
-      this.reset();
-    },
-    // 表单重置
-    reset() {
-      this.form = {
-        id: null,
-        formKey: null,
-        userId: null,
-        status: 0,
-        createTime: null,
-        updateTime: null
-      };
-      this.resetForm("form");
-    },
-    /** 搜索按钮操作 */
-    handleQuery() {
-      this.queryParams.current = 1;
-      this.getList();
-    },
-    /** 重置按钮操作 */
-    resetQuery() {
-      this.resetForm("queryForm");
-      this.queryParams = {
-        formName: "",
-        beginDateTime: null,
-        endDateTime: null
-      };
-      this.handleQuery();
-    },
-    // 多选框选中数据
-    handleSelectionChange(selection) {
-      this.ids = selection.map(item => item.id);
-      this.single = selection.length !== 1;
-      this.multiple = !selection.length;
-    },
-    handleToWrite(row) {
-      let routeData = this.$router.resolve({
-        path: `/s/${row.formKey}`
-      });
-      window.open(routeData.location.path, "_blank");
-    },
-    handleToView(row) {
-      let routeData = this.$router.resolve({
-        path: `/project/form/data/view`,
-        query: { dataId: row.id }
-      });
-      window.open(routeData.href, "_blank");
-    }
-  }
+const finishList = ref([]);
+const total = ref(0);
+const loading = ref(true);
+
+const queryParams = reactive({
+  current: 1,
+  size: 10,
+  formName: "",
+  beginDateTime: null,
+  endDateTime: null
+});
+
+const getList = async () => {
+  loading.value = true;
+  const res = await listMyFillFormRequest(queryParams);
+  finishList.value = res.data.records;
+  total.value = res.data.total;
+  loading.value = false;
+};
+
+const showSearch = ref(true);
+
+onMounted(() => {
+  getList();
+});
+
+const handleQuery = () => {
+  queryParams.current = 1;
+  getList();
+};
+
+const queryFormRef = ref(null);
+
+const resetQuery = () => {
+  resetFormRef(queryFormRef);
+  queryParams.formName = "";
+  queryParams.beginDateTime = null;
+  queryParams.endDateTime = null;
+  handleQuery();
+};
+
+const ids = ref([]);
+const single = ref(true);
+const multiple = ref(true);
+
+const handleSelectionChange = selection => {
+  ids.value = selection.map(item => item.id);
+  single.value = selection.length !== 1;
+  multiple.value = !selection.length;
+};
+const router = useRouter();
+
+const handleToWrite = row => {
+  const routeData = router.resolve({
+    path: `/s/${row.formKey}`
+  });
+  window.open(routeData.href, "_blank");
+};
+
+const handleToView = row => {
+  const routeData = router.resolve({
+    path: `/project/form/data/view`,
+    query: { dataId: row.id }
+  });
+  window.open(routeData.href, "_blank");
 };
 </script>

@@ -310,7 +310,8 @@
       "import": "导入数据",
       "print": "允许打印",
       "query": "条件查询",
-      "update": "允许编辑"
+      "update": "允许编辑",
+      "examScoreAssign": "手动评分"
     },
     "buttonPermissions": "功能权限",
     "createAuthGroup": "新增权限组",

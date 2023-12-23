@@ -298,7 +298,8 @@ const funTreeData = ref([
       { label: i18n.global.t("form.formAuthGroup.buttonOptions.print"), id: "print" },
       { label: i18n.global.t("form.formAuthGroup.buttonOptions.custom"), id: "custom" },
       { label: i18n.global.t("form.formAuthGroup.buttonOptions.update"), id: "update" },
-      { label: i18n.global.t("form.formAuthGroup.buttonOptions.delete"), id: "delete" }
+      { label: i18n.global.t("form.formAuthGroup.buttonOptions.delete"), id: "delete" },
+      { label: i18n.global.t("form.formAuthGroup.buttonOptions.examScoreAssign"), id: "examScoreAssign" }
     ]
   },
   {
