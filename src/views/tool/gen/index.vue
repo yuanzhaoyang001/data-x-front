@@ -105,7 +105,7 @@
           icon="ele-Delete"
           plain
           type="danger"
-          @click="handleDelete"
+          @click="handleDelete()"
         >
           删除
         </el-button>
@@ -419,7 +419,7 @@ function handleEditTable(row) {
 
 /** 删除按钮操作 */
 const handleDelete = row => {
-  const selectIds = [row.id] || ids.value;
+  const selectIds = row?.id ? [row?.id] : ids.value;
   proxy
     .$confirm('是否确认删除表编号为"' + selectIds.join(",") + '"的数据项？')
     .then(function () {

@@ -53,7 +53,7 @@ export function previewTable(tableId: number) {
 }
 
 // 删除表数据
-export function delTable(tableId: number) {
+export function delTable(tableId: number | number[]) {
   return request({
     url: "/tool/gen/" + tableId,
     method: "delete"

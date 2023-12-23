@@ -7,7 +7,7 @@ const mimeMap = {
 };
 
 export function downLoadZip(str, filename) {
-  let url = baseUrl + str;
+  let url = str;
   axios({
     method: "get",
     url: url,
