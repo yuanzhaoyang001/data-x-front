@@ -276,6 +276,10 @@ const funTreeData = ref([
         label: i18n.global.t("form.leftTab.dataAssistant")
       },
       {
+        id: "notifyShare",
+        label: i18n.global.t("form.leftTab.notifyShare")
+      },
+      {
         id: "printTemplate",
         label: i18n.global.t("form.leftTab.printTemplate")
       },

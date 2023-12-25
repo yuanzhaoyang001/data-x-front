@@ -221,7 +221,7 @@ const submitForm = async (submitFormData: SubmitFormData) => {
   submitFormData.wxUserInfo = wxUserInfo.value;
   submitFormData.wxOpenId = wxUserInfo.value ? wxUserInfo.value.openid : "";
   submitFormData.formKey = formKey.value;
-  submitFormData.otherParam = extractInfo;
+  submitFormData.otherParam = extractInfo.value;
   submitFormData.extValue = useFormExpand().getExtValue();
   const beforeCheck = await handleSubmitBefore(submitFormData);
   if (!beforeCheck) {

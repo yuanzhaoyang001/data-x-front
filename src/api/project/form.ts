@@ -1,6 +1,7 @@
 import { getRequest, postRequest } from "../baseRequest";
 import { requestHttp } from "@/utils/request";
 import { ResPage, ResultData } from "@/api/types";
+import { PosterEntity } from "@/api/project/poster";
 // 创建表单
 export const createFormRequest = (data: any) => postRequest("/user/form/create", data);
 // 修改表单
@@ -119,4 +120,50 @@ export interface FormRey {
 export interface FormReyPageRes extends ResPage<FormRey> {
   records: FormRey[];
   total: number;
+}
+
+// 发送通知
+export const sendFormNotify = (param: SendMessageParam): Promise<ResultData<PosterEntity>> =>
+  requestHttp.post("/form/send/notify", param);
+
+export interface SendMessageParam {
+  /**
+   * 模板Id
+   */
+  templateId: number | null;
+
+  /**
+   * 表单key
+   */
+  formKey: string;
+
+  /**
+   * 接收人列表
+   */
+  receiverList: {
+    id: string;
+    userName: string;
+  }[];
+
+  /**
+   * 扩展参数
+   */
+  extParam?: {
+    /**
+     * 表单连接
+     */
+    link: string;
+
+    /**
+     * 表单名称
+     */
+    formName: string;
+  };
+
+  /**
+   * 模板参数映射
+   */
+  templateParamMapping: {
+    [key: string]: string;
+  };
 }

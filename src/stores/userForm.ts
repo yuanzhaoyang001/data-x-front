@@ -45,6 +45,10 @@ export const useUserForm = defineStore("userForm", {
     setWhilteListVal(whilteListVal: string) {
       this.extractInfo.whilteListVal = whilteListVal;
     },
+    // 其他扩展参数
+    setExtractInfo(extractInfo: any) {
+      this.extractInfo = { ...this.extractInfo, ...extractInfo };
+    },
     // 标记或者取消标记题目
     toggleMarkedQuestion(questionId: string) {
       const index = this.markedQuestionList.indexOf(questionId);

@@ -1,4 +1,5 @@
 import { Session } from "@/utils/storage";
+import { basePathUrl } from "@/utils/constants";
 
 export const baseUrl = import.meta.env.VITE_API_URL;
 
@@ -43,3 +44,11 @@ function getTLD() {
   }
   return tldArray.join(".");
 }
+
+/**
+ * 获取基础路径 如果包含了二级路径，需要在路由中配置 这里再获取
+ */
+export const getBaseUrlPath = () => {
+  let url = window.location.protocol + "//" + window.location.host;
+  return url + basePathUrl;
+};

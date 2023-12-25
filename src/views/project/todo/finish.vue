@@ -133,7 +133,7 @@
 <script setup name="FinishForm">
 import { listMyFillFormRequest } from "@/api/project/data";
 import { onMounted, reactive, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import { resetFormRef } from "@/utils/tduck";
 
 const finishList = ref([]);

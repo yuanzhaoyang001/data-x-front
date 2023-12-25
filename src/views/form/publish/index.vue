@@ -86,6 +86,19 @@
         <data-helper />
       </el-tab-pane>
       <el-tab-pane
+        :label="$t('form.leftTab.notifyShare')"
+        name="notifyShare"
+        v-if="hasFormButtonAuth('notifyShare')"
+      >
+        <template #label>
+          <el-icon>
+            <ele-Comment />
+          </el-icon>
+          {{ $t("form.leftTab.notifyShare") }}
+        </template>
+        <notify-share />
+      </el-tab-pane>
+      <el-tab-pane
         v-if="hasFormButtonAuth('printTemplate')"
         name="printTemplate"
       >
@@ -120,6 +133,7 @@ import AuthGroup from "./AuthGroup.vue";
 import TargetedPublish from "./TargetedPublish.vue";
 import DataPush from "./DataPush.vue";
 import DataHelper from "./DataHelper/index.vue";
+import NotifyShare from "./NotifyShare/index.vue";
 import PrintTemplate from "./PrintTemplate/index.vue";
 import CertificateGen from "./CertificateGen/index.vue";
 import { onMounted, ref } from "vue";

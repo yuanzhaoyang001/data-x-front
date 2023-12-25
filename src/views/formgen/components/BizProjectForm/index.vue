@@ -128,6 +128,8 @@ onMounted(async () => {
       startParser.value = true;
       // 题库抽题
       userFormStore.setRandomQuestionIds(res.data?.extractInfo?.randomQuestionIds);
+      // 获取路由的参数
+      userFormStore.setExtractInfo(route.query);
       // 加载完成后触发 给上级页面完成一些操作
       emit("completed");
     }

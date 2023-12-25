@@ -95,6 +95,7 @@ import {
   stopPublishFormRequest
 } from "@/api/project/publish";
 import { i18n } from "@/i18n";
+import { getBaseUrlPath } from "@/utils/auth";
 
 export default {
   name: "PublicPublish",
@@ -112,7 +113,7 @@ export default {
   },
   created() {
     this.formKey = this.$route.query.key;
-    let url = window.location.protocol + "//" + window.location.host;
+    let url = getBaseUrlPath();
     this.createDataLink = `${url}/s/${this.formKey}`;
     this.getProjectStatus();
     this.getFormLinkExtList();

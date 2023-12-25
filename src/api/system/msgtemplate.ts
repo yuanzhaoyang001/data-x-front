@@ -22,3 +22,11 @@ export const sendTemplateMsg = (data: any) => postRequest("/sys/msg/template/sen
  * 同步微信模板消息
  */
 export const syncWxTemplateMsg = (data: any) => postRequest("/sys/msg/template/syncWxMpMsgTemplate", data);
+
+export interface MsgTemplate {
+  id: number;
+  templateName: string;
+  templateContent: string;
+  templateType: string;
+  templateTypeDesc: string;
+}

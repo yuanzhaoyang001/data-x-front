@@ -10,7 +10,7 @@
         {{ $t("form.configParams.selectFormFieldComponents") }}
 
         <el-link
-          href="/system/template"
+          href="/msg/template"
           type="primary"
           :underline="false"
           target="_blank"

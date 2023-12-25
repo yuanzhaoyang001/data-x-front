@@ -14,6 +14,7 @@ import { clientRoutes } from "@/router/modules/client";
 import { initFrontEndControlRoutes } from "@/router/frontEnd";
 import { initBackEndControlRoutes } from "@/router/backEnd";
 import { NextLoading } from "@/utils/loading";
+import { basePathUrl } from "@/utils/constants";
 
 /**
  * 1、前端控制路由时：isRequestRoutes 为 false，需要写 roles，需要走 setFilterRoute 方法。
@@ -35,7 +36,7 @@ const { isRequestRoutes } = themeConfig.value;
  * @link 参考：https://next.router.vuejs.org/zh/api/#createrouter
  */
 export const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(basePathUrl),
   /**
    * 说明：
    * 1、notFoundAndNoPower 默认添加 404、401 界面，防止一直提示 No match found for location with path 'xxx'
