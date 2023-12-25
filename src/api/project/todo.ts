@@ -1,4 +1,4 @@
-import { getRequest, postRequest, putRequest, deleteRequest } from "../baseRequest";
+import { getRequest, postRequest } from "../baseRequest";
 
 // 查询待填写表单列表
 export const listTodo = (params: any) => getRequest("/user/form/todo/page", params);

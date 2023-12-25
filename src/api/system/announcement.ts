@@ -1,5 +1,5 @@
 import { deleteRequest, getRequest, postRequest, putRequest } from "../baseRequest";
-import { ReqPage, ResultData, ResPage } from "@/api/baseRequest";
+import { ReqPage, ResPage, ResultData } from "@/api/baseRequest";
 import { requestHttp } from "@/utils/request";
 
 // 查询系统通告列表

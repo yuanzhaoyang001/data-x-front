@@ -1,5 +1,5 @@
 import request, { requestHttp } from "@/utils/request";
-import { ReqPage, ResPage, ResultData } from "@/api/types";
+import { ReqPage, ResultData } from "@/api/types";
 
 //查询答题白名单列表
 export const getAnswerWhiteList = (params?: PageAnswerWhiteParam): Promise<ResultData> =>

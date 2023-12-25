@@ -200,7 +200,6 @@ h6 {
   margin-right: 8px;
 }
 
-
 .pull-right {
   float: right !important;
 }
@@ -296,26 +295,25 @@ h6 {
   float: right;
 }
 
- .t__dialog__header{
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
+.t__dialog__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-   .el-icon:hover {
-     color: var(--el-color-primary);
-   }
+  .el-icon:hover {
+    color: var(--el-color-primary);
+  }
 
-   .t__dialog__menu{
-     display: flex;
-     justify-content: center;
-     align-items: center;
+  .t__dialog__menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-     .el-icon{
-       margin-left: 12px;
-     }
-   }
- }
-
+    .el-icon {
+      margin-left: 12px;
+    }
+  }
+}
 
 // 自定义tabs样式
 .t-tabs {
@@ -348,8 +346,6 @@ h6 {
   .el-tabs__nav-wrap::after {
     height: 0 !important;
   }
-
-
 }
 
 //

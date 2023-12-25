@@ -1,5 +1,6 @@
 import { requestHttp } from "@/utils/request";
 import { ResultData } from "@/api/types";
+
 export const getExamRankList = (uniqueId: any): Promise<ResultData> => requestHttp.get("/form/exam/rankList", { uniqueId });
 
 export interface FormExamRankList {

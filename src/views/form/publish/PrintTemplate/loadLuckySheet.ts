@@ -41,7 +41,7 @@ export const loadAll = (callback: () => void) => {
     loadCSS(window.origin + "/luckysheet/" + item);
   });
   let loadedScripts = 0;
-  const jsList = ["luckysheet.umd.js","jquery.min.js", "plugins/js/plugin.js"];
+  const jsList = ["luckysheet.umd.js", "jquery.min.js", "plugins/js/plugin.js"];
   jsList.forEach(item => {
     loadJS(window.origin + "/luckysheet/" + item, () => {
       loadedScripts++;
