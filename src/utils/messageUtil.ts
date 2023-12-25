@@ -39,7 +39,7 @@ export const MessageUtil = {
     return parseError(error, "object");
   },
 
-  success(message: string, showClose = true, duration = 3000) {
+  success(message: string, showClose = true, duration = 1000) {
     ElMessage({
       type: "success",
       showClose,

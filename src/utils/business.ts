@@ -4,7 +4,6 @@ import { getConfigValue } from "@/api/system/config";
 import { parseTime, resetForm, addDateRange, selectDictLabel, selectDictLabels, download, handleTree } from "@/utils/tduck";
 import request from "@/utils/request";
 import { ElMessage } from "element-plus";
-import commonFunction from "@/utils/commonFunction";
 
 /**
  * 导出
@@ -29,7 +28,8 @@ export function business(app: App) {
   app.config.globalProperties.msgSuccess = function (msg: string) {
     ElMessage({
       message: msg,
-      type: "success"
+      type: "success",
+      duration: 1000
     });
   };
   app.config.globalProperties.msgError = function (msg: string) {
