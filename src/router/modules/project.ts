@@ -82,6 +82,11 @@ export const projectRoutes: Array<RouteRecordRaw> = [
     meta: { requireLogin: false, title: "查看" }
   },
   {
+    path: "/form/lottery",
+    component: () => import("@/views/form/write/component/SubmitLottery.vue"),
+    meta: { requireLogin: false, title: "抽奖" }
+  },
+  {
     path: "/q/:key",
     component: () => import("@/views/form/data/PublicQuery.vue"),
     meta: { title: "查询", requireLogin: false }

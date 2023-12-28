@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@codemirror/language':
     specifier: ^6.8.0
@@ -22,6 +26,9 @@ dependencies:
   '@icon-park/vue-next':
     specifier: ^1.4.2
     version: 1.4.2(vue@3.3.4)
+  '@lucky-canvas/vue':
+    specifier: ^0.1.11
+    version: 0.1.11(vue@3.3.4)
   '@vue/shared':
     specifier: ^3.2.33
     version: 3.3.4
@@ -47,8 +54,8 @@ dependencies:
     specifier: ^2.1.0
     version: 2.1.0(echarts@5.4.3)
   element-plus:
-    specifier: ^2.3.12
-    version: 2.3.12(vue@3.3.4)
+    specifier: ^2.4.4
+    version: 2.4.4(vue@3.3.4)
   highlight.js:
     specifier: ^10.5.0
     version: 10.7.3
@@ -311,6 +318,14 @@ packages:
 
   /@element-plus/icons-vue@2.1.0(vue@3.3.4):
     resolution: {integrity: sha512-PSBn3elNoanENc1vnCfh+3WA9fimRC7n+fWkf3rE5jvv+aBohNHABC/KAR5KWPecxWxDTVT1ERpRbOMRcOV/vA==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      vue: 3.3.4
+    dev: false
+
+  /@element-plus/icons-vue@2.3.1(vue@3.3.4):
+    resolution: { integrity: sha512-XxVUZv48RZAd87ucGS48jPf6pKu0yV5UCg9f4FFwtrYxXOwWuVJo6wOvSLKEoMQKjv8GsX/mhP6UsC1lRwbUWg== }
     peerDependencies:
       vue: ^3.2.0
     dependencies:
@@ -646,6 +661,20 @@ packages:
       '@lezer/common': 1.0.4
     dev: false
 
+  /@lucky-canvas/vue@0.1.11(vue@3.3.4):
+    resolution: { integrity: sha512-5vm0txSKRBtMgrE/HZEvw1joSTx9NTdAkc8tBp/aX0LxyhQtiTVBLsRgdYUK/OiURCL8bo+046BTGnV+Q4JFlg== }
+    peerDependencies:
+      vue: ^2.0.0 || >=3.0.0-rc.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      '@vue/composition-api': 1.7.2(vue@3.3.4)
+      lucky-canvas: 1.7.27
+      vue: 3.3.4
+      vue-demi: 0.7.5(@vue/composition-api@1.7.2)(vue@3.3.4)
+    dev: false
+
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -954,6 +983,14 @@ packages:
       '@vue/compiler-dom': 3.3.4
       '@vue/shared': 3.3.4
 
+  /@vue/composition-api@1.7.2(vue@3.3.4):
+    resolution: { integrity: sha512-M8jm9J/laYrYT02665HkZ5l2fWTK4dcVg3BsDHm/pfz+MjDYwX+9FUaZyGwEyXEDonQYRCo0H7aLgdklcIELjw== }
+    peerDependencies:
+      vue: '>= 2.5 < 2.7'
+    dependencies:
+      vue: 3.3.4
+    dev: false
+
   /@vue/devtools-api@6.5.0:
     resolution: {integrity: sha512-o9KfBeaBmCKl10usN4crU53fYtC1r7jJwdGKjPT24t348rHxgfpZ0xL3Xm/gLUYnc0oTp8LAmrxOeLyu6tbk2Q==}
     dev: false
@@ -1015,7 +1052,7 @@ packages:
       '@types/web-bluetooth': 0.0.16
       '@vueuse/metadata': 9.13.0
       '@vueuse/shared': 9.13.0(vue@3.3.4)
-      vue-demi: 0.14.6(vue@3.3.4)
+      vue-demi: 0.13.11(vue@3.3.4)
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
@@ -1041,7 +1078,7 @@ packages:
   /@vueuse/shared@9.13.0(vue@3.3.4):
     resolution: {integrity: sha512-UrnhU+Cnufu4S6JLCPZnkWh0WwZGUp72ktOF2DFptMlOs3TOdVv8xJN53zhHGARmVOsz5KqOls09+J1NR6sBKw==}
     dependencies:
-      vue-demi: 0.14.6(vue@3.3.4)
+      vue-demi: 0.13.11(vue@3.3.4)
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
@@ -1639,13 +1676,13 @@ packages:
       zrender: 5.4.4
     dev: false
 
-  /element-plus@2.3.12(vue@3.3.4):
-    resolution: {integrity: sha512-fAWpbKCyt+l1dsqSNPOs/F/dBN4Wp5CGAyxbiS5zqDwI4q3QPM+LxLU2h3GUHMIBtMGCvmsG98j5HPMkTKkvcA==}
+  /element-plus@2.4.4(vue@3.3.4):
+    resolution: { integrity: sha512-TlKubXJgxwhER0dw+8ULn9hr9kZjraV4R6Q/eidwWUwCKxwXYPBGmMKsZ/85tlxlhMYbcLZd/YZh6G3QkHX4fg== }
     peerDependencies:
       vue: ^3.2.0
     dependencies:
       '@ctrl/tinycolor': 3.6.1
-      '@element-plus/icons-vue': 2.1.0(vue@3.3.4)
+      '@element-plus/icons-vue': 2.3.1(vue@3.3.4)
       '@floating-ui/dom': 1.5.2
       '@popperjs/core': /@sxzz/popperjs-es@2.11.7
       '@types/lodash': 4.14.198
@@ -2628,6 +2665,10 @@ packages:
     dependencies:
       yallist: 4.0.0
     dev: true
+
+  /lucky-canvas@1.7.27:
+    resolution: { integrity: sha512-Ftz6qD+863bI7xijBmZg3dw3cNEc7odPr70EZQcGA14y3TgTAzH65HPosOCd6kKUlMwhntBaHMx3onoj9MtJRQ== }
+    dev: false
 
   /magic-string@0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
@@ -3870,6 +3911,21 @@ packages:
       vue: 3.3.4
     dev: false
 
+  /vue-demi@0.7.5(@vue/composition-api@1.7.2)(vue@3.3.4):
+    resolution: { integrity: sha512-eFSQSvbQdY7C9ujOzvM6tn7XxwLjn0VQDXQsiYBLBwf28Na+2nTQR4BBBcomhmdP6mmHlBKAwarq6a0BPG87hQ== }
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-beta.1
+      vue: ^2.6.0 || >=3.0.0-rc.1
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      '@vue/composition-api': 1.7.2(vue@3.3.4)
+      vue: 3.3.4
+    dev: false
+
   /vue-drag-resize@2.0.3:
     resolution: {integrity: sha512-5q03tZ/LyvQsg1iHRcqs+wI2OKNbNIWl9+7V8rVL6MxJhZLCIYSSgbAUaDE38LhD6dFd5aJhdgNmES61AxjXuw==}
     dev: false
@@ -4004,7 +4060,3 @@ packages:
     dependencies:
       tslib: 2.3.0
     dev: false
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false

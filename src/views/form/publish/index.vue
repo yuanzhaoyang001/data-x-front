@@ -99,6 +99,19 @@
         <notify-share />
       </el-tab-pane>
       <el-tab-pane
+        v-if="hasFormButtonAuth('lottery')"
+        :label="$t('form.leftTab.lottery')"
+        name="lottery"
+      >
+        <template #label>
+          <el-icon>
+            <ele-Present />
+          </el-icon>
+          {{ $t("form.leftTab.lottery") }}
+        </template>
+        <form-lottery />
+      </el-tab-pane>
+      <el-tab-pane
         v-if="hasFormButtonAuth('printTemplate')"
         name="printTemplate"
       >
@@ -136,6 +149,7 @@ import DataHelper from "./DataHelper/index.vue";
 import NotifyShare from "./NotifyShare/index.vue";
 import PrintTemplate from "./PrintTemplate/index.vue";
 import CertificateGen from "./CertificateGen/index.vue";
+import FormLottery from "./Lottery/index.vue";
 import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useFormInfo } from "@/stores/formInfo";

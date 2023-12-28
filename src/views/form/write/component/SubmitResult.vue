@@ -97,6 +97,16 @@
         {{ $t("form.submitResult.viewSubmitContent") }}
       </el-button>
     </div>
+    <div class="mt10 text-center">
+      <el-button
+        v-if="hasLottery"
+        size="default"
+        type="primary"
+        @click="handleToLottery"
+      >
+        {{ $t("form.submitResult.participateInLottery") }}
+      </el-button>
+    </div>
     <div
       class="mt10"
       style="text-align: center"
@@ -118,7 +128,8 @@ import { nextTick, onMounted, PropType, ref } from "vue";
 import VueQr from "vue-qr/src/packages/vue-qr.vue";
 import JsBarcode from "jsbarcode";
 import { jumpUrl, logicJumpResult } from "@/views/form/write/hooks/SubmitJump";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
+import { getActivitiesByTimeRange } from "@/api/project/lottery";
 
 interface ResultData {
   // 数据Id 自增
@@ -182,6 +193,16 @@ const handleToAnswerResult = () => {
   });
 };
 
+const handleToLottery = () => {
+  router.push({
+    path: "/form/lottery",
+    query: {
+      id: props.resultData?.dataId,
+      key: props.formKey
+    }
+  });
+};
+
 const handleToEvaluationResult = () => {
   const href = router.resolve({
     path: "/form/dimension/result",
@@ -191,6 +212,9 @@ const handleToEvaluationResult = () => {
   });
   window.open(href.href, "_blank");
 };
+
+// 是否有抽奖
+const hasLottery = ref(false);
 
 onMounted(() => {
   // 有动态逻辑设置的话先执行那个
@@ -225,6 +249,13 @@ onMounted(() => {
         displayValue: false,
         textPosition: "bottom"
       });
+    }
+  });
+
+  // 抽奖
+  getActivitiesByTimeRange("FORM_LOTTERY", useRoute().params.key).then(res => {
+    if (res.data) {
+      hasLottery.value = true;
     }
   });
 });

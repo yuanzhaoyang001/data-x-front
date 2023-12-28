@@ -398,6 +398,7 @@ const handleLeftNabBarSelect = (nav: any) => {
     .top-menu {
       margin-left: -80px;
       border-bottom: none;
+      height: 100%;
     }
 
     .top-menu .el-menu-item {

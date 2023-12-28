@@ -16,6 +16,7 @@
       :file-list="fileList"
       :on-preview="handlePictureCardPreview"
       :class="{ hide: fileList.length >= limit }"
+      :accept="fileType.join(',')"
     >
       <el-icon class="avatar-uploader-icon">
         <ele-Plus />
