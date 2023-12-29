@@ -227,7 +227,6 @@ const linkUrl = ref<string>(window.location.href);
 
 <style scoped lang="scss">
 .exam-result-wrap {
-  overflow: auto;
   height: 100%;
   &__card {
     min-height: 200px;

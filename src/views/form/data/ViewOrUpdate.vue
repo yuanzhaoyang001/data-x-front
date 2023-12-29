@@ -443,6 +443,10 @@ defineExpose({
 :deep(.exam-result-wrap .exam-result-wrap__card) {
   width: 90% !important;
 }
+:deep(.exam-result-wrap) {
+  height: 100%;
+  overflow: inherit !important;
+}
 </style>
 <style lang="scss">
 :deep(.view-dialog .el-dialog__body) {

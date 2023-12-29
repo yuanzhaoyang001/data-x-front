@@ -38,7 +38,6 @@ declare module 'vue' {
     VanRadio: typeof import('vant/es')['Radio']
     VanRadioGroup: typeof import('vant/es')['RadioGroup']
     VanSlider: typeof import('vant/es')['Slider']
-    VanSubmitBar: typeof import('vant/es')['SubmitBar']
     Verification: typeof import('./src/components/Verifition/verification.vue')['default']
     Verify: typeof import('./src/components/Verifition/Verify.vue')['default']
     VerifyPoints: typeof import('./src/components/Verifition/Verify/VerifyPoints.vue')['default']
