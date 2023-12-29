@@ -264,8 +264,19 @@ import { useFormInfo } from "@/stores/formInfo";
 import { listFormPoster, PosterEntity } from "@/api/project/poster";
 
 const allProjectItemList = ref<any[]>([]);
-const basicTypes = ref(["NUMBER", "RATE", "SLIDER", "DATE", "INPUT", "TEXTAREA", "RADIO", "IMAGE_SELECT", "SELECT"]);
-const numValTypes = ref(["NUMBER", "RATE", "SLIDER", "DATE"]);
+const basicTypes = ref([
+  "NUMBER",
+  "RATE",
+  "SLIDER",
+  "DATE",
+  "INPUT",
+  "TEXTAREA",
+  "RADIO",
+  "IMAGE_SELECT",
+  "SELECT",
+  "FUNCTION_CALC"
+]);
+const numValTypes = ref(["NUMBER", "RATE", "SLIDER", "DATE", "FUNCTION_CALC"]);
 const commitJumpLogicList = ref([
   {
     promptJump: {
