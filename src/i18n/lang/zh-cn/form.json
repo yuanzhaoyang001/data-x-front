@@ -850,6 +850,7 @@
     "onlyAllowLoginWrite": "只允许登录填写",
     "onlyAllowLoginWriteDescription": "开启后必须登录才能填写，默认会直接跳转登录。",
     "onlyInWeChat": "只能在微信中填写",
+    "anonymousWrite": "匿名填写",
     "operation": "操作",
     "orLabel": "或者",
     "order": " 次",

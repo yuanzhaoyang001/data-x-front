@@ -601,6 +601,13 @@
           </el-form-item>
         </div>
         <div class="setting-item">
+          <p class="label">{{ $t("form.setting.anonymousWrite") }}</p>
+          <el-switch
+            v-model="writeSettingForm.anonymousWrite"
+            @change="saveSettingHandle()"
+          />
+        </div>
+        <div class="setting-item">
           <p class="label">{{ $t("form.setting.onlyInWeChat") }}</p>
           <el-switch
             v-model="writeSettingForm.onlyWxWrite"
@@ -755,7 +762,8 @@ const writeSettingForm = ref<any>({
     enableLongestStay: false,
     longestStayTime: 60,
     autoNext: false
-  }
+  },
+  anonymousWrite: false
 });
 const formKey = useRoute().query.key as string;
 

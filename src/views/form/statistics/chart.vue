@@ -63,13 +63,13 @@
         <el-col :span="6">
           <el-statistic
             :title="$t('form.statistics.minScore')"
-            :value="examScoreInfo.maxScore"
+            :value="examScoreInfo.minScore"
           />
         </el-col>
         <el-col :span="6">
           <el-statistic
             :title="$t('form.statistics.maxScore')"
-            :value="examScoreInfo.minScore"
+            :value="examScoreInfo.maxScore"
           />
         </el-col>
       </el-row>
@@ -109,8 +109,9 @@ import { Info } from "@icon-park/vue-next";
 import { onBeforeMount, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useFormInfo } from "@/stores/formInfo";
+import { storeToRefs } from "pinia";
 
-const { formType } = useFormInfo();
+const { formType } = storeToRefs(useFormInfo());
 
 /**
  * 将毫秒数转为hh:mm:ss或mm:ss格式

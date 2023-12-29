@@ -246,6 +246,7 @@ const submitForm = (data: any) => {
   const { formModel } = data;
   const allData = {
     ...submitFormData.value,
+    anonymous: formConf?.value?.setting?.anonymousWrite,
     completeTime: document.getElementById("inActiveTime")?.innerText,
     originalData: formModel,
     formType: formConf.value.formType
