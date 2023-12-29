@@ -7,21 +7,24 @@
         :move="onLeftMove"
         animation="300"
         chosen-class="chosenClass"
+        class="left-draggable"
         drag-class="dragClass"
+        ghost-class="ghostClass"
         group="site"
         @end="onEnd"
-        item-key="value"
         @start="onStart"
       >
-        <template #item="{ element }">
-          <div class="left-draggable-group">
-            <div class="item">
-              <div class="item-name">
-                {{ element.label }}
-              </div>
+        <transition-group class="left-draggable-group">
+          <div
+            v-for="item in changeSortList"
+            :key="item.value"
+            class="item"
+          >
+            <div class="item-name">
+              {{ item.label }}
             </div>
           </div>
-        </template>
+        </transition-group>
       </draggable>
     </div>
     <div class="col">
@@ -31,23 +34,27 @@
         :move="onRightMove"
         animation="100"
         chosen-class="chosenClass"
+        class="right-draggable"
         drag-class="dragClass"
+        ghost-class="ghostClass"
         group="site"
         @end="onEnd"
         @start="onStart"
-        item-key="value"
-        class="right-draggable-group"
       >
-        <template #item="{ element, index }">
-          <div class="item">
+        <transition-group class="right-draggable-group">
+          <div
+            v-for="(item, index) in changeValue"
+            :key="item.value"
+            class="item"
+          >
             <span class="seq-num">
               {{ index + 1 }}
             </span>
             <span class="item-name">
-              {{ element.label }}
+              {{ item.label }}
             </span>
           </div>
-        </template>
+        </transition-group>
       </draggable>
     </div>
   </div>
@@ -66,13 +73,20 @@ export default {
   props: ["sortList"],
   data() {
     return {
-      changeSortList: this.sortList
+      changeSortList: []
     };
   },
   watch: {
     sortList(val) {
-      this.changeSortList = val;
+      this.changeSortList = this.changeValue
+        ? this.sortList.filter(item => !this.changeValue.find(i => i.value === item.value))
+        : this.sortList;
     }
+  },
+  mounted() {
+    this.changeSortList = this.changeValue
+      ? this.sortList.filter(item => !this.changeValue.find(i => i.value === item.value))
+      : this.sortList;
   },
   methods: {
     onLeftMove(e, originalEvent) {
@@ -96,6 +110,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.ghostClass {
+}
+
 .chosenClass {
   opacity: 1 !important;
 }
@@ -108,11 +125,10 @@ export default {
 }
 
 .itxst {
-  //margin: 10px;
+  margin: 10px;
 }
 
 .title {
-  color: var(--el-text-color-regular);
   padding: 6px 12px;
 }
 
@@ -120,7 +136,7 @@ export default {
   width: 48%;
   flex: 1;
   padding: 10px;
-  border: var(--el-border);
+  border: solid 1px #eee;
   border-radius: 5px;
   float: left;
   min-height: 150px;
@@ -143,7 +159,6 @@ export default {
   .item-name {
     margin-left: 10px;
     word-break: break-all;
-    color: var(--el-text-color-primary);
   }
 }
 
@@ -151,21 +166,25 @@ export default {
   margin-top: 6px;
 }
 
-.right-draggable-group {
+.right-draggable {
   min-height: 100px;
-  display: block;
+
+  .right-draggable-group {
+    min-height: 100px;
+    display: block;
+  }
 }
 
 .seq-num {
   width: 20px;
   height: 20px;
   border-radius: 20px;
-  background-color: var(--el-color-primary);
+  background-color: #409eff;
   display: inline-block;
   text-align: center;
   color: #ffffff;
   line-height: 20px;
-  margin: 0 5px;
+  margin: 0px 5px;
 }
 
 @media screen and (max-width: 768px) {

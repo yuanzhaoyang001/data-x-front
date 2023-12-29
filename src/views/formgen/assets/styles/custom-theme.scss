@@ -9,7 +9,7 @@
   position: relative;
 
   --el-text-color-regular: var(--form-theme-optionFontColor, #3d3d3d);
-  --el-font-size-base: var(--form-theme-optionFontSize, #3d3d3d);
+  --el-font-size-base: var(--form-theme-optionFontSize, 14px);
 
   .el-input__inner {
     height: calc(var(--form-theme-optionFontSize, 14px) + 16px);

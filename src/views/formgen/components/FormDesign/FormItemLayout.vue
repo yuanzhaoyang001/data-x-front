@@ -19,15 +19,16 @@
             v-model="currentItem.childList"
             :move="handleMove"
             class="list-main"
-            draggable=".drag-move"
             item-key="vModel"
             tag="el-row"
             v-bind="{
               group: insertAllowed ? 'componentsGroup' : '',
               ghostClass: 'moving',
               animation: 180,
-              handle: '.drag-move'
+              handle: '.sub-drag-move'
             }"
+            @start="handleSubFormStart"
+            @end="handleSubFormEnd"
             @change="handleChange($event, currentItem)"
           >
             <template #item="{ element, index }">
@@ -35,11 +36,7 @@
                 :key="element.vModel"
                 :class="activeId === element.config.formId ? 'active-from-item' : ''"
                 class="drag-move"
-                @click="
-                  event => {
-                    activeChildItem(event, element, index, currentItem);
-                  }
-                "
+                @click.stop="activeChildItem(element, index, currentItem)"
               >
                 <form-item
                   :key="element.renderKey"
@@ -48,6 +45,12 @@
                   class="form-item"
                 />
                 <div class="drawing-item-operation-wrap">
+                  <span
+                    class="drawing-item-copy mover sub-drag-move"
+                    :title="$t('formI18n.all.copy')"
+                  >
+                    <el-icon><ele-Rank /></el-icon>
+                  </span>
                   <span
                     class="drawing-item-copy"
                     :title="$t('formI18n.all.copy')"
@@ -187,12 +190,11 @@ const emitEvent = (name: string, val: any, list?: any) => {
   emit(name, val, list);
 };
 
-const activeChildItem = (event: Event, child: any, index: number, currentItem: any) => {
+const activeChildItem = (child: any, index: number, currentItem: any) => {
   child.isChild = true;
   child.childIndex = index;
   child.parentItem = cloneDeep(currentItem);
   emitEvent("activeItem", child);
-  event.stopPropagation();
 };
 
 const copyChildItem = (item: any) => {
@@ -232,5 +234,20 @@ const addToQuestionBankRef = ref<InstanceType<typeof AddToQuestionBank> | null>(
 
 const handleAddToQuestionBank = (item: any) => {
   addToQuestionBankRef.value?.showDialog(item);
+};
+
+const handleSubFormStart = () => {
+  // 解决子表单里面组件拖动会导致富文本复制
+  let elements = document.querySelectorAll(".mce-content-body");
+  elements.forEach(function (element: any) {
+    element.style.pointerEvents = "none";
+  });
+};
+const handleSubFormEnd = () => {
+  // 解决子表单里面组件拖动会导致富文本复制
+  let elements = document.querySelectorAll(".mce-content-body");
+  elements.forEach(function (element: any) {
+    element.style.pointerEvents = "auto";
+  });
 };
 </script>

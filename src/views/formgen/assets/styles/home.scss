@@ -318,7 +318,7 @@
   position: relative;
   padding: 10px 0;
 
-  &.active-from-item {
+  .active-from-item {
     border: 1px solid var(--el-color-primary-light-5);
     background-color: #fafafa;
     transition: all 0.1s;
