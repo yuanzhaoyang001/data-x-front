@@ -19,7 +19,7 @@ const VueQr = defineAsyncComponent(() => import("vue-qr/src/packages/vue-qr.vue"
 
 <style lang="scss" scoped>
 .qrcode-box {
-  position: fixed;
+  position: absolute;
   left: 50%;
   top: 50px;
   margin-left: 450px;

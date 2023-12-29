@@ -409,7 +409,6 @@ defineExpose({
 
 <style lang="scss" scoped>
 .dialog-form {
-  overflow: hidden;
   height: 563px;
 
   .left {

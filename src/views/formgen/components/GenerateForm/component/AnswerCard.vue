@@ -258,7 +258,7 @@ const emit = defineEmits(["item-click"]);
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: 50px;
+  top: 70px;
   transition: all 0.3s linear;
   padding: 12px;
   box-shadow: var(--el-box-shadow);

@@ -6,6 +6,7 @@
         icon="ele-ArrowLeft"
         size="default"
         type="primary"
+        :color="formThemeConfig?.themeColor"
         @click="prevClick"
       >
         {{ $t("formgen.formPagination.prevPageLabel") }}
@@ -14,6 +15,7 @@
         v-if="currPageNum !== totalPageNum"
         size="default"
         type="primary"
+        :color="formThemeConfig?.themeColor"
         @click="nextClick"
         :disabled="!allowNext"
       >
@@ -89,6 +91,8 @@ const formSetting = inject<Ref<FormPublicSetting>>("formSetting");
 const allowNext = ref<boolean>(true);
 
 const intervalId = ref<any>(null);
+
+const formThemeConfig = inject("formThemeConfig", { themeColor: "" });
 
 let time = 0;
 

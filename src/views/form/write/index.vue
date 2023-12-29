@@ -302,7 +302,7 @@ const handleCallBack = async () => {
   return false;
 };
 
-provide(SHOW_HEADER_USER_INFO_KEY, true);
+provide(SHOW_HEADER_USER_INFO_KEY, props.writeType != 2);
 </script>
 
 <style lang="scss" scoped>
@@ -312,6 +312,7 @@ provide(SHOW_HEADER_USER_INFO_KEY, true);
   height: 100%;
   width: 100%;
   overflow-x: hidden;
+  position: relative;
 }
 
 .title-icon-view {

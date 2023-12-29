@@ -46,36 +46,36 @@ export function useVoteHook(props: any) {
    * @param value
    */
   const handleVote = (value: any) => {
-    let voteList = JSON.parse(JSON.stringify(oldVoteList.value));
+    let tempVoteList = JSON.parse(JSON.stringify(oldVoteList.value));
     // 查找
     let index = oldVoteList.value.findIndex((item: any) => value == item.value);
     if (index === -1) {
       if (value !== "") {
-        voteList.push({
+        tempVoteList.push({
           value,
           quantity: 1
         });
       }
     } else {
-      voteList[index].quantity++;
+      tempVoteList[index].quantity++;
     }
-    voteList.value = voteList;
+    voteList.value = tempVoteList;
   };
 
   const handleArrayVote = (value: any) => {
-    let voteList = JSON.parse(JSON.stringify(oldVoteList.value));
+    let tempVoteList = JSON.parse(JSON.stringify(oldVoteList.value));
     // 查找
     value.forEach((v: any) => {
       let index = oldVoteList.value.findIndex((item: any) => v == item.value);
       if (index === -1) {
-        voteList.push({
+        tempVoteList.push({
           value: v,
           quantity: 1
         });
       } else {
-        voteList[index].quantity++;
+        tempVoteList[index].quantity++;
       }
-      voteList.value = voteList;
+      voteList.value = tempVoteList;
     });
   };
 

@@ -145,6 +145,7 @@
               </div>
             </div>
           </div>
+
           <el-form
             :label-position="formConf.labelPosition"
             :label-width="formConf.labelWidth + 'px'"
@@ -152,6 +153,27 @@
             size="default"
             ref="designFormRef"
           >
+            <div
+              v-if="!drawingList || !drawingList.length"
+              class="empty-info"
+            >
+              <el-icon
+                class="mr5 pointer"
+                color="#409EFC"
+                size="18"
+              >
+                <ele-Position />
+              </el-icon>
+              {{ $t("formgen.index.leftQuestion") }}
+              <el-icon
+                class="ml5 mr5"
+                color="#409EFC"
+                size="18"
+              >
+                <ele-Rank />
+              </el-icon>
+              {{ $t("formgen.index.drag") }}
+            </div>
             <draggable
               v-model="drawingList"
               :animation="180"
@@ -182,27 +204,6 @@
               </template>
             </draggable>
           </el-form>
-          <div
-            v-if="!drawingList || !drawingList.length"
-            class="empty-info"
-          >
-            <el-icon
-              class="mr5 pointer"
-              color="#409EFC"
-              size="18"
-            >
-              <ele-Position />
-            </el-icon>
-            {{ $t("formgen.index.leftQuestion") }}
-            <el-icon
-              class="ml5 mr5"
-              color="#409EFC"
-              size="18"
-            >
-              <ele-Rank />
-            </el-icon>
-            {{ $t("formgen.index.drag") }}
-          </div>
         </div>
       </el-scrollbar>
     </div>
@@ -530,9 +531,6 @@ defineExpose({
 @import "../../assets/styles/home.scss";
 @import "../../assets/styles/right.scss";
 
-.empty-info {
-  letter-spacing: 0.1em;
-}
 .container {
   margin-left: 5px;
 

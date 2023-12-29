@@ -108,7 +108,6 @@
     <el-dialog
       v-model="addDialogVisible"
       :close-on-click-modal="false"
-      class="full-dialog"
       :title="$t('form.formData.add')"
       width="60%"
     >

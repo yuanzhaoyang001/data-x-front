@@ -43,7 +43,9 @@
         </el-col>
       </el-row>
       <div v-if="currentAuthGroup && currentAuthGroup.value === 'submit'">
-        <write-page :write-type="2" />
+        <el-scrollbar height="calc(100vh - 50px)">
+          <write-page :write-type="2" />
+        </el-scrollbar>
       </div>
       <div v-else>
         <DataTable

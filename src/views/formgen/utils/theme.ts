@@ -17,6 +17,9 @@ export const getHoverColorAmount = (baseColor: string, amount: number) => {
 export const getThemeHoverColor = () => {
   // 从 css var中获取主题色
   const baseColor = getComputedStyle(document.documentElement).getPropertyValue(`--form-theme-color`);
+  if (!baseColor) {
+    return;
+  }
   return getHoverColor(baseColor);
 };
 
@@ -57,15 +60,11 @@ export const setThemeVars = (theme: any) => {
     if (key.startsWith("show")) {
       value = value == true ? "block" : "none";
     }
+    debugger;
     if (key === "themeColor" && value) {
-      formWrapDocument.style.setProperty("--form-theme-color", value);
-      formWrapDocument.style.setProperty("--form-theme-hover-color", getHoverColor(value));
-      formWrapDocument.style.setProperty("--el-color-primary", value);
-    } else {
-      // 默认主题
-      formWrapDocument.style.setProperty("--form-theme-color", themeDefaultValues.themeColor);
-      formWrapDocument.style.setProperty("--form-theme-hover-color", themeDefaultValues.themeHoverColor);
-      formWrapDocument.style.setProperty("--el-color-primary", themeDefaultValues.themeColor);
+      formWrapDocument.style.setProperty("--form-theme-color", value || themeDefaultValues.themeColor);
+      formWrapDocument.style.setProperty("--form-theme-hover-color", getHoverColor(value) || themeDefaultValues.themeHoverColor);
+      formWrapDocument.style.setProperty("--el-color-primary", value || themeDefaultValues.themeColor);
     }
     if (!value) {
       value = themeDefaultValues[key];
