@@ -232,6 +232,38 @@
         />
       </div>
     </el-collapse-item>
+    <el-collapse-item
+      :title="$t('form.theme.ohterSet')"
+      name="7"
+    >
+      <div class="setting-row">
+        <div class="sub-title">{{ $t("form.theme.importCss") }}</div>
+        <el-input
+          size="default"
+          clearable
+          v-model="userFormTheme.cssUrl"
+          style="width: 60%"
+        />
+        <el-upload
+          class="flex"
+          :headers="uploadHeader"
+          :action="uploadUrl"
+          :show-file-list="false"
+          :limit="1"
+          :data="{ fileType: 'CSS' }"
+          accept=".css"
+          :on-success="handleCssUploadSuccess"
+        >
+          <el-button
+            size="small"
+            link
+            type="primary"
+          >
+            {{ $t("common.upload") }}
+          </el-button>
+        </el-upload>
+      </div>
+    </el-collapse-item>
   </el-collapse>
 </template>
 
@@ -240,6 +272,7 @@ import ImageUpload from "@/views/form/theme/ImageUpload.vue";
 import ColorSelect from "@/views/form/theme/ColorSelect.vue";
 import { reactive, watch } from "vue";
 import { watchDebounced } from "@vueuse/core";
+import { baseUrl, getTokenHeader } from "@/utils/auth";
 
 const activeNames = ["1"];
 
@@ -249,6 +282,14 @@ const props = defineProps({
     required: true
   }
 });
+
+const uploadHeader = getTokenHeader();
+
+const uploadUrl = `${baseUrl}/user/file/upload`;
+
+const handleCssUploadSuccess = (response: any) => {
+  userFormTheme.cssUrl = response.data;
+};
 
 const emit = defineEmits(["refresh"]);
 
@@ -277,7 +318,8 @@ const userFormTheme = reactive({
   optionFontColor: "",
   watermark: false,
   watermarkText: "",
-  watermarkUserName: false
+  watermarkUserName: false,
+  cssUrl: ""
 });
 
 const handleChangeBackgroundType = () => {

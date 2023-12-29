@@ -255,3 +255,19 @@ export function htmlDecodeByRegExp(str) {
   s = s.replace(/&rdquo;/g, "”");
   return s;
 }
+
+export function loadCSS(filePath: string) {
+  if (!filePath) {
+    return;
+  }
+  // 创建 link 元素
+  const linkElement = document.createElement("link");
+
+  // 设置 link 元素的属性
+  linkElement.rel = "stylesheet";
+  linkElement.type = "text/css";
+  linkElement.href = filePath;
+
+  // 将 link 元素添加到文档头部
+  document.head.appendChild(linkElement);
+}

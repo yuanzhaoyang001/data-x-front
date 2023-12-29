@@ -13,5 +13,6 @@
   "updateSuccess": "修改成功",
   "submit": "提交",
   "deleteConfirm": "确定删除该条数据？",
-  "createTime": "创建时间"
+  "createTime": "创建时间",
+  "upload": "上传"
 }

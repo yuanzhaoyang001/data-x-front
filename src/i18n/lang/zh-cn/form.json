@@ -1020,6 +1020,7 @@
     "backgroundColor": "背景颜色",
     "backgroundImage": "背景图片",
     "backgroundSet": "背景设置",
+    "ohterSet": "其他设置",
     "bottomDesc": "页脚文案",
     "bottomDescText": "文案内容",
     "bottomSet": "底部设置",
@@ -1053,7 +1054,8 @@
     "titleSize": "标题字号",
     "warning": "温馨提示",
     "watermarksSet": "水印设置",
-    "watermarksText": "水印文字"
+    "watermarksText": "水印文字",
+    "importCss": "引入css"
   },
   "viewOrUpdate": {
     "basicInformation": "基础信息",

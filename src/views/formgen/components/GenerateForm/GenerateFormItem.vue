@@ -25,7 +25,10 @@
           </el-icon>
         </div>
       </template>
-      <div class="t-form-item-component">
+      <div
+        class="t-form-item-component"
+        :class="[item.vModel]"
+      >
         <!--特殊处理组件 二次包装的组件-->
         <template v-if="componentList.includes(item.typeId)">
           <component

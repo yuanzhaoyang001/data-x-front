@@ -19,7 +19,7 @@ import { cloneDeep, get, keys, set } from "lodash-es";
 import GenerateForm from "../GenerateForm/index.vue";
 import { dbDataConvertForItemJson } from "../../utils/convert";
 import request from "@/utils/request";
-import { htmlDecodeByRegExp, removeHtmlTag } from "../../utils";
+import { htmlDecodeByRegExp, loadCSS, removeHtmlTag } from "../../utils";
 import { useUserForm } from "@/stores/userForm";
 import { composeComponents } from "@/views/formgen/components/GenerateForm/config";
 import { SubmitFormData } from "@/api/project/data";
@@ -101,6 +101,7 @@ onMounted(async () => {
       // 主题数据
       if (res.data.userFormTheme) {
         formConf.value.theme = res.data.userFormTheme;
+        loadCSS(res.data.userFormTheme?.cssUrl);
       }
       // 处理表单问题项
       const fields = res.data.formItems.map((item: any) => {
