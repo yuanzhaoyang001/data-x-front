@@ -10,6 +10,10 @@ export const getActivitiesBySource = (sourceType: string, sourceId: string): Pro
 export const getActivitiesByTimeRange = (sourceType: string, sourceId: string): Promise<ResultData<DrawActivities>> =>
   requestHttp.get("/lottery/activities/getByTimeRange", { sourceType, sourceId });
 
+// 查询已用库存
+export const getUsedStock = (drawActivitiesId: number): Promise<ResultData<number>> =>
+  requestHttp.get("/lottery/activities/getPrizeStock", { drawActivitiesId });
+
 // 开始抽奖
 export const startLottery = (param: DrawActivitiesParam): Promise<ResultData<DrawPrizesVO>> =>
   requestHttp.post("/form/lottery/draw", param);

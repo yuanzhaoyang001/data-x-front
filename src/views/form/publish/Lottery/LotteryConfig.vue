@@ -61,6 +61,14 @@
               prop="quantity"
             />
             <el-table-column
+              :label="$t('form.lottery.prizeQuantityLeft')"
+              prop="winProbability"
+            >
+              <template #default="scope">
+                {{ scope.row.quantity - usedPrizeStock[`${scope.row.id}`] || 0 }}
+              </template>
+            </el-table-column>
+            <el-table-column
               :label="$t('form.lottery.prizeWinProbability')"
               prop="winProbability"
             />
@@ -190,7 +198,13 @@
 import { onMounted, reactive, ref } from "vue";
 import FormTinymce from "@/views/formgen/components/tinymce/index.vue";
 import type { FormRules } from "element-plus";
-import { DrawActivities, DrawPrizesEntity, getActivitiesBySource, saveOrUpdateActivities } from "@/api/project/lottery";
+import {
+  DrawActivities,
+  DrawPrizesEntity,
+  getActivitiesBySource,
+  getUsedStock,
+  saveOrUpdateActivities
+} from "@/api/project/lottery";
 import { useRoute } from "vue-router";
 import { MessageUtil } from "@/utils/messageUtil";
 import { i18n } from "@/i18n";
@@ -248,7 +262,13 @@ const rules = reactive<FormRules<DrawActivities>>({
 const prizeRules = reactive<FormRules<DrawPrizesEntity>>({
   name: [{ required: true, message: i18n.global.t("form.lottery.prizeNamePlaceholder"), trigger: "blur" }],
   image: [{ required: true, message: i18n.global.t("form.lottery.prizeImgPlaceholder"), trigger: "blur" }],
-  winProbability: [{ required: true, message: i18n.global.t("form.lottery.prizeWinProbabilityPlaceholder"), trigger: "blur" }],
+  winProbability: [
+    {
+      required: true,
+      message: i18n.global.t("form.lottery.prizeWinProbabilityPlaceholder"),
+      trigger: "blur"
+    }
+  ],
   quantity: [{ required: true, message: i18n.global.t("form.lottery.prizeQuantityPlaceholder"), trigger: "blur" }]
 });
 
@@ -307,10 +327,17 @@ const handleSavePrize = async () => {
   });
 };
 
+const usedPrizeStock = ref<any>({});
+
 const getActivitiesData = () => {
   getActivitiesBySource(form.value.sourceType, form.value.sourceId).then(res => {
     if (res.data) {
       form.value = res.data;
+      if (res.data.id) {
+        getUsedStock(res.data.id as number).then(res => {
+          usedPrizeStock.value = res.data;
+        });
+      }
     }
   });
 };

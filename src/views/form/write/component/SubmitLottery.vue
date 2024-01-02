@@ -55,14 +55,22 @@
         label-position="left"
         label-width="70px"
         size="small"
+        ref="infoFormRef"
+        :rules="rules"
       >
-        <el-form-item :label="$t('form.lottery.username')">
+        <el-form-item
+          :label="$t('form.lottery.username')"
+          prop="name"
+        >
           <el-input
             v-model="form.name"
             :placeholder="$t('form.lottery.enterName')"
           />
         </el-form-item>
-        <el-form-item :label="$t('form.lottery.phoneNumber')">
+        <el-form-item
+          :label="$t('form.lottery.phoneNumber')"
+          prop="phone"
+        >
           <el-input
             v-model="form.phone"
             :placeholder="$t('form.lottery.enterPhoneNumber')"
@@ -100,6 +108,7 @@ import { LuckyWheel } from "@lucky-canvas/vue";
 import { MessageUtil } from "@/utils/messageUtil";
 import { i18n } from "@/i18n";
 import { Local } from "@/utils/storage";
+import { FormRules } from "element-plus";
 
 const route = useRoute();
 
@@ -113,29 +122,41 @@ const form = reactive({
   address: ""
 });
 
+const infoFormRef = ref<any>(null);
+
 const cacheKey = "lotteryInfo" + route.query.id;
 
 const showHistory = ref(false);
 
-const handleSubmit = () => {
-  updateParticipantInfo({
-    id: lotteryInfo?.value?.id as number,
-    name: form.name,
-    phone: form.phone,
-    address: form.address
-  }).then(() => {
-    MessageUtil.success(i18n.global.t("common.saveSuccess"));
-    showHistory.value = true;
+const handleSubmit = async () => {
+  await infoFormRef.value.validate((valid, fields) => {
+    if (valid) {
+      updateParticipantInfo({
+        id: lotteryInfo?.value?.id as number,
+        name: form.name,
+        phone: form.phone,
+        address: form.address
+      }).then(() => {
+        MessageUtil.success(i18n.global.t("common.saveSuccess"));
+        showHistory.value = true;
+      });
+    } else {
+    }
   });
 };
+
+const rules = reactive<FormRules<any>>({
+  name: [{ required: true, message: i18n.global.t("form.lottery.enterName"), trigger: "blur" }],
+  phone: [{ required: true, message: i18n.global.t("form.lottery.enterPhoneNumber"), trigger: "blur" }]
+});
 
 onMounted(async () => {
   const res = await getActivitiesByTimeRange(sourceType, route.query.key as string);
   lotteryInfo.value = res.data;
   let arr = [];
-  if (lotteryInfo.value.drawPrizesVoList) {
-    for (let i = 0; i < lotteryInfo.value.drawPrizesVoList.length; i++) {
-      let item = lotteryInfo.value.drawPrizesVoList[i];
+  if (lotteryInfo.value!.drawPrizesVoList) {
+    for (let i = 0; i < lotteryInfo.value!.drawPrizesVoList.length; i++) {
+      let item = lotteryInfo.value!.drawPrizesVoList[i];
       arr.push({
         id: item.id,
         imgs: [
@@ -258,9 +279,6 @@ const startCallback = () => {
           if (res.data) {
             myPrizes.value = res.data;
             Local.set(cacheKey, res.data);
-            if (lotteryInfo.value?.rewardType == 1) {
-              showHistory.value = true;
-            }
           }
         }, 2000);
       }, 2200);

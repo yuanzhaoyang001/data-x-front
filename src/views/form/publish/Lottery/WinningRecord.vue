@@ -12,18 +12,27 @@
       <el-table-column
         :label="$t('form.lottery.username')"
         prop="name"
+        width="150"
       />
       <el-table-column
         :label="$t('form.lottery.phoneNumber')"
         prop="phone"
+        width="150"
       />
       <el-table-column
         :label="$t('form.lottery.address')"
         prop="address"
+        width="150"
       />
       <el-table-column
         :label="$t('form.lottery.couponCode')"
         prop="code"
+        width="150"
+      />
+      <el-table-column
+        :label="$t('form.lottery.dataId')"
+        prop="sourceId"
+        width="150"
       />
       <el-table-column
         :label="$t('form.lottery.isSent')"
@@ -47,6 +56,7 @@
         </template>
       </el-table-column>
       <el-table-column
+        width="150"
         :label="$t('form.lottery.winningTime')"
         prop="crateTime"
       />
