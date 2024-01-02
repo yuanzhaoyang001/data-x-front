@@ -114,7 +114,14 @@ const userFormStore = useUserForm();
 const { hiddenFormItemIds } = storeToRefs(userFormStore);
 const hideFields = computed(() => hiddenFormItemIds.value || []);
 
-const formThemeConfig = inject("formThemeConfig", ref({ showFormNumber: false, submitBtnText: "提交", themeColor: "" }));
+const formThemeConfig = inject(
+  "formThemeConfig",
+  ref({
+    showFormNumber: false,
+    submitBtnText: "提交",
+    themeColor: ""
+  })
+);
 
 // 监听显示序号开关的变化 把序号重置为0 不然会累加 主题页面开关会错误
 watch(
@@ -433,7 +440,8 @@ defineExpose({
   validateForm,
   resetForm,
   formModel,
-  scrollToField
+  scrollToField,
+  genFormRef
 });
 
 const emit = defineEmits(["submit", "on-change", "next", "prev", "update:pageFormModel"]);
