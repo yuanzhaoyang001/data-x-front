@@ -10,18 +10,18 @@
             :value="item.id"
           />
         </el-select>
-        <el-button
-          class="ml10"
-          @click="handleConfigMsgTemplate"
-        >
-          {{ $t("form.notifyShare.config") }}
-        </el-button>
         <el-tag
           class="ml10"
           v-if="msgTemplate?.templateTypeDesc"
         >
           {{ msgTemplate?.templateTypeDesc }}
         </el-tag>
+        <el-button
+          class="ml10"
+          @click="handleConfigMsgTemplate"
+        >
+          {{ $t("form.notifyShare.config") }}
+        </el-button>
       </el-form-item>
     </el-form>
     <el-row :gutter="10">
@@ -187,7 +187,6 @@ onMounted(() => {
 <style scoped lang="scss">
 .msg-content {
   width: 100%;
-  height: 100px;
   overflow-y: auto;
   overflow-x: hidden;
   margin-bottom: 10px;
