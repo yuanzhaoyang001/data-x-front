@@ -5,9 +5,47 @@
       style="height: 70vh"
     >
       <el-table-column
+        :label="$t('form.lottery.dataId')"
+        prop="sourceId"
+        width="150"
+      />
+      <el-table-column
         :label="$t('form.lottery.prizeName')"
         prop="prizeName"
         width="150"
+      />
+      <el-table-column
+        :label="$t('form.lottery.isSent')"
+        prop="isSend"
+        width="150"
+      >
+        <template #default="scope">
+          <el-tag
+            v-if="scope.row.isSend"
+            type="success"
+          >
+            {{ $t("form.lottery.sent") }}
+          </el-tag>
+          <el-popconfirm
+            v-else
+            :title="$t('form.lottery.sendText')"
+            @confirm="handleMarkSendStatus(scope.row.id)"
+          >
+            <template #reference>
+              <el-button
+                link
+                type="primary"
+              >
+                {{ $t("form.lottery.markAsSent") }}
+              </el-button>
+            </template>
+          </el-popconfirm>
+        </template>
+      </el-table-column>
+      <el-table-column
+        width="150"
+        :label="$t('form.lottery.winningTime')"
+        prop="crateTime"
       />
       <el-table-column
         :label="$t('form.lottery.username')"
@@ -28,37 +66,6 @@
         :label="$t('form.lottery.couponCode')"
         prop="code"
         width="150"
-      />
-      <el-table-column
-        :label="$t('form.lottery.dataId')"
-        prop="sourceId"
-        width="150"
-      />
-      <el-table-column
-        :label="$t('form.lottery.isSent')"
-        prop="isSend"
-      >
-        <template #default="scope">
-          <el-tag
-            v-if="scope.row.isSend"
-            type="success"
-          >
-            {{ $t("form.lottery.sent") }}
-          </el-tag>
-          <el-button
-            v-else
-            link
-            type="primary"
-            @click="handleMarkSendStatus(scope.row.id)"
-          >
-            {{ $t("form.lottery.markAsSent") }}
-          </el-button>
-        </template>
-      </el-table-column>
-      <el-table-column
-        width="150"
-        :label="$t('form.lottery.winningTime')"
-        prop="crateTime"
       />
     </el-table>
   </div>
