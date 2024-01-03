@@ -27,11 +27,7 @@ export const formRoutes: Array<RouteRecordRaw> = [
             component: () => import("@/views/form/theme/index.vue"),
             meta: { title: "表单主题" }
           },
-          {
-            path: "setting",
-            component: () => import("@/views/form/setting/index.vue"),
-            meta: { title: "表单设置" }
-          },
+
           {
             path: "dimension",
             component: () => import("@/views/form/dimension/index.vue"),
@@ -43,6 +39,11 @@ export const formRoutes: Array<RouteRecordRaw> = [
             meta: { title: "流程设置" }
           }
         ]
+      },
+      {
+        path: "setting",
+        component: () => import("@/views/form/setting/index.vue"),
+        meta: { title: "表单设置" }
       },
       {
         path: "401",

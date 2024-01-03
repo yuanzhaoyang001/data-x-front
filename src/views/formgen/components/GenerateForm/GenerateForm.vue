@@ -89,6 +89,12 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false
+  },
+  // 是否显示隐藏字段
+  showHiddenField: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 });
 
@@ -134,7 +140,7 @@ watch(
 
 // 过滤隐藏字段
 const getFields = computed(() => {
-  return formConfCopy.value.fields.filter((item: any) => !item.hideType);
+  return formConfCopy.value.fields.filter((item: any) => !item.hideType || props.showHiddenField);
 });
 
 const { lastSeqNo } = useFormSeqNo();
@@ -327,7 +333,7 @@ const submitForm = throttle(function () {
       return true;
     }
   });
-}, 3000);
+}, 8000);
 
 /**
  *

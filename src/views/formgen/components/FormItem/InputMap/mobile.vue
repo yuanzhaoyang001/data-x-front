@@ -24,7 +24,7 @@
       <!--           class="input-map-content-result"-->
       <!--      />-->
 
-      <el-row :gutter="1">
+      <el-row :gutter="20">
         <el-col
           :xs="8"
           :sm="4"
