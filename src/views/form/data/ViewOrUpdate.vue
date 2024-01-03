@@ -414,9 +414,9 @@ defineExpose({
   .left {
     overflow: auto;
     height: 100%;
-    border-right: var(--el-bg-color-page) solid 1px;
+    //border-right: var(--el-bg-color-page) solid 1px;
     padding: 10px;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    //box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   }
 
   .right {
