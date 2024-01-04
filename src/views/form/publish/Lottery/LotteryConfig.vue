@@ -237,6 +237,12 @@ const formRef = ref<any>(null);
 
 const handleSaveDrawActivities = () => {
   if (!formRef.value) return;
+  // 中奖概率累加不能大于100
+  const sum = form.value.drawPrizesList!.reduce((acc, cur) => acc + (cur.winProbability || 0), 0);
+  if (sum > 100) {
+    MessageUtil.error(i18n.global.t("form.lottery.winProbabilitySumError"));
+    return;
+  }
   formRef.value.validate((valid, fields) => {
     if (valid) {
       form.value.drawPrizesList!.forEach(item => {
