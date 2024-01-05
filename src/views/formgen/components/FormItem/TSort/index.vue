@@ -2,60 +2,58 @@
   <div class="itxst">
     <div class="col">
       <div class="title">请将左面的选项拖到右边完成排序</div>
-      <draggable
-        v-model="changeSortList"
-        :move="onLeftMove"
-        animation="300"
-        chosen-class="chosenClass"
-        class="left-draggable"
-        drag-class="dragClass"
-        ghost-class="ghostClass"
-        group="site"
-        @end="onEnd"
-        @start="onStart"
-      >
-        <transition-group class="left-draggable-group">
-          <div
-            v-for="item in changeSortList"
-            :key="item.value"
-            class="item"
-          >
-            <div class="item-name">
-              {{ item.label }}
+      <div class="left-draggable-group">
+        <draggable
+          :list="changeSortList"
+          :move="onLeftMove"
+          animation="100"
+          chosen-class="chosenClass"
+          class="left-draggable"
+          drag-class="dragClass"
+          ghost-class="ghostClass"
+          item-key="value"
+          group="site"
+          @end="onEnd"
+          @start="onStart"
+        >
+          <template #item="{ element, index }">
+            <div class="item">
+              <div class="item-name">
+                {{ element.label }}
+              </div>
             </div>
-          </div>
-        </transition-group>
-      </draggable>
+          </template>
+        </draggable>
+      </div>
     </div>
     <div class="col">
       <div class="title">上下可拖动排序</div>
-      <draggable
-        v-model="changeValue"
-        :move="onRightMove"
-        animation="100"
-        chosen-class="chosenClass"
-        class="right-draggable"
-        drag-class="dragClass"
-        ghost-class="ghostClass"
-        group="site"
-        @end="onEnd"
-        @start="onStart"
-      >
-        <transition-group class="right-draggable-group">
-          <div
-            v-for="(item, index) in changeValue"
-            :key="item.value"
-            class="item"
-          >
-            <span class="seq-num">
-              {{ index + 1 }}
-            </span>
-            <span class="item-name">
-              {{ item.label }}
-            </span>
-          </div>
-        </transition-group>
-      </draggable>
+      <div class="right-draggable-group">
+        <draggable
+          :list="changeValue"
+          :move="onRightMove"
+          animation="100"
+          chosen-class="chosenClass"
+          class="right-draggable"
+          drag-class="dragClass"
+          ghost-class="ghostClass"
+          group="site"
+          item-key="value"
+          @end="onEnd"
+          @start="onStart"
+        >
+          <template #item="{ element, index }">
+            <div class="item">
+              <span class="seq-num">
+                {{ index + 1 }}
+              </span>
+              <span class="item-name">
+                {{ element.label }}
+              </span>
+            </div>
+          </template>
+        </draggable>
+      </div>
     </div>
   </div>
 </template>
@@ -90,17 +88,18 @@ export default {
   },
   methods: {
     onLeftMove(e, originalEvent) {
-      if (e.to.className !== "right-draggable-group") {
+      console.log(e.to.className);
+      if (e.to.className !== "right-draggable") {
         return false;
       }
       //false表示阻止拖拽
       return true;
     },
     onRightMove(e, originalEvent) {
-      if (e.to.className !== "right-draggable-group") {
+      if (e.to.className !== "right-draggable") {
         return false;
       }
-      //false表示阻止拖拽
+      //false表示阻止拖拽`
       return true;
     },
     onStart() {},
