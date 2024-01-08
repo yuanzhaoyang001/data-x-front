@@ -52,3 +52,13 @@ export function exportPost(query: any) {
     params: query
   });
 }
+
+export interface SysPostEntity {
+  id: number;
+  postCode: string;
+  postName: string;
+  level?: string;
+  leaderPost?: number;
+  status: string;
+  remark?: string;
+}

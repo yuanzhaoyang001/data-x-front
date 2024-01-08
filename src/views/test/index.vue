@@ -1,21 +1,16 @@
 <template>
-  <LuckyWheel
-    ref="myLucky"
-    :blocks="blocks"
-    :buttons="buttons"
-    :prizes="prizes"
-    height="300px"
-    width="300px"
-    @end="endCallback"
-    @start="startCallback"
-  />
+  <RbacFunctionality
+    title="角色分配"
+    :func-id="11"
+    :func-type="'aa'"
+  ></RbacFunctionality>
 </template>
 
 <script>
-import { LuckyWheel } from "@lucky-canvas/vue";
+import RbacFunctionality from "@/views/components/RbacFunctionality/index.vue";
 
 export default {
-  components: { LuckyWheel },
+  components: { RbacFunctionality },
   data() {
     return {
       blocks: [

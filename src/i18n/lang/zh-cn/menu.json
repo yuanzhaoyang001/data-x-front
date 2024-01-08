@@ -57,6 +57,8 @@
     "workflowCategories": "流程分类",
     "workflowDeployment": "流程部署",
     "workflowList": "流程列表",
-    "workflowManagement": "流程管理"
+    "workflowManagement": "流程管理",
+    "portalManagement": "门户管理",
+    "portalDesign": "门户设计"
   }
 }

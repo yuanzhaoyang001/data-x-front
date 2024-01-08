@@ -952,7 +952,7 @@
     "userTableNickName": "用户昵称",
     "userTablePhoneNumber": "手机号码",
     "userTableUserId": "用户编号",
-    "userTableUserName": "用户名称",
+    "userTableUserName": "账号名称",
     "viewFilledContentLabel": "可查看已填内容",
     "viewFilledContentTooltip": "此功能依赖浏览器缓存实现，切换设备或浏览器则无法修改，如需确保全部可以修改，可以使用“公开查询”功能。",
     "whiteData": "白名单数据",

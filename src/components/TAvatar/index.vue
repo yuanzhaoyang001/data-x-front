@@ -37,6 +37,9 @@ const getFirst = computed(() => {
 
 <style scoped lang="scss">
 .avatar-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .default-avtar-wrap {

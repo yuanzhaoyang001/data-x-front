@@ -83,3 +83,19 @@ export function exportRole(query: any) {
     params: query
   });
 }
+
+export interface SysRoleEntity {
+  id: number;
+  roleName: string;
+  roleKey: string;
+  roleSort: string;
+  dataScope: string;
+  menuCheckStrictly?: boolean;
+  deptCheckStrictly?: boolean;
+  status: string;
+  delFlag: string;
+  flag?: boolean;
+  menuIds?: Array<string>;
+  deptIds?: Array<string>;
+  remark?: string;
+}

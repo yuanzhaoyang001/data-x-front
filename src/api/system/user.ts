@@ -156,3 +156,23 @@ export function updateAuthRole(data: any) {
     params: data
   });
 }
+
+export interface UserEntity {
+  id: number;
+  deptId: string;
+  userName: string;
+  nickName?: string;
+  email?: string;
+  phonenumber?: string;
+  sex?: string;
+  avatar?: string;
+  password?: string;
+  salt?: string;
+  status?: string;
+  delFlag?: string;
+  loginIp?: string;
+  loginDate?: string;
+  roleIds?: string[];
+  postIds?: string[];
+  remark?: string;
+}
