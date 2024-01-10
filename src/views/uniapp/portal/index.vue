@@ -134,6 +134,15 @@
           >
             设计
           </el-button>
+          <el-button
+            link
+            type="primary"
+            icon="ele-Connection"
+            @click="handleAssign(scope.row)"
+            v-hasPermi="['uniapp:portal:assign']"
+          >
+            分配
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -182,6 +191,12 @@
         </div>
       </template>
     </el-dialog>
+    <RbacFunctionality
+      title="分配门户"
+      :func-id="portalId"
+      func-type="MobilePortal"
+      ref="functionalityRef"
+    ></RbacFunctionality>
   </div>
 </template>
 
@@ -190,6 +205,7 @@ import { listPortal, getPortal, delPortal, addPortal, updatePortal } from "@/api
 import { getCurrentInstance, ref, reactive, toRefs } from "vue";
 import { MessageUtil } from "@/utils/messageUtil";
 import { ElMessageBox } from "element-plus";
+import RbacFunctionality from "@/views/components/RbacFunctionality/index.vue";
 
 const { proxy } = getCurrentInstance();
 
@@ -203,6 +219,8 @@ const single = ref(true);
 const multiple = ref(true);
 const total = ref(0);
 const title = ref("");
+
+const portalId = ref(null);
 
 const data = reactive({
   form: {},
@@ -266,6 +284,13 @@ const handleSelectionChange = selection => {
   ids.value = selection.map(item => item.id);
   single.value = selection.length != 1;
   multiple.value = !selection.length;
+};
+
+const functionalityRef = ref(null);
+
+const handleAssign = row => {
+  portalId.value = row.id;
+  functionalityRef.value.handleOpen();
 };
 
 /** 新增按钮操作 */

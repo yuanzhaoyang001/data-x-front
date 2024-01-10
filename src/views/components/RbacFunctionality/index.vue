@@ -4,6 +4,7 @@
       v-model="dialogVisible"
       :title="title"
       width="80%"
+      append-to-body
     >
       <div>
         <div class="selected-users">
@@ -141,7 +142,7 @@ import { SysPostEntity } from "@/api/system/post";
 import { MessageUtil } from "@/utils/messageUtil";
 import { i18n } from "@/i18n";
 
-const dialogVisible = ref(true);
+const dialogVisible = ref(false);
 
 const filterName = ref("");
 
@@ -163,10 +164,7 @@ const props = defineProps({
   }
 });
 
-onMounted(async () => {
-  const res = await listRbacFunctionality({ funcId: props.funcId, funcType: props.funcType });
-  rbacList.value = res.data || [];
-});
+onMounted(async () => {});
 
 const getTagType = (type: string): any => {
   switch (type) {
@@ -184,7 +182,9 @@ const getTagType = (type: string): any => {
 
 const activeName = ref("USER");
 
-const handleOpen = () => {
+const handleOpen = async () => {
+  const res = await listRbacFunctionality({ funcId: props.funcId, funcType: props.funcType });
+  rbacList.value = res.data || [];
   dialogVisible.value = true;
 };
 
@@ -206,7 +206,7 @@ const handleSubmit = () => {
     funcId: props.funcId,
     rbacList: rbacList.value
   }).then(() => {
-    dialogVisible.value = true;
+    dialogVisible.value = false;
     MessageUtil.success(i18n.global.t("common.saveSuccess"));
   });
 };

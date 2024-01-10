@@ -10,86 +10,97 @@
     >
       {{ $t("system.banner.addHomeBanner") }}
     </el-button>
-    <el-table
-      style="width: 100%"
-      border
-      :data="bannerList"
-      ref="listTable"
-      row-key="id"
-      v-loading="loading"
-    >
-      <el-table-column
-        prop="name"
-        :label="$t('system.banner.name')"
-        width="width"
-        align="center"
-      ></el-table-column>
-      <el-table-column
-        prop="prop"
-        :label="$t('system.banner.image')"
-        width="width"
-        align="center"
+    <div id="table-container">
+      <VueDraggable
+        v-model="bannerList"
+        animation="150"
+        @end="onEnd"
+        target=".el-table .el-table__body tbody"
       >
-        <template #default="{ row }">
-          <img
-            :src="row.url"
-            alt=""
-            class="images"
-          />
-        </template>
-      </el-table-column>
-      <el-table-column
-        prop="prop"
-        :label="$t('system.banner.buttonType')"
-        width="width"
-        align="center"
-      >
-        <template #default="{ row }">
-          <el-tag type="success">
-            {{
-              `${
-                row.type === 1
-                  ? $t("system.banner.miniProgramAddress")
-                  : row.type === 2
-                  ? $t("system.banner.linkAddress")
-                  : $t("system.banner.thirdPartyMiniProgram")
-              }`
-            }}
-          </el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column
-        prop="prop"
-        :label="$t('system.banner.operation')"
-        width="width"
-        align="center"
-      >
-        <template #default="{ row, $index }">
-          <el-tooltip
-            :content="$t('system.banner.modify')"
-            placement="top"
+        <el-table
+          style="width: 100%"
+          border
+          :data="bannerList"
+          ref="listTable"
+          row-key="id"
+          v-loading="loading"
+        >
+          <el-table-column
+            prop="name"
+            :label="$t('system.banner.name')"
+            width="width"
+            align="center"
+          ></el-table-column>
+          <el-table-column
+            prop="prop"
+            :label="$t('system.banner.image')"
+            width="width"
+            align="center"
           >
-            <el-button
-              link
-              type="primary"
-              icon="ele-Edit"
-              @click="changeBanner(row)"
-            ></el-button>
-          </el-tooltip>
-          <el-tooltip
-            :content="$t('system.banner.delete')"
-            placement="top"
+            <template #default="{ row }">
+              <el-image
+                :preview-src-list="[row.url]"
+                :z-index="9999"
+                :src="row.url"
+                alt=""
+                class="images"
+              />
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="prop"
+            :label="$t('system.banner.buttonType')"
+            width="width"
+            align="center"
           >
-            <el-button
-              link
-              type="danger"
-              icon="ele-Delete"
-              @click="deleteBanner($index)"
-            ></el-button>
-          </el-tooltip>
-        </template>
-      </el-table-column>
-    </el-table>
+            <template #default="{ row }">
+              <el-tag type="success">
+                {{
+                  `${
+                    row.type === 1
+                      ? $t("system.banner.miniProgramAddress")
+                      : row.type === 2
+                      ? $t("system.banner.linkAddress")
+                      : $t("system.banner.thirdPartyMiniProgram")
+                  }`
+                }}
+              </el-tag>
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="prop"
+            :label="$t('system.banner.operation')"
+            width="width"
+            align="center"
+          >
+            <template #default="{ row, $index }">
+              <el-tooltip
+                :content="$t('system.banner.modify')"
+                placement="top"
+              >
+                <el-button
+                  link
+                  type="primary"
+                  icon="ele-Edit"
+                  @click="changeBanner(row)"
+                ></el-button>
+              </el-tooltip>
+              <el-tooltip
+                :content="$t('system.banner.delete')"
+                placement="top"
+              >
+                <el-button
+                  link
+                  type="danger"
+                  icon="ele-Delete"
+                  @click="deleteBanner($index)"
+                ></el-button>
+              </el-tooltip>
+            </template>
+          </el-table-column>
+        </el-table>
+      </VueDraggable>
+    </div>
     <el-dialog
       :title="`${isUpdate ? $t('system.banner.modify') : $t('system.banner.addBanner')}`"
       v-model="isShowDialog"
@@ -169,14 +180,18 @@
 </template>
 
 <script setup lang="ts">
-import { getByKey, saveConfig } from "@/api/uniapp";
-import Sortable from "sortablejs";
 import { i18n } from "@/i18n";
-import { onMounted, ref } from "vue";
-import { ElMessage } from "element-plus";
+import { nextTick, onMounted, ref } from "vue";
+import { ElMessageBox } from "element-plus";
+import type { FormInstance } from "element-plus";
+import { VueDraggable } from "vue-draggable-plus";
 import { portalConfigStore } from "@/views/uniapp/portal/config";
+import { Banner } from "@/views/uniapp/portal/types/types";
+import { useDraggable } from "vue-draggable-plus";
+import { SortableEvent } from "sortablejs";
+import { cloneDeep } from "lodash-es";
 
-const bannerForm = ref({
+const bannerForm = ref<Banner>({
   name: "",
   url: "",
   type: "",
@@ -186,7 +201,7 @@ const bannerForm = ref({
 
 const { portalConfig } = portalConfigStore;
 
-const bannerList = ref(portalConfig.value.bannerList);
+const bannerList = ref<Banner[]>(portalConfig.value.bannerList);
 const isUpdate = ref(false);
 const isShowDialog = ref(false);
 const loading = ref(true);
@@ -213,39 +228,27 @@ const addBanner = () => {
   };
 };
 
-const bannerFormRef = ref<>();
+const bannerFormRef = ref<FormInstance>();
 
 const handleSubmit = () => {
-  bannerForm.value.validate(valid => {
+  bannerFormRef.value!.validate(valid => {
     if (valid) {
       if (!isUpdate.value) {
         bannerList.value.push(bannerForm.value);
       }
-      saveConfig({
-        configKey,
-        configValue: bannerList.value
-      }).then(() => {
-        ElMessage.success(this.isUpdate ? i18n.global.t("formI18n.all.success") : i18n.global.t("formI18n.all.success"));
-        isShowDialog.value = false;
-      });
+      isShowDialog.value = false;
     }
   });
 };
 
 const deleteBanner = row => {
-  ElMessage.confirm(i18n.global.t("system.customButton.isDelete"), i18n.global.t("formI18n.all.waring"), {
+  ElMessageBox.confirm(i18n.global.t("system.customButton.isDelete"), i18n.global.t("formI18n.all.waring"), {
     confirmButtonText: i18n.global.t("formI18n.all.confirm"),
     cancelButtonText: i18n.global.t("formI18n.all.cancel"),
     type: "warning"
   })
     .then(() => {
       bannerList.value.splice(bannerList.value.indexOf(row), 1);
-      saveConfig({
-        configKey,
-        configValue: bannerList.value
-      }).then(() => {
-        ElMessage.success(i18n.global.t("formI18n.all.success"));
-      });
     })
     .catch(() => {});
 };
@@ -257,22 +260,12 @@ const changeBanner = row => {
 };
 
 const closeDialog = () => {
-  bannerForm.value.resetFields();
+  bannerFormRef.value!.resetFields();
   isShowDialog.value = false;
 };
 
-const rowDrop = e => {
-  const tempBannerList = bannerList.value;
-  const currRow = tempBannerList.splice(e.oldIndex, 1)[0];
-  tempBannerList.splice(e.newIndex, 0, currRow);
-  bannerList.value = [];
-  bannerList.value = tempBannerList;
-  saveConfig({
-    configKey,
-    configValue: tempBannerList
-  }).then(() => {
-    ElMessage.success(i18n.global.t("formI18n.all.success"));
-  });
+const onEnd = (event: SortableEvent) => {
+  portalConfig.value.bannerList = bannerList.value;
 };
 
 onMounted(() => {
@@ -282,8 +275,8 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .images {
-  width: 100px;
-  height: 50px;
+  width: 60px;
+  height: 30px;
 }
 
 .banner-config-wrap {

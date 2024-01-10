@@ -4,17 +4,63 @@
       <mobile-view @config="handleConfig" />
     </div>
     <mobile-config ref="mobileConfigRef" />
+    <van-floating-bubble
+      icon="success"
+      @click="handleSavePortal"
+    />
   </div>
 </template>
 <script setup lang="ts">
 import MobileView from "./components/MobileView.vue";
 import MobileConfig from "./components/MobileConfig.vue";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+import { FloatingBubble } from "vant";
+import "vant/lib/floating-bubble/style";
+import { useRoute } from "vue-router";
+import { watchDebounced } from "@vueuse/core";
+import { getPortal, updatePortal } from "@/api/uniapp/portal";
+import { portalConfigStore } from "@/views/uniapp/portal/config";
+import { MessageUtil } from "@/utils/messageUtil";
+import { i18n } from "@/i18n";
 
 const mobileConfigRef = ref<InstanceType<typeof MobileConfig>>();
 
 const handleConfig = (type: string) => {
   mobileConfigRef.value?.handleOpen(type);
+};
+
+const route = useRoute();
+
+const { portalConfig } = portalConfigStore;
+
+onMounted(() => {
+  getPortal(route.params.id as number).then(res => {
+    if (res.data.configValue) {
+      portalConfig.value = res.data.configValue;
+    }
+  });
+});
+
+watchDebounced(
+  () => portalConfig.value,
+  () => {
+    handleSave();
+  },
+  { debounce: 500, maxWait: 1000, immediate: false, deep: true }
+);
+
+const handleSave = async () => {
+  console.log(route.params);
+  const data = {
+    id: route.params.id,
+    configValue: portalConfig.value
+  };
+  await updatePortal(data);
+};
+
+const handleSavePortal = async () => {
+  await handleSave();
+  MessageUtil.success(i18n.global.t("common.saveSuccess"));
 };
 </script>
 
