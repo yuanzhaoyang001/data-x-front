@@ -1,5 +1,16 @@
 <template>
   <div>
+    <div>
+      <el-button
+        plain
+        type="primary"
+        class="mt10 mb10"
+        size="default"
+        @click="handleExportWinList"
+      >
+        {{ $t("form.lottery.exportWinList") }}
+      </el-button>
+    </div>
     <el-table
       :data="tableData"
       style="height: 70vh"
@@ -45,7 +56,7 @@
       <el-table-column
         width="150"
         :label="$t('form.lottery.winningTime')"
-        prop="crateTime"
+        prop="createTime"
       />
       <el-table-column
         :label="$t('form.lottery.username')"
@@ -64,7 +75,7 @@
       />
       <el-table-column
         :label="$t('form.lottery.couponCode')"
-        prop="code"
+        prop="prizeCode"
         width="150"
       />
     </el-table>
@@ -73,15 +84,15 @@
 
 <script lang="ts" name="WinningRecord" setup>
 import { onMounted, ref } from "vue";
-import { FORM_LOTTERY, getDrawPrizesList, markSendStatus } from "@/api/project/lottery";
+import { exportDrawPrizesList, FORM_LOTTERY, getDrawPrizesList, markSendStatus } from "@/api/project/lottery";
 import { useRoute } from "vue-router";
+import { download } from "@/utils/tduck";
 
 const tableData = ref<any[]>([]);
 
 const route = useRoute();
 
 onMounted(() => {
-  console.log(route);
   queryData();
 });
 
@@ -94,6 +105,12 @@ const queryData = () => {
 const handleMarkSendStatus = (id: number) => {
   markSendStatus(id).then(() => {
     queryData();
+  });
+};
+
+const handleExportWinList = () => {
+  exportDrawPrizesList(FORM_LOTTERY, route.query.key as string).then(res => {
+    download(res, "中奖名单");
   });
 };
 </script>

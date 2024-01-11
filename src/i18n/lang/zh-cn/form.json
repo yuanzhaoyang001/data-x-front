@@ -243,7 +243,8 @@
     "enterAddress": "请输入邮寄地址",
     "submit": "提交",
     "thankYou": "谢谢参与",
-    "alreadyParticipated": "您已经参与过抽奖"
+    "alreadyParticipated": "您已经参与过抽奖",
+    "exportWinList": "导出中奖名单"
   },
   "dataPush": {
     "description": "将数据以JSON格式推送给三方系统",
