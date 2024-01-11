@@ -1,4 +1,5 @@
 {
+  "add": "New addition",
   "addSuccess": "Successfully added",
   "cancel": "Cancel",
   "close": "Close",
@@ -9,9 +10,13 @@
   "enter": "OK",
   "filed": "Field",
   "preview": "Preview",
+  "reset": "Reset",
   "save": "Save",
   "saveFail": "Save failed",
   "saveSuccess": "Save successful",
+  "search": "search",
   "submit": "Submit",
-  "updateSuccess": "Successfully modified"
+  "update": "modify",
+  "updateSuccess": "Successfully modified",
+  "upload": "upload"
 }

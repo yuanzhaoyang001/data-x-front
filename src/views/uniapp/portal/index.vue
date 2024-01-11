@@ -8,12 +8,12 @@
       label-width="68px"
     >
       <el-form-item
-        label="名称"
+        :label="$t('uniapp.portal.name')"
         prop="name"
       >
         <el-input
           v-model="queryParams.name"
-          placeholder="请输入名称"
+          :placeholder="$t('uniapp.portal.inputName')"
           clearable
           @keyup.enter="handleQuery"
         />
@@ -97,12 +97,12 @@
         v-if="true"
       />
       <el-table-column
-        label="名称"
+        :label="$t('uniapp.portal.name')"
         align="center"
         prop="name"
       />
       <el-table-column
-        label="操作"
+        :label="$t('uniapp.portal.operation')"
         align="center"
         class-name="small-padding fixed-width"
       >
@@ -132,7 +132,7 @@
             @click="$router.push({ path: '/uniapp/portal/design/' + scope.row.id })"
             v-hasPermi="['uniapp:portal:design']"
           >
-            设计
+            {{ $t("uniapp.portal.design") }}
           </el-button>
           <el-button
             link
@@ -141,12 +141,11 @@
             @click="handleAssign(scope.row)"
             v-hasPermi="['uniapp:portal:assign']"
           >
-            分配
+            {{ $t("uniapp.portal.assign") }}
           </el-button>
         </template>
       </el-table-column>
     </el-table>
-
     <pagination
       v-show="total > 0"
       :total="total"
@@ -169,12 +168,12 @@
         label-width="80px"
       >
         <el-form-item
-          label="名称"
+          :label="$t('uniapp.portal.name')"
           prop="name"
         >
           <el-input
             v-model="form.name"
-            placeholder="请输入名称"
+            :placeholder="$t('uniapp.portal.inputName')"
           />
         </el-form-item>
       </el-form>
@@ -185,14 +184,14 @@
             type="primary"
             @click="submitForm"
           >
-            确 定
+            {{ $t("uniapp.portal.confirm") }}
           </el-button>
-          <el-button @click="cancel">取 消</el-button>
+          <el-button @click="cancel">{{ $t("uniapp.portal.cancel") }}</el-button>
         </div>
       </template>
     </el-dialog>
     <RbacFunctionality
-      title="分配门户"
+      :title="$t('uniapp.portal.assignPortal')"
       :func-id="portalId"
       func-type="MobilePortal"
       ref="functionalityRef"
@@ -206,6 +205,7 @@ import { getCurrentInstance, ref, reactive, toRefs } from "vue";
 import { MessageUtil } from "@/utils/messageUtil";
 import { ElMessageBox } from "element-plus";
 import RbacFunctionality from "@/views/components/RbacFunctionality/index.vue";
+import { i18n } from "@/i18n";
 
 const { proxy } = getCurrentInstance();
 
@@ -231,9 +231,15 @@ const data = reactive({
     configValue: undefined
   },
   rules: {
-    id: [{ required: true, message: "参数主键不能为空", trigger: "blur" }],
-    name: [{ required: true, message: "名称不能为空", trigger: "blur" }],
-    configValue: [{ required: true, message: "配置值不能为空", trigger: "blur" }]
+    id: [{ required: true, message: i18n.global.t("uniapp.portal.parameterKeyRequired"), trigger: "blur" }],
+    name: [{ required: true, message: i18n.global.t("uniapp.portal.nameRequired"), trigger: "blur" }],
+    configValue: [
+      {
+        required: true,
+        message: i18n.global.t("uniapp.portal.configurationValueRequired"),
+        trigger: "blur"
+      }
+    ]
   }
 });
 
@@ -290,14 +296,14 @@ const functionalityRef = ref(null);
 
 const handleAssign = row => {
   portalId.value = row.id;
-  functionalityRef.value.handleOpen();
+  functionalityRef.value.handleOpen(row.id);
 };
 
 /** 新增按钮操作 */
 const handleAdd = () => {
   reset();
   open.value = true;
-  title.value = "添加门户配置";
+  title.value = i18n.global.t("uniapp.portal.addPortalConfiguration");
 };
 
 /** 修改按钮操作 */
@@ -309,7 +315,7 @@ const handleUpdate = row => {
     loading.value = false;
     form.value = response.data;
     open.value = true;
-    title.value = "修改门户配置";
+    title.value = i18n.global.t("uniapp.portal.modifyPortalConfiguration");
   });
 };
 
@@ -321,7 +327,7 @@ const submitForm = () => {
       if (form.value.id != null) {
         updatePortal(form.value)
           .then(response => {
-            MessageUtil.success("修改成功");
+            MessageUtil.success(i18n.global.t("uniapp.portal.modifySuccess"));
             open.value = false;
             getList();
           })
@@ -331,7 +337,7 @@ const submitForm = () => {
       } else {
         addPortal(form.value)
           .then(response => {
-            MessageUtil.success("新增成功");
+            MessageUtil.success(i18n.global.t("uniapp.portal.addSuccess"));
             open.value = false;
             getList();
           })
@@ -346,7 +352,9 @@ const submitForm = () => {
 /** 删除按钮操作 */
 const handleDelete = row => {
   const _ids = row.id || ids.value;
-  ElMessageBox.confirm('是否确认删除门户配置编号为"' + _ids + '"的数据项？')
+  ElMessageBox.confirm(
+    i18n.global.t("uniapp.portal.confirmDeletePortalConfiguration") + _ids + i18n.global.t("uniapp.portal.dataItem")
+  )
     .then(function () {
       loading.value = true;
       return delPortal(_ids);
@@ -354,7 +362,7 @@ const handleDelete = row => {
     .then(() => {
       loading.value = true;
       getList();
-      MessageUtil.success("删除成功");
+      MessageUtil.success(i18n.global.t("uniapp.portal.deleteSuccess"));
     })
     .catch(() => {})
     .finally(() => {

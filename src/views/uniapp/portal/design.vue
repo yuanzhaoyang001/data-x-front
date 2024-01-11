@@ -37,6 +37,8 @@ onMounted(() => {
   getPortal(route.params.id as number).then(res => {
     if (res.data.configValue) {
       portalConfig.value = res.data.configValue;
+    } else {
+      portalConfig.value = { bannerList: [], navList: [], tabBarList: [] };
     }
   });
 });

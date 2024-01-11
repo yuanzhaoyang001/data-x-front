@@ -5,7 +5,7 @@ import { requestHttp } from "@/utils/request";
 export const saveRbacFunctionality = (data: SaveParam): Promise<ResultData<Boolean>> =>
   requestHttp.post("/sys/rbacFunctionality/save", data);
 
-export const listRbacFunctionality = (data: { funcType: string; funcId: string }): Promise<ResultData<RbacInfo[]>> =>
+export const listRbacFunctionality = (data: { funcType: string; funcId: string | number }): Promise<ResultData<RbacInfo[]>> =>
   requestHttp.get("/sys/rbacFunctionality/list", data);
 
 interface SysRbacFunctionalityEntity {

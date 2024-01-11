@@ -6,7 +6,7 @@
       width="80%"
       append-to-body
     >
-      <div>
+      <div v-if="dialogVisible">
         <div class="selected-users">
           <el-tag
             v-for="obj in rbacList"
@@ -158,7 +158,7 @@ const props = defineProps({
     default: ""
   },
   funcId: {
-    type: String,
+    type: [String, Number],
     required: false,
     default: ""
   }
@@ -182,8 +182,8 @@ const getTagType = (type: string): any => {
 
 const activeName = ref("USER");
 
-const handleOpen = async () => {
-  const res = await listRbacFunctionality({ funcId: props.funcId, funcType: props.funcType });
+const handleOpen = async id => {
+  const res = await listRbacFunctionality({ funcId: id || props.funcId, funcType: props.funcType });
   rbacList.value = res.data || [];
   dialogVisible.value = true;
 };

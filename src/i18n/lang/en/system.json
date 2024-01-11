@@ -632,6 +632,15 @@
     "warning": "Warning",
     "yes": "Yes"
   },
+  "rbacFunctionality": {
+    "cleanAll": "Clear All",
+    "dept": "department",
+    "namePlaceholder": "Please enter the search name",
+    "notDataTip": "Please select at least one item",
+    "post": "post",
+    "role": "role",
+    "user": "user"
+  },
   "roleManagement": {
     "add": "Add",
     "addRole": "Add Role",
