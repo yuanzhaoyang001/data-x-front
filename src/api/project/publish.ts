@@ -52,3 +52,5 @@ export const getPublicQueryContentRequest = (formKey: string, queryId: any) =>
   getRequest(`/user/form/public/query/${formKey}/content`, { queryId });
 // 查询公开查询数据
 export const listPublicQueryDataRequest = (data: any) => postRequest("/user/form/public/query/data", data);
+// 获取小程序二维码
+export const getMobileFormShareQrcodeRequest = (formKey: string) => getRequest(`/mobile/form/share-qrcode`, { formKey });

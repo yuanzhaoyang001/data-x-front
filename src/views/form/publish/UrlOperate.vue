@@ -4,11 +4,12 @@
       <el-col :span="13">
         <el-input
           disabled
+          size="default"
           :model-value="linkUrl"
         />
       </el-col>
       <el-col :span="11">
-        <el-button-group>
+        <el-button-group size="default">
           <el-button
             v-copyText="linkUrl"
             type="primary"

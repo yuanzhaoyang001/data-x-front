@@ -641,6 +641,7 @@
   "public": {
     "addCondition": "添加条件",
     "addExtensionAttributes": "给链接添加扩展属性值，生成多个链接地址。这些地址可以发布到不同的渠道中，用来区分数据来源",
+    "miniAppQrCode": "小程序二维码",
     "addPublicQuery": "添加公开查询",
     "addRoles": "新增权限组",
     "allConditions": "全部条件",
