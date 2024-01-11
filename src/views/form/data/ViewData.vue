@@ -210,8 +210,14 @@ watch(
 onBeforeMount(async () => {});
 
 const formatValue = value => {
+  console.log(value);
+  console.log(props.pageFormModel);
   if (Array.isArray(value)) {
     return value.join(",");
+  }
+  // 是对象
+  if (value && typeof value === "object") {
+    return JSON.stringify(value);
   }
   return value;
 };

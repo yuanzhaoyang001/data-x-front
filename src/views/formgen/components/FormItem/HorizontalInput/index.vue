@@ -9,69 +9,66 @@
         @input="onInput($event, index)"
         @keydown="onSpanInput"
       >
-        {{ value[index] }}
+        {{ changeValue[index] }}
       </span>
     </span>
   </div>
 </template>
 
-<script>
-import mixin from "../mixin";
+<script setup name="HorizontalInput" lang="ts">
+import { onMounted, ref, watch } from "vue";
+import { formEmits, useFormItem } from "@/views/formgen/components/FormItem/hooks/useFormItemHook";
 
-export default {
-  name: "HorizontalInput",
-  mixins: [mixin],
-  props: {
-    input: {
-      type: String,
-      default: ""
-    }
+const props = defineProps({
+  input: {
+    type: String,
+    default: ""
   },
-  emits: ["change"],
-  data() {
-    return {
-      inputArray: "",
-      arr: []
-    };
-  },
-  watch: {
-    input: {
-      handler(val) {
-        this.initInputValueArr();
-      },
-      deep: true
-    }
-  },
-  created() {
-    this.initInputValueArr();
-  },
-  methods: {
-    onSpanInput(el) {
-      if (el.keyCode === 13) {
-        el.preventDefault();
-        return false;
-      }
-    },
-    onInput(el, index) {
-      const { offsetWidth, innerText } = el.target;
-      console.log(offsetWidth);
-      if (offsetWidth > 80) {
-        el.target.classList.add("span-input-inline");
-      } else {
-        el.target.classList.remove("span-input-inline");
-      }
-      this.value[index] = innerText;
-      this.$nextTick(() => {
-        this.handleChange();
-      });
-    },
-    initInputValueArr() {
-      this.arr = this.input.split("$input");
-    },
-    handleChange() {
-      this.$emit("change", this.value);
-    }
+  value: {
+    type: Array,
+    default: () => []
   }
+});
+
+const emits = defineEmits(formEmits);
+
+const { changeValue } = useFormItem(props, emits);
+
+const arr = ref<string[]>([]);
+
+onMounted(() => {});
+
+const initInputValueArr = () => {
+  arr.value = props.input.split("$input");
+};
+
+watch(
+  () => props.input,
+  () => {
+    initInputValueArr();
+  },
+  {
+    immediate: true,
+    deep: true
+  }
+);
+
+const onSpanInput = el => {
+  if (el.keyCode === 13) {
+    el.preventDefault();
+    return false;
+  }
+};
+
+const onInput = (el, index) => {
+  const { offsetWidth, innerText } = el.target;
+  console.log(offsetWidth);
+  if (offsetWidth > 80) {
+    el.target.classList.add("span-input-inline");
+  } else {
+    el.target.classList.remove("span-input-inline");
+  }
+  changeValue.value[index] = innerText;
 };
 </script>
 
