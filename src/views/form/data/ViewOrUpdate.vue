@@ -73,6 +73,7 @@
             ref="generateFormRef"
             :form-conf="formConf"
             :page-form-model="formModel"
+            :show-hidden-field="true"
             style="margin-bottom: 40px"
           />
           <div v-else>
@@ -414,9 +415,9 @@ defineExpose({
   .left {
     overflow: auto;
     height: 100%;
-    border-right: var(--el-bg-color-page) solid 1px;
+    //border-right: var(--el-bg-color-page) solid 1px;
     padding: 10px;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    //box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   }
 
   .right {
@@ -442,6 +443,11 @@ defineExpose({
 
 :deep(.exam-result-wrap .exam-result-wrap__card) {
   width: 90% !important;
+}
+
+:deep(.exam-result-wrap) {
+  height: 100%;
+  overflow: inherit !important;
 }
 </style>
 <style lang="scss">

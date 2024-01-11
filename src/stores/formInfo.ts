@@ -8,6 +8,7 @@ import { getAuthObjs } from "@/api/project/publish";
 
 // 工作流配置
 interface FormInfoState {
+  formKey: string;
   // 表单当前文件夹
   currentFormFolder: any;
   // 返回url地址 进入表单设计器模块 返回到不同页面
@@ -35,6 +36,7 @@ interface FormInfoState {
 export const useFormInfo = defineStore("formInfo", {
   state: (): FormInfoState => ({
     currentFormFolder: "",
+    formKey: "",
     backRoute: Local.get("backRoute") || '"/form/my"',
     currentFormName: "",
     lastSaveTimeStr: "",
@@ -84,10 +86,11 @@ export const useFormInfo = defineStore("formInfo", {
     },
     // 加载表单信息
     async loadFormInfo(formKey: string, authGroupId: number) {
-      if (!this.formType) {
+      if (!this.formType || this.formKey !== formKey) {
         getProjectRequest(formKey).then((res: any) => {
           this.setFormType(res.data.type);
           this.setCurrentFormName(res.data.name);
+          this.setFormKey(formKey);
         });
       }
       if (this.myFormRole) {
@@ -108,6 +111,9 @@ export const useFormInfo = defineStore("formInfo", {
           }
         }
       }
+    },
+    setFormKey(formKey: string) {
+      this.formKey = formKey;
     }
   }
 });

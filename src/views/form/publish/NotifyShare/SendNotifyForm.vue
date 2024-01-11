@@ -8,7 +8,19 @@
             :key="item.id"
             :label="item.templateName"
             :value="item.id"
-          />
+          >
+            <span class="float-left">
+              {{ item.templateName }}
+            </span>
+            <span class="float-right ml10">
+              <el-tag
+                type="success"
+                size="default"
+              >
+                {{ item.templateTypeDesc }}
+              </el-tag>
+            </span>
+          </el-option>
         </el-select>
         <el-button
           class="ml10"
@@ -16,12 +28,6 @@
         >
           {{ $t("form.notifyShare.config") }}
         </el-button>
-        <el-tag
-          class="ml10"
-          v-if="msgTemplate?.templateTypeDesc"
-        >
-          {{ msgTemplate?.templateTypeDesc }}
-        </el-tag>
       </el-form-item>
     </el-form>
     <el-row :gutter="10">
@@ -192,7 +198,6 @@ onMounted(() => {
 <style scoped lang="scss">
 .msg-content {
   width: 100%;
-  height: 100px;
   overflow-y: auto;
   overflow-x: hidden;
   margin-bottom: 10px;
@@ -200,5 +205,13 @@ onMounted(() => {
   background-color: var(--el-bg-color-page);
   border: var(--el-border);
   border-radius: 4px;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
 }
 </style>

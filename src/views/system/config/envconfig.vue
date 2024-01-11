@@ -3,7 +3,7 @@
     <el-tabs
       class="=tabs"
       v-model="activeName"
-      @tab-click="handleTabClick"
+      @tab-change="handleTabClick"
     >
       <el-tab-pane
         :label="$t('system.systemConfig.title')"

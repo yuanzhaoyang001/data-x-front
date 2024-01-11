@@ -74,6 +74,7 @@ export default {
           );
         }
       },
+      deep: true,
       immediate: true
     }
   },
@@ -130,6 +131,7 @@ export default {
       window.AMap.plugin("AMap.Geocoder", () => {
         // 回调函数
         const geocoder = new window.AMap.Geocoder({});
+        this.map.setCenter([lng, lat]); //设置地图中心点
         geocoder.getAddress([lng, lat], (status, result) => {
           console.log(result);
           if (status === "complete" && result.info === "OK") {

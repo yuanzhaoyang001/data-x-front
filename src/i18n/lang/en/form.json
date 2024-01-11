@@ -539,6 +539,7 @@
     "prizeNamePlaceholder": "Please enter the name of the prize",
     "prizeQuantity": "Number of prizes",
     "prizeQuantityPlaceholder": "Please enter the number of prizes",
+    "sendText":"The data cannot be modified. Are you sure to mark it as distributed?",
     "prizeTile": "reward",
     "prizeWinProbability": "Winning probability",
     "prizeWinProbabilityPlaceholder": "Please enter the winning probability",

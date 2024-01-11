@@ -189,6 +189,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   if (!editorInstance) return;
+  window.addEventListener("scroll", () => {}, true);
   editorInstance.destroy();
 });
 

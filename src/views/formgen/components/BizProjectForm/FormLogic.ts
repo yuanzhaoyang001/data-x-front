@@ -138,6 +138,8 @@ export function getHiddenFormItemIds(formData: any, logicData: { scheme: any[] }
     formLogic: logicData
   });
   let allHiddenFormItemIds: string[] = [...hiddenFormItemIds.keys()];
+  // 上下文中已经被显示的组件 存储 比如条件1已经把它显示出来 条件二不成立 又把它隐藏了
+  const showFormItemIds: string[] = [];
   Object.keys(logicTriggerRules).forEach(key => {
     const rules = logicTriggerRules[key];
     if (rules && Array.isArray(rules)) {
@@ -146,8 +148,11 @@ export function getHiddenFormItemIds(formData: any, logicData: { scheme: any[] }
         if (rule.type === "show") {
           if (flag) {
             allHiddenFormItemIds.splice(allHiddenFormItemIds.indexOf(rule.triggerFormItemId), 1);
+            showFormItemIds.push(rule.triggerFormItemId);
           } else {
-            allHiddenFormItemIds.push(rule.triggerFormItemId);
+            if (!showFormItemIds.includes(rule.triggerFormItemId) && !allHiddenFormItemIds.includes(rule.triggerFormItemId)) {
+              allHiddenFormItemIds.push(rule.triggerFormItemId);
+            }
           }
         } else if (rule.type === "jump") {
           if (flag) {
@@ -158,7 +163,9 @@ export function getHiddenFormItemIds(formData: any, logicData: { scheme: any[] }
             if (index !== -1) {
               // 把从这个下标之后的字段全部添加到 allHiddenFormItemIds
               for (let i = index + 1; i < targetIndex; i++) {
-                allHiddenFormItemIds.push(allFields[i].vModel);
+                if (!allHiddenFormItemIds.includes(rule.triggerFormItemId)) {
+                  allHiddenFormItemIds.push(allFields[i].vModel);
+                }
               }
               break;
             }

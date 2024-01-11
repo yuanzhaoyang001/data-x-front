@@ -5,45 +5,43 @@
       :row-key="record => record.key"
       :data="model"
     >
-      <template>
+      <el-table-column
+        label="序号"
+        align="center"
+        type="index"
+        width="50"
+      />
+      <template
+        v-for="(option, index) in fields"
+        :key="index"
+      >
         <el-table-column
-          label="序号"
+          :label="getTableColumnLabel(option)"
           align="center"
-          type="index"
-          width="50"
-        />
-        <template
-          v-for="(option, index) in fields"
-          :key="index"
-        >
-          <el-table-column
-            :label="getTableColumnLabel(option)"
-            align="center"
-          >
-            <template #default="scope">
-              {{ showText(scope.row, option.vModel, option) }}
-            </template>
-          </el-table-column>
-        </template>
-        <el-table-column
-          label="操作"
-          align="center"
-          width="300"
         >
           <template #default="scope">
-            <el-button
-              type="primary"
-              size="small"
-              @click="handleViewData(scope.$index, scope.row)"
-            >
-              <el-icon>
-                <ele-View />
-              </el-icon>
-              查看
-            </el-button>
+            {{ showText(scope.row, option.vModel, option) }}
           </template>
         </el-table-column>
       </template>
+      <el-table-column
+        label="操作"
+        align="center"
+        width="300"
+      >
+        <template #default="scope">
+          <el-button
+            type="primary"
+            size="small"
+            @click="handleViewData(scope.$index, scope.row)"
+          >
+            <el-icon>
+              <ele-View />
+            </el-icon>
+            查看
+          </el-button>
+        </template>
+      </el-table-column>
     </el-table>
     <el-dialog
       title="详情"
@@ -70,62 +68,57 @@
   </div>
 </template>
 
-<script>
+<script setup name="SubFormView">
+import { computed, defineAsyncComponent, ref } from "vue";
 import { isLabelTag } from "@/views/formgen/components/GenerateForm/FormItemLabel";
 import { removeHtmlTag } from "@/views/formgen/utils";
 import { commonFormat } from "@/views/form/data/table/formatTableColumn";
 
-export default {
-  name: "SubFormView",
-  props: {
-    model: {
-      type: Array,
-      default: () => []
-    },
-    fields: {
-      type: Array,
-      default: () => []
-    }
+import ViewData from "../ViewData.vue";
+
+// const ViewData = defineAsyncComponent(() => import("../ViewData.vue"));
+
+const props = defineProps({
+  model: {
+    type: Array,
+    default: () => []
   },
-  data() {
-    return {
-      dialogVisible: false,
-      pageFormModel: {}
-    };
-  },
-  computed: {
-    viewFields() {
-      return this.fields.map(item => {
-        const isLabel = isLabelTag(item.vModel);
-        // 特殊处理单选多选等组件 不然会直接显示选中的id
-        return {
-          label: removeHtmlTag(item.config.label),
-          value: isLabel ? `${item.vModel}label` : item.vModel,
-          type: item.typeId,
-          scheme: item
-        };
-      });
-    }
-  },
-  beforeCreate() {
-    this.$options.components.ViewData = require("../ViewData").default;
-  },
-  methods: {
-    getTableColumnLabel(option) {
-      return removeHtmlTag(option.config.label);
-    },
-    showText(row, key, item) {
-      let value = row[key];
-      if (isLabelTag(key)) {
-        value = row[`${key}label`];
-      }
-      return commonFormat(item.typeId, key, value, { scheme: item });
-    },
-    handleViewData(index, row) {
-      this.dialogVisible = true;
-      this.pageFormModel = row;
-    }
+  fields: {
+    type: Array,
+    default: () => []
   }
+});
+
+const dialogVisible = ref(false);
+const pageFormModel = ref({});
+
+const viewFields = computed(() => {
+  return props.fields.map(item => {
+    const isLabel = isLabelTag(item.vModel);
+    return {
+      label: removeHtmlTag(item.config.label),
+      value: isLabel ? `${item.vModel}label` : item.vModel,
+      type: item.typeId,
+      scheme: item
+    };
+  });
+});
+
+const getTableColumnLabel = option => {
+  return removeHtmlTag(option.config.label);
+};
+
+const showText = (row, key, item) => {
+  let value = row[key];
+  if (isLabelTag(key)) {
+    value = row[`${key}label`];
+  }
+  return commonFormat(item.typeId, key, value, { scheme: item });
+};
+
+const handleViewData = (index, row) => {
+  dialogVisible.value = true;
+  pageFormModel.value = row;
 };
 </script>
 

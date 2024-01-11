@@ -177,7 +177,7 @@ const menuItemList = [
   {
     title: i18n.global.t("formgen.topNav.setting"),
     icon: "iconfont icon-xitongshezhi",
-    route: "/project/form/editor/setting",
+    route: "/project/form/setting",
     type: "setting"
   },
   {
@@ -295,7 +295,7 @@ defineExpose({
 .form-index-container {
   height: 100%;
   width: 100%;
-  user-select: none;
+  overflow: hidden;
 }
 
 .header-container {

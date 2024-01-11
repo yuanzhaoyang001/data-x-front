@@ -42,6 +42,7 @@ import { ref } from "vue";
 import { createFormRequest } from "@/api/project/form";
 import { useRouter } from "vue-router";
 import { useFormInfo } from "@/stores/formInfo";
+import throttle from "lodash-es/throttle";
 
 const createFormVisible = ref<boolean>(false);
 const formStore = useFormInfo();
@@ -52,6 +53,7 @@ const defaultFormData: FormDataType = {
     "<p style='text-align: center;' data-mce-style='text-align: center;'>感谢您能抽出几分钟时间来参加本次表单填写，现在我们就马上开始吧！</p>",
   folderId: 0
 };
+
 interface FormDataType {
   description: string;
   name?: string;
@@ -77,7 +79,7 @@ const createFormHandle = async (formData: FormDataType) => {
   createFormVisible.value = false;
 };
 
-const handleCreateForm = async (type: number) => {
+const handleCreateForm = throttle(async (type: number) => {
   let typeName = "";
   switch (type) {
     case 1:
@@ -100,7 +102,7 @@ const handleCreateForm = async (type: number) => {
     folderId: props.folderId
   };
   await createFormHandle(examFormData);
-};
+}, 4000);
 
 const showForm = () => {
   createFormVisible.value = true;
@@ -114,9 +116,11 @@ defineExpose({
 <style lang="scss">
 .container-form {
   height: 470px;
+
   .el-dialog__header {
     border: none !important;
   }
+
   .container-form-title {
     display: flex;
     justify-content: center;
@@ -124,16 +128,19 @@ defineExpose({
     font-weight: 500;
     color: #3d3d3d;
   }
+
   .container-form-wrap {
     margin-top: 85px;
     display: flex;
     justify-content: space-evenly;
   }
+
   .container-form-sort:hover {
     box-sizing: border-box;
     border: 2px solid #4c4edb;
     box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.3);
   }
+
   .container-form-sort {
     width: 189px;
     height: 240px;
@@ -154,17 +161,20 @@ defineExpose({
       display: flex;
       justify-content: center;
       align-items: center;
+
       img {
         width: 61.68%;
         height: 68.53%;
         object-fit: contain;
       }
     }
+
     h4 {
       font-weight: 500;
       color: #3d3d3d;
       line-height: 30px;
     }
+
     span {
       width: 152px;
       padding: 0 6px;

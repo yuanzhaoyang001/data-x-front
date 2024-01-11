@@ -341,7 +341,14 @@ const handleQueryFields = () => {
 };
 
 const handleTableColumns = data => {
-  let firstCol = [{ type: "checkbox", width: 60, title: "" }];
+  let firstCol = [
+    { type: "checkbox", width: 60, title: "" },
+    {
+      field: "id",
+      title: "Id",
+      minWidth: "150"
+    }
+  ];
   gridOptions.value.columns = firstCol.concat(
     data
       .map(item => {
