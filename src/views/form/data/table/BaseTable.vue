@@ -88,8 +88,10 @@
 import app from "@/main";
 import VXETable from "vxe-table";
 import "vxe-table/lib/style.css";
-import { ref } from "vue";
+import { onBeforeUnmount, onMounted, ref } from "vue";
 import { i18n } from "@/i18n";
+import { Local } from "@/utils/storage";
+import { useRoute } from "vue-router";
 
 app.use(VXETable);
 
@@ -123,6 +125,31 @@ const getImgPreviewList = arr => {
     return e.url;
   });
 };
+
+onMounted(() => {
+  window.addEventListener("beforeunload", () => {
+    handleSaveFixedCol();
+  });
+});
+
+const route = useRoute();
+
+const handleSaveFixedCol = () => {
+  let key = route.query.key || route.params.key;
+  const fixedCols = xGrid.value
+    .getColumns()
+    .filter(item => item.fixed)
+    .map(item => {
+      return { field: item.field, fixed: item.fixed };
+    });
+  Local.set("fixedCols-" + key, fixedCols);
+};
+
+// 组件被销毁时 保存固定列
+onBeforeUnmount(() => {
+  handleSaveFixedCol();
+  window.addEventListener("beforeunload", () => {});
+});
 
 defineExpose({
   exportMsg,

@@ -38,7 +38,7 @@
             </span>
           </div>
         </el-col>
-        <el-col :span="3"></el-col>
+        <el-col :span="1"></el-col>
         <el-col :span="11">
           <div class="btn-wrap">
             <div
@@ -71,7 +71,7 @@
             </div>
           </div>
         </el-col>
-        <el-col :span="4">
+        <el-col :span="6">
           <el-button
             type="primary"
             @click="quickFormPublic"

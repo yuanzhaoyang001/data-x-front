@@ -97,7 +97,6 @@ onBeforeMount(async () => {
     tempLogicData = res.data;
   }
   hiddenFormItemIds.value = getHiddenFormItemIds(props.formModel, tempLogicData, props.formConfCopy.fields) || [];
-  console.log(props.formConfCopy.fields);
 });
 
 provide("formDisabled", true);
@@ -138,6 +137,7 @@ defineExpose({
   right: 0;
   top: 0;
 }
+
 .answer-analysis {
   color: var(--el-text-color-secondary);
 }

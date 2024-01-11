@@ -177,7 +177,7 @@
 </template>
 
 <script name="DataIndex" setup>
-import { onBeforeMount, provide, ref } from "vue";
+import { nextTick, onBeforeMount, provide, ref } from "vue";
 import BizProjectForm from "@/views/formgen/components/BizProjectForm/index.vue";
 import DataFilter from "./filter.vue";
 import ViewOrUpdate from "./ViewOrUpdate.vue";
@@ -197,6 +197,7 @@ import commonFunction from "@/utils/commonFunction";
 import { useFormInfo } from "@/stores/formInfo";
 import { storeToRefs } from "pinia";
 import { getDimensionByKey } from "@/api/project/dimension";
+import { Local } from "@/utils/storage";
 
 const formKey = ref("");
 const formConfig = ref({
@@ -267,11 +268,20 @@ provide("dimensionConfig", dimensionConfig);
 
 onBeforeMount(async () => {
   formKey.value = route.query.key || route.params.key;
+  // 详情固定列
   listFixedFormFieldsRequest(formKey.value).then(res => {
     fixedFields.value = res.data;
   });
+  // 表格字段查询
   handleQueryFields().then(() => {
     initPerms();
+    // 表格固定列设置
+    const fixedCols = Local.get("fixedCols-" + formKey.value);
+    fixedCols.forEach(col => {
+      nextTick(() => {
+        baseTableRef.value.getXGrid().setColumnFixed(col.field, col.fixed);
+      });
+    });
   });
   // 获取逻辑
   const { data: logicData } = await getFormLogicRequest({ formKey: formKey.value });

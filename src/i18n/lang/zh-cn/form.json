@@ -597,7 +597,8 @@
     "sendSuccessTip": "发送成功,去发送历史查询详情",
     "sendTime": "发送时间",
     "title": "通知分享",
-    "viewDetail": "详情"
+    "viewDetail": "详情",
+    "shareKey": "唯一key"
   },
   "printTemplate": {
     "addTemplate": "添加模版",
