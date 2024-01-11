@@ -186,7 +186,8 @@
     "failReason": "失败原因",
     "fillStatus": "填写状态",
     "filled": "已填写",
-    "notFilled": "未填写"
+    "notFilled": "未填写",
+    "shareKey": "唯一Key"
   },
   "lottery": {
     "title": "填写抽奖",
