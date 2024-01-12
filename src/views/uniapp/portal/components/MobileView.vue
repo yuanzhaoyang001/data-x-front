@@ -59,6 +59,7 @@
       @click="handleOpenConfig(MobileComType.TABBAR)"
     >
       <van-tabbar
+        style="position: absolute; bottom: 0; left: 0"
         v-model="active"
         v-if="portalConfig.tabBarList.length"
       >
