@@ -5,6 +5,7 @@ import qs from "qs";
 import { ResultData } from "@/api/types";
 import { useTLocale } from "@/utils/localeUtil";
 import VerificationBox from "@/components/Verifition/verification.ts";
+import { toLogin } from "@/utils/auth";
 
 const config = {
   // 默认地址
@@ -63,9 +64,7 @@ class RequestHttp {
           if (res.code === 401 || res.code === 4001) {
             Session.clear(); // 清除浏览器全部临时缓存
             // 获取当前页面的参数
-            const path = window.location.pathname;
-            const queryStr = window.location.href.split("?")[1];
-            window.location.href = `/login?redirect=${path}&params=${queryStr ? JSON.stringify(qs.parse(queryStr)) : ""}`;
+            toLogin();
           } else if (res.code === 416) {
             // 需要滑动验证
             let result = {};

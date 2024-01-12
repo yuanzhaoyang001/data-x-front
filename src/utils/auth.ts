@@ -1,5 +1,8 @@
 import { Session } from "@/utils/storage";
 import { basePathUrl } from "@/utils/constants";
+import qs from "qs";
+import { isWxEnv, isWxMiniEnv } from "@/views/form/write/hooks/wx";
+import loadWXJs from "@/views/formgen/utils/loadWxSdk";
 
 export const baseUrl = import.meta.env.VITE_API_URL;
 
@@ -19,6 +22,41 @@ export function getTokenHeader(): any {
   return {
     Authorization: "Bearer " + getToken()
   };
+}
+
+/**
+ * 去登录逻辑
+ */
+export function toLogin() {
+  // 兼容如果实在微信小程序里面的话就让小程序调登录页
+  if (isWxEnv()) {
+    // 拉起小程序 把参数携带给他
+    loadWXJs(wx => {
+      isWxMiniEnv().then(res => {
+        if (res) {
+          const queryStr = window.location.href.split("?")[1];
+          const params = qs.parse(queryStr);
+          wx.miniProgram.redirectTo({
+            url: "pages/login?" + qs.stringify(params),
+            success: function () {},
+            fail: function (e: any) {
+              console.log(e);
+            }
+          });
+        } else {
+          jumpToLogin();
+        }
+      });
+    });
+  } else {
+    jumpToLogin();
+  }
+}
+
+function jumpToLogin() {
+  const path = window.location.pathname;
+  const queryStr = window.location.href.split("?")[1];
+  window.location.href = `/login?redirect=${path}&params=${queryStr ? JSON.stringify(qs.parse(queryStr)) : ""}`;
 }
 
 /**
