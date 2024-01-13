@@ -794,6 +794,7 @@
     "extractQuestionsDialogTitle": "随机抽题设置",
     "featureOnlyActiveWithPublicQueries": "此功能仅在开启公开查询时生效",
     "fillWithLastSubmittedData": "填充上次填写数据",
+    "enableProgressBarLabel": "填写进度条",
     "fillWithLastSubmittedDataDescription": "开启后将会在浏览器本地保存提交的数据，再次进入表单页会提示是否继续使用上次提交的数据。",
     "fillingRestrictions": "填写限制",
     "followOfficialAccount": "接收微信提醒需要先关注公众号",

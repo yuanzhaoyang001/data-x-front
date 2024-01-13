@@ -384,7 +384,6 @@ export function useFormValidateRule() {
         break;
       case "PROVINCE_CITY":
         validator = (rule: any, value: any, callback: Function) => {
-          console.log(cur);
           if (value && Array.isArray(value.cascadeValue) && value.cascadeValue.length < 2) {
             return callback(new Error(`${cur.placeholder}`));
           }

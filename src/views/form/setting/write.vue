@@ -156,6 +156,15 @@
             @change="saveSettingHandle"
           />
         </div>
+        <div class="setting-item">
+          <p class="label">
+            {{ $t("form.setting.enableProgressBarLabel") }}
+          </p>
+          <el-switch
+            v-model="writeSettingForm.enableProgress"
+            @change="saveSettingHandle"
+          />
+        </div>
         <el-divider>{{ $t("form.setting.fillingRestrictions") }}</el-divider>
         <div class="setting-item">
           <p class="label">
@@ -763,7 +772,9 @@ const writeSettingForm = ref<any>({
     longestStayTime: 60,
     autoNext: false
   },
-  anonymousWrite: false
+  anonymousWrite: false,
+  // 启用进度条
+  enableProgress: false
 });
 const formKey = useRoute().query.key as string;
 

@@ -7,6 +7,15 @@
       id="inActiveTime"
       style="display: none"
     />
+    <div
+      class="progress-wrap"
+      v-if="props.formConf?.setting?.enableProgress"
+    >
+      <el-progress
+        :percentage="currentProgress"
+        :show-text="false"
+      />
+    </div>
     <top-login-user v-if="formThemeConfig?.showTopUserInfo" />
     <div
       v-show="!showConfirm"
@@ -117,6 +126,7 @@ import TopLoginUser from "./component/TopLoginUser.vue";
 import GenerateForm from "./GenerateForm.vue";
 import AnswerCard from "./component/AnswerCard.vue";
 import { useThemeConfig } from "@/stores/themeConfig";
+import { useFormProgress } from "@/views/formgen/components/GenerateForm/hooks/useFormProgress";
 
 const props = defineProps({
   formConf: Object as PropType<FormConfigType>,
@@ -188,6 +198,8 @@ const { allFields, hiddenFormItemIds } = storeToRefs(userFormStore);
 
 const { restoreNotSaveData, pageContentRef, restoreLastSubmitData, showConfirm, confirmTitle, restoreData } =
   useFormData(tempFormConf);
+
+const { currentProgress } = useFormProgress(pageFormModel);
 
 onMounted(() => {
   tempFormConf.value = deepClone(props.formConf);

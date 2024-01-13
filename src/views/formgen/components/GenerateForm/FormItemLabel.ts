@@ -16,6 +16,12 @@ export function isLabelTag(key: string) {
   return false;
 }
 
+/**
+ *
+ * @param models
+ * @param item
+ * @param value
+ */
 export function handleChangeLabel(models: any, item: any, value: any) {
   const key = item.vModel;
   if (isLabelTag(key)) {
@@ -71,4 +77,13 @@ export function findLabelsByIds(options: any[], ids: any[]) {
     labelArr.push(obj ? obj.label : "");
   });
   return labelArr;
+}
+
+/**
+ * 是否是表单自定义字段
+ */
+export function isCustomField(key: string) {
+  // 判断是否是表单自定义字段 格式为input121212121等
+  let bool = /.*\d+.*/g.test(key);
+  return bool;
 }
