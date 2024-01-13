@@ -319,7 +319,7 @@
                   type="primary"
                   icon="ele-CircleCheck"
                   @click="handleAuthRole(scope.row)"
-                  v-hasPermi="['system:user:edit']"
+                  v-hasPermi="['system:user:roleauth']"
                 ></el-button>
               </el-tooltip>
             </template>

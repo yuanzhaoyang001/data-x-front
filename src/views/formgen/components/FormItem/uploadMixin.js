@@ -26,6 +26,9 @@ export default {
   },
   methods: {
     uploadSuccess(response, file, fileList) {
+      if (response.code && response.code === 500) {
+        this.$message.error(response.msg);
+      }
       this.changeValue.push({
         name: file.name,
         url: response.data
@@ -39,7 +42,10 @@ export default {
       this.changeValue.splice(index, 1);
     },
     handleProgress(event, file, fileList) {},
-    handleError(err, file, fileList) {},
+    handleError(err, file, fileList) {
+      console.log(err);
+      this.$message.error(err);
+    },
     handleExceed() {
       this.$message.error(`最多上传${this.item.limit}个文件`);
     },

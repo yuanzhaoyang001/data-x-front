@@ -10,6 +10,7 @@
       :on-remove="handleRemove"
       :on-success="uploadSuccess"
       :on-exceed="handleExceed"
+      :on-error="handleError"
     >
       <el-button
         icon="ele-Upload"

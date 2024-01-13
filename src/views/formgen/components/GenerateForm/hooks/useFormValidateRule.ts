@@ -172,7 +172,7 @@ const validateMatrixInput = (rule: any, value: any, callback: Function) => {
  * 矩阵选择校验
  */
 const validateMatrixSelect = (rule: any, value: any, callback: Function, item: any) => {
-  if (item.table.rows.length !== keys(value).length) {
+  if (item.table.rows.length > keys(value).length) {
     callback(new Error("请选择全部矩阵组件的值"));
   } else {
     callback();
