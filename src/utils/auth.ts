@@ -37,7 +37,7 @@ export function toLogin() {
           const queryStr = window.location.href.split("?")[1];
           const params = qs.parse(queryStr);
           wx.miniProgram.redirectTo({
-            url: "pages/login?" + qs.stringify(params),
+            url: "/pages/login?" + qs.stringify(params),
             success: function () {},
             fail: function (e: any) {
               console.log(e);
