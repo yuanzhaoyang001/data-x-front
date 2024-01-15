@@ -1,16 +1,12 @@
 <template>
-  <RbacFunctionality
-    title="角色分配"
-    :func-id="11"
-    :func-type="'aa'"
-  ></RbacFunctionality>
+  <update-account />
 </template>
 
 <script>
-import RbacFunctionality from "@/views/components/RbacFunctionality/index.vue";
+import UpdateAccount from "@/views/user/login/UpdateAccount.vue";
 
 export default {
-  components: { RbacFunctionality },
+  components: { UpdateAccount },
   data() {
     return {
       blocks: [

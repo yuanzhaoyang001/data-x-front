@@ -27,6 +27,7 @@
           :span="6"
           :offset="isMobile() ? 0 : 1"
           :xs="15"
+          v-if="!isMobile()"
         >
           <el-menu
             v-if="!isMobile()"
@@ -47,19 +48,29 @@
           </el-menu>
         </el-col>
         <el-col
-          :lg="11"
+          :lg="9"
           :md="2"
           :sm="2"
-          :span="11"
-          :xs="0"
+          :span="9"
+          :xs="2"
         ></el-col>
         <el-col
-          :span="2"
+          :span="4"
           :xs="5"
           :md="1"
           :sm="1"
           class="header-row-war"
         >
+          <el-tag
+            class="mr10 cursor-pointer"
+            @click="$router.push({ path: '/mange/home' })"
+            v-hasPermi="['system:mange:home']"
+            effect="dark"
+            round
+            size="default"
+          >
+            {{ $t(`form.avatar.manage`) }}
+          </el-tag>
           <div
             @click="toMessage"
             class="mr8 cursor-pointer"
@@ -235,7 +246,7 @@ const restoreMenu = () => {
       const parNav = topNavBar.filter((item: any) => item.path === topNavBarActive.value);
       if (parNav && parNav.length) {
         currentLeftNavBarList.value = parNav[0].children;
-        leftNavBarActive.value = currentLeftNavBarList.value[0]?.path;
+        leftNavBarActive.value = currentLeftNavBarList.value[0]?.path as string;
       }
     }
   }
@@ -437,6 +448,7 @@ const handleLeftNabBarSelect = (nav: any) => {
   margin-left: 65px;
   cursor: pointer;
   display: flex;
+
   .i-icon:hover {
     transform: scale(1.1);
   }

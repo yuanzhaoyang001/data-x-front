@@ -45,3 +45,12 @@ export function unBindAccount(data: any) {
     data
   });
 }
+
+// 修改账号
+export function updateAccount(data: { account: string; password: string }) {
+  return request({
+    url: "/user/auth/updateAccount",
+    method: "post",
+    data
+  });
+}
