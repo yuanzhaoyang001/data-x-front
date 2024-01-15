@@ -22,5 +22,13 @@
     "rememberPwdText": "Remember the password",
     "type": "login",
     "wechatLogin": "WeChat login"
+  },
+  "updateAccount": {
+    "accountName": "Account",
+    "accountNamePlaceholder": "Please enter your account number",
+    "password": "password",
+    "passwordPlaceholder": "Please enter the password. If left blank, the system default password will be used",
+    "updateAccountDesc": "For the first time logging in, we suggest that you change your account and password to avoid forgetting your account in the next login.",
+    "updateAccountTitle": "Modify account"
   }
 }

@@ -76,6 +76,15 @@
         >
           {{ $t("form.formData.delete") }}
         </el-button>
+        <el-input
+          class="ml10"
+          prefix-icon="ele-Search"
+          size="default"
+          :placeholder="$t('form.formData.fullTextSearch')"
+          style="width: 200px"
+          v-model="inputSearch"
+          @change="handleInputSearchChange"
+        />
       </template>
       <template #tools>
         <div style="margin-right: 12px">
@@ -110,6 +119,7 @@
       :close-on-click-modal="false"
       :title="$t('form.formData.add')"
       width="60%"
+      v-if="addDialogVisible"
     >
       <el-scrollbar
         height="750px"
@@ -220,6 +230,8 @@ const selectDataId = ref(null);
 const checkboxIds = ref([]);
 const fields = ref([]);
 const fixedFields = ref([]);
+
+const inputSearch = ref("");
 
 const props = defineProps({
   mode: {
@@ -534,7 +546,7 @@ const gridOptions = ref({
         queryParams.value.formKey = formKey.value;
         // A workaround for handle empty filter condition
         const filter = queryParams.value.filter;
-        if (filter.conditionList) {
+        if (filter && filter?.conditionList) {
           filter.conditionList = filter.conditionList.filter(({ formItemId, method, value }) => {
             return formItemId !== "" && method !== "" && (value !== "" || method === "IS_NULL" || method === "NOT_NULL");
           });
@@ -617,6 +629,11 @@ const submitForm = async data => {
   handleReloadTable();
   addDialogVisible.value = false;
   MessageUtil.success(i18n.global.t("formI18n.all.success"));
+};
+
+const handleInputSearchChange = () => {
+  queryParams.value.filter["keyword"] = inputSearch.value;
+  handleReloadTable();
 };
 
 provide("checkBtnPerms", checkBtnPerms);

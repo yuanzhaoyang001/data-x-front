@@ -382,6 +382,7 @@
     "export": "Export",
     "fixedColumns": "Fixed Columns",
     "formNoFileCollected": "No files have been collected for the form",
+    "fullTextSearch": "Search all fields",
     "import": "Import",
     "query": "Query",
     "selectData": "Please select data"
@@ -807,6 +808,7 @@
     "enableMinTimeLabel": "Minimum Time for Submitting",
     "enableMinTimeTooltip": "Turn on to disallow submitting within the minimum time allowed for submission",
     "enableOnePageOneQuestionDescription": "Enable this to have one page for each question. Do not add page breaks within questions when this is enabled.",
+    "enableProgressBarLabel": "Fill in the progress bar",
     "enablePublicQueryReplies": "Enable Public Query Replies",
     "enablePublicQueryRepliesTooltip": "Enabling this will display a reply button on the public query page after data is displayed, allowing users to leave messages for administrators, who can respond.",
     "enableSwitchCountLabel": "Maximum Screen Switch Count",

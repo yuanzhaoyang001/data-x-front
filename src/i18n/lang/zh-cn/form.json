@@ -437,7 +437,8 @@
     "formNoFileCollected": "表单没有收集任何附件",
     "import": "导入",
     "query": "查询",
-    "selectData": "请选择数据"
+    "selectData": "请选择数据",
+    "fullTextSearch": "搜索全部字段"
   },
   "formLayout": {
     "copyright": {
