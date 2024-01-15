@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="input-map-wrap">
     <el-input
       ref="main"
       v-model="address"
@@ -53,16 +53,18 @@
           :xl="20"
           :xs="16"
         >
-          <el-input
-            :id="inputId"
-            :disabled="showSerachInput"
-            v-model="formattedAddress"
-            class="input-map-content-input"
-            prefix-icon="ele-Search"
-            clearable
-            :placeholder="$t('formgen.inputMap.getMapSelection')"
-            @clear="clear"
-          />
+          <div class="input-map-seach-wrap">
+            <el-input
+              :id="inputId"
+              :disabled="showSerachInput"
+              v-model="formattedAddress"
+              class="input-map-content-input"
+              prefix-icon="ele-Search"
+              clearable
+              :placeholder="$t('formgen.inputMap.getMapSelection')"
+              @clear="clear"
+            />
+          </div>
         </el-col>
       </el-row>
     </el-row>
@@ -79,6 +81,12 @@ export default {
 </script>
 
 <style scoped>
+.input-map-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
 :deep(.amap-marker-img) {
   width: 25px !important;
   height: 34px !important;
@@ -108,6 +116,11 @@ export default {
   width: 100%;
   height: 200px;
   border-radius: 10px;
+}
+
+.input-map-seach-wrap {
+  position: relative;
+  z-index: 9999;
 }
 
 .input-map-content-result {

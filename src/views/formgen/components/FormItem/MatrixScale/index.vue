@@ -84,7 +84,9 @@ export default {
   methods: {
     // 初始化矩阵value为二维数组
     initValue() {
-      this.dataValue = this.value;
+      if (this.value) {
+        this.dataValue = this.value;
+      }
     },
     handleChange(val) {
       this.$emit("update:value", this.dataValue);
