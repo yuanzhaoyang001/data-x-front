@@ -271,7 +271,7 @@ export default {
         //同步更新到地址栏
         this.handleSubmit();
         // 地图更新
-        this.getAddress();
+        this.getAddress(poi.location.lng, poi.location.lat);
 
         if (source !== "search") {
           poiPicker.searchByKeyword(poi.name);
