@@ -8,7 +8,7 @@
           :style="{ width: `${logoWidth}px`, height: `${logoHeight}px` }"
         >
           <template #error>
-            <el-icon>
+            <el-icon size="60">
               <ele-OfficeBuilding />
             </el-icon>
           </template>
@@ -102,6 +102,12 @@ const handleContactBtn = () => {
 .logo {
   height: 100%;
 
+  .el-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .el-image__inner {
     vertical-align: middle;
   }
@@ -127,9 +133,16 @@ const handleContactBtn = () => {
 }
 
 @media screen and (max-width: 768px) {
+  .container {
+    display: block !important;
+  }
   .logo,
   .btn {
-    flex: 0 0 30%;
+    flex: 1;
+  }
+
+  .btn {
+    margin-left: 20px;
   }
 
   .name {

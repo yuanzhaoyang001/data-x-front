@@ -37,11 +37,11 @@
           @change="handleChangeOptionType"
         >
           <el-option
-            :content="$t('formgen.matrix.singleChoiceLabel')"
+            :label="$t('formgen.matrix.singleChoiceLabel')"
             value="RADIO"
           ></el-option>
           <el-option
-            :content="$t('formgen.matrix.multipleChoiceLabel')"
+            :label="$t('formgen.matrix.multipleChoiceLabel')"
             value="CHECKBOX"
           ></el-option>
         </el-select>
@@ -52,14 +52,11 @@
       :animation="340"
       v-model="activeData.tableOptions[activeData.currentRowAndCol.rowIndex][activeData.currentRowAndCol.colIndex].options"
       group="selectItem"
-      item-key="label"
+      item-key="id"
       handle=".option-drag"
     >
       <template #item="{ element, index }">
-        <div
-          :key="index"
-          class="select-item"
-        >
+        <div class="select-item">
           <div class="select-line-icon option-drag">
             <el-icon>
               <ele-Operation />

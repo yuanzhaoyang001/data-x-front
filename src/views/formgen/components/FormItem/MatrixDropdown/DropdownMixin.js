@@ -35,7 +35,7 @@ export default {
     initValue() {
       let initValue = {};
       this.table.rows.forEach((row, index) => {
-        if (this.value[row.id]) {
+        if (this.value && this.value[row.id]) {
           initValue[row.id] = this.value[row.id];
         } else {
           initValue[row.id] = {};

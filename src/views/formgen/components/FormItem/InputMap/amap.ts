@@ -14,10 +14,10 @@ export default () =>
   new Promise(resolve => {
     if (!window.AMap) {
       window._AMapSecurityConfig = {
-        securityJsCode: "f46f6a2232696d90b43b6bb9a5e06299"
+        securityJsCode: "0450fd3e8504dc49e8754515f8c9f09a"
       };
       // 判断window下有没有AMap对象，再判断是否引入cdn地图
-      _createScript("https://webapi.amap.com/maps?v=2.0&key=d04c41dc23d67f0261c36e0dfa0dc817&&callback=aMapInitCallback");
+      _createScript("https://webapi.amap.com/maps?v=2.0&key=2bbf2299b4863b6c7341524deb0a88d7&&callback=aMapInitCallback");
       window.aMapInitCallback = () => {
         _createScript("//webapi.amap.com/ui/1.1/main.js");
         // 创建定时器 当AMapUI有值的时候 清除定时器 并resolve
@@ -29,7 +29,7 @@ export default () =>
           }
         }, 50);
       };
-      // 如果是多次调用 aMapInitCallback只会执行一次 这里补充下
+      // 如果是多次调用 aMapInitCallback只会执行一次 这里补充下 避免一个页面多个地图时不显示
       const interval1 = setInterval(() => {
         if (isCallbackSet) {
           clearInterval(interval1);

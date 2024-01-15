@@ -1231,10 +1231,6 @@ export const matrixComponents = [
         {
           label: i18n.global.t("formgen.config.row2"),
           id: 2
-        },
-        {
-          label: i18n.global.t("formgen.config.row3"),
-          id: 3
         }
       ],
       columns: [
@@ -1245,10 +1241,6 @@ export const matrixComponents = [
         {
           label: i18n.global.t("formgen.config.col2"),
           id: 2
-        },
-        {
-          label: i18n.global.t("formgen.config.col3"),
-          id: 3
         }
       ]
     },
