@@ -19,7 +19,7 @@
         class="mt20 ml25"
         qr-code-mode="download"
       />
-      <div v-if="miniAppQrcodeUrl">
+      <div v-if="miniAppQrcodeUrl && publishStatus">
         <el-divider>{{ $t("form.public.miniAppQrCode") }}</el-divider>
         <div class="text-center">
           <img
