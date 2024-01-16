@@ -108,7 +108,7 @@ export function onlyWxOpenHandle() {
  */
 export function isWxEnv() {
   let wxUa = navigator.userAgent.toLowerCase();
-  let isWeixin = wxUa.indexOf("micromessenger") != -1;
+  let isWeixin = wxUa.indexOf("micromessenger") != -1 && wxUa.indexOf("wxwork") === -1;
   return isWeixin;
 }
 
