@@ -80,6 +80,7 @@
           class="ml10"
           prefix-icon="ele-Search"
           size="default"
+          clearable
           :placeholder="$t('form.formData.fullTextSearch')"
           style="width: 200px"
           v-model="inputSearch"
