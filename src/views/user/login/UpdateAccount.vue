@@ -81,7 +81,7 @@ const formModel = ref({
 
 const showDialog = (user: any) => {
   dialogVisible.value = true;
-  formModel.value.account = user.username;
+  formModel.value.account = user.userName;
 };
 
 const handleUpdate = () => {
