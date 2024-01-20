@@ -481,6 +481,12 @@
         </el-form>
       </el-tab-pane>
       <el-tab-pane
+        label="企业微信"
+        name="wxCpEnvConfig"
+      >
+        <WxCpConfig v-if="activeName === 'wxCpEnvConfig'" />
+      </el-tab-pane>
+      <el-tab-pane
         :label="$t('system.otherLogin.title')"
         name="thirdpartyLoginConfig"
       >
@@ -496,6 +502,7 @@ import SystemInfoConfig from "./subconfig/SystemInfoConfig.vue";
 import OssConfig from "./subconfig/OssConfig.vue";
 import ThirdpartyLoginConfig from "./subconfig/ThirdpartyLogin.vue";
 import FaceConfig from "./subconfig/FaceConfig.vue";
+import WxCpConfig from "./subconfig/WxCpConfig.vue";
 
 export default {
   name: "ConfigForm",
@@ -503,7 +510,8 @@ export default {
     FaceConfig,
     ThirdpartyLoginConfig,
     SystemInfoConfig,
-    OssConfig
+    OssConfig,
+    WxCpConfig
   },
   mixins: [ConfigMixin],
   methods: {

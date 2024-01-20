@@ -470,7 +470,8 @@
     "thirdPartyTemplateId": "第三方模板id",
     "tip": "配置第三方模板id的消息此处配置短信内容无用，仅供参考",
     "wechat": "微信公众号",
-    "wechatTemplateIdNote": "如果配置微信模板消息请输入微信模板消息id；如果为短信则输入短信平台生成的短信模板id"
+    "wechatTemplateIdNote": "如果配置微信模板消息请输入微信模板消息id；如果为短信则输入短信平台生成的短信模板id",
+    "cpWechat": "企业微信"
   },
   "ocrRecognition": {
     "apiKey": "请输入apiKey",

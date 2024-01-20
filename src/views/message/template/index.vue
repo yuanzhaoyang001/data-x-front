@@ -287,6 +287,10 @@
               :label="$t('system.noticeTemplate.inbox')"
               value="4"
             />
+            <el-option
+              :label="$t('system.noticeTemplate.cpWechat')"
+              value="5"
+            />
           </el-select>
         </el-form-item>
         <el-form-item
@@ -403,6 +407,10 @@
             <el-option
               :label="$t('system.noticeTemplate.inbox')"
               value="INTERNAL"
+            />
+            <el-option
+              :label="$t('system.noticeTemplate.cpWechat')"
+              value="WX_CP"
             />
           </el-select>
         </el-form-item>
