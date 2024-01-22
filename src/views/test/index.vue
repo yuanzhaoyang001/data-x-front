@@ -1,21 +1,12 @@
 <template>
-  <LuckyWheel
-    ref="myLucky"
-    :blocks="blocks"
-    :buttons="buttons"
-    :prizes="prizes"
-    height="300px"
-    width="300px"
-    @end="endCallback"
-    @start="startCallback"
-  />
+  <update-account />
 </template>
 
 <script>
-import { LuckyWheel } from "@lucky-canvas/vue";
+import UpdateAccount from "@/views/user/login/UpdateAccount.vue";
 
 export default {
-  components: { LuckyWheel },
+  components: { UpdateAccount },
   data() {
     return {
       blocks: [

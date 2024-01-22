@@ -171,7 +171,6 @@ const examHook = useExamForm(() => {
 const buildRules = (componentList: any[], rules: Ref<any>) => {
   componentList.forEach(cur => {
     // 逻辑城市显示并且不是隐藏字段
-    console.log(cur);
     if (isFieldShow(cur) && !cur.hideType) {
       buildRule(cur, rules, formModel);
     }

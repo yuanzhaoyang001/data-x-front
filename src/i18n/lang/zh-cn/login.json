@@ -22,5 +22,13 @@
     "rememberPwdText": "记住密码",
     "type": "登录",
     "wechatLogin": "微信登录"
+  },
+  "updateAccount": {
+    "updateAccountTitle": "修改账号",
+    "updateAccountDesc": "首次登录我们建议您修改自己的账号以及密码，避免您下次登录遗忘账号。",
+    "accountName": "账号",
+    "accountNamePlaceholder": "请输入账号",
+    "password": "密码",
+    "passwordPlaceholder": "请输入密码,不填写将会使用系统默认密码"
   }
 }

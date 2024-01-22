@@ -103,7 +103,7 @@
               type="danger"
               v-else
             >
-              {{ $t("form.notifyShare.sendSuccess") }}
+              {{ $t("form.notifyShare.sendFail") }}
             </el-tag>
           </template>
         </el-table-column>

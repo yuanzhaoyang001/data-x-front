@@ -108,6 +108,22 @@ export function onlyWxOpenHandle() {
  */
 export function isWxEnv() {
   let wxUa = navigator.userAgent.toLowerCase();
-  let isWeixin = wxUa.indexOf("micromessenger") != -1;
+  let isWeixin = wxUa.indexOf("micromessenger") != -1 && wxUa.indexOf("wxwork") === -1;
   return isWeixin;
+}
+
+/**
+ * 是否在微信小程序里面
+ */
+export function isWxMiniEnv() {
+  return new Promise(resolve => {
+    // @ts-ignore
+    wx.miniProgram.getEnv(function (res) {
+      if (res.miniprogram) {
+        resolve(true);
+      } else {
+        resolve(false);
+      }
+    });
+  });
 }

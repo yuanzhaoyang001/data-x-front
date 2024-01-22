@@ -1,19 +1,29 @@
 <template>
-  <div
-    v-loading="loading"
-    element-loading-background="rgba(0, 0, 0, 0.8)"
-    element-loading-spinner="el-icon-loading"
-    element-loading-text="正在登录..."
-  ></div>
+  <div>
+    <div
+      v-loading="loading"
+      element-loading-background="rgba(0, 0, 0, 0.8)"
+      element-loading-spinner="el-icon-loading"
+      element-loading-text="正在登录..."
+    ></div>
+    <update-account
+      ref="updateAccountRef"
+      @next="handleToNext"
+    />
+  </div>
 </template>
 
 <script>
 import { authLogin, bindLogin } from "@/api/system/userauth";
 import { getToken } from "@/utils/auth";
 import { Local, Session } from "@/utils/storage";
+import UpdateAccount from "./UpdateAccount.vue";
 
 export default {
   name: "AuthLogin",
+  components: {
+    UpdateAccount
+  },
   data() {
     return {
       type: "",
@@ -52,13 +62,19 @@ export default {
         .then(res => {
           if (res.data) {
             Session.set("token", res.data.token);
-            this.$router.push({ path: "/" }).catch(() => {});
+            // 判断是否要做前置修改
+            if (res.data.user?.isModified) {
+              this.$refs.updateAccountRef.showDialog(res.data?.user);
+            }
             this.loading = false;
           }
         })
         .catch(err => {
           this.loading = false;
         });
+    },
+    handleToNext() {
+      this.$router.push({ path: "/" }).catch(() => {});
     }
   }
 };

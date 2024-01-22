@@ -298,7 +298,7 @@ const userFormTheme = reactive({
   themeId: "",
   backgroundType: "color",
   showFormTitle: true,
-  showTopUserInfo: true,
+  showTopUserInfo: false,
   showFormDescribe: true,
   showFormNumber: false,
   showSupport: false,

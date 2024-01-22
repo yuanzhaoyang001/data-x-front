@@ -95,9 +95,10 @@ const formInfoStore = useFormInfo();
 const { currentFormName } = storeToRefs(formInfoStore);
 
 const extFormParam = ref<any>({
-  link: `${getBaseUrlPath()}/s/${route.query.key}?shareKey=\${tMsgId}`,
+  link: `${getBaseUrlPath()}/s/${route.query.key}?sk=\${tMsgId}`,
   formName: currentFormName.value,
-  userName: "${tUserName} "
+  userName: "${tUserName} ",
+  shareKey: "${tMsgId}"
 });
 
 const fields = [
@@ -112,6 +113,10 @@ const fields = [
   {
     value: "formName",
     label: i18n.global.t("form.notifyShare.formNameText")
+  },
+  {
+    value: "shareKey",
+    label: i18n.global.t("form.notifyShare.shareKey")
   }
 ];
 

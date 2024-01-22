@@ -88,7 +88,6 @@
         class="mt20"
       >
         <el-col :span="12">
-          {{ formKey }}
           <device :form-key="formKey" />
         </el-col>
         <el-col :span="12">
@@ -197,6 +196,7 @@ const getProjectStats = async () => {
     }
   }
 }
+
 .chat-wrap {
   margin: 50px;
 }

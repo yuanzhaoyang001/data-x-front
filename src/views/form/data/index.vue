@@ -76,6 +76,16 @@
         >
           {{ $t("form.formData.delete") }}
         </el-button>
+        <el-input
+          class="ml10"
+          prefix-icon="ele-Search"
+          size="default"
+          clearable
+          :placeholder="$t('form.formData.fullTextSearch')"
+          style="width: 200px"
+          v-model="inputSearch"
+          @change="handleInputSearchChange"
+        />
       </template>
       <template #tools>
         <div style="margin-right: 12px">
@@ -110,6 +120,7 @@
       :close-on-click-modal="false"
       :title="$t('form.formData.add')"
       width="60%"
+      v-if="addDialogVisible"
     >
       <el-scrollbar
         height="750px"
@@ -177,7 +188,7 @@
 </template>
 
 <script name="DataIndex" setup>
-import { onBeforeMount, provide, ref } from "vue";
+import { nextTick, onBeforeMount, provide, ref } from "vue";
 import BizProjectForm from "@/views/formgen/components/BizProjectForm/index.vue";
 import DataFilter from "./filter.vue";
 import ViewOrUpdate from "./ViewOrUpdate.vue";
@@ -197,6 +208,7 @@ import commonFunction from "@/utils/commonFunction";
 import { useFormInfo } from "@/stores/formInfo";
 import { storeToRefs } from "pinia";
 import { getDimensionByKey } from "@/api/project/dimension";
+import { Local } from "@/utils/storage";
 
 const formKey = ref("");
 const formConfig = ref({
@@ -219,6 +231,8 @@ const selectDataId = ref(null);
 const checkboxIds = ref([]);
 const fields = ref([]);
 const fixedFields = ref([]);
+
+const inputSearch = ref("");
 
 const props = defineProps({
   mode: {
@@ -267,11 +281,20 @@ provide("dimensionConfig", dimensionConfig);
 
 onBeforeMount(async () => {
   formKey.value = route.query.key || route.params.key;
+  // 详情固定列
   listFixedFormFieldsRequest(formKey.value).then(res => {
     fixedFields.value = res.data;
   });
+  // 表格字段查询
   handleQueryFields().then(() => {
     initPerms();
+    // 表格固定列设置
+    const fixedCols = Local.get("fixedCols-" + formKey.value);
+    fixedCols.forEach(col => {
+      nextTick(() => {
+        baseTableRef.value.getXGrid().setColumnFixed(col.field, col.fixed);
+      });
+    });
   });
   // 获取逻辑
   const { data: logicData } = await getFormLogicRequest({ formKey: formKey.value });
@@ -524,7 +547,7 @@ const gridOptions = ref({
         queryParams.value.formKey = formKey.value;
         // A workaround for handle empty filter condition
         const filter = queryParams.value.filter;
-        if (filter.conditionList) {
+        if (filter && filter?.conditionList) {
           filter.conditionList = filter.conditionList.filter(({ formItemId, method, value }) => {
             return formItemId !== "" && method !== "" && (value !== "" || method === "IS_NULL" || method === "NOT_NULL");
           });
@@ -607,6 +630,11 @@ const submitForm = async data => {
   handleReloadTable();
   addDialogVisible.value = false;
   MessageUtil.success(i18n.global.t("formI18n.all.success"));
+};
+
+const handleInputSearchChange = () => {
+  queryParams.value.filter["keyword"] = inputSearch.value;
+  handleReloadTable();
 };
 
 provide("checkBtnPerms", checkBtnPerms);

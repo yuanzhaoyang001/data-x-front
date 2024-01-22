@@ -10,6 +10,7 @@
       :on-exceed="handleExceed"
       :on-success="uploadSuccess"
       :on-progress="handleProgress"
+      :on-error="handleError"
       list-type="picture-card"
     >
       <el-icon>

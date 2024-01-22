@@ -1,0 +1,22 @@
+{
+  "portal": {
+    "addPortalConfiguration": "Add Portal Configuration",
+    "addSuccess": "New successfully added",
+    "assign": "distribution",
+    "assignPortal": "Assign Portal",
+    "cancel": "Cancel",
+    "configurationValueRequired": "The configuration value cannot be empty",
+    "confirm": "Confirm",
+    "confirmDeletePortalConfiguration": "Are you sure to delete the portal configuration number as",
+    "dataItem": "What is the data item for?",
+    "deleteSuccess": "Delete successful",
+    "design": "design",
+    "inputName": "Please enter a name",
+    "modifyPortalConfiguration": "Modifying Portal Configuration",
+    "modifySuccess": "Modified successfully",
+    "name": "name",
+    "nameRequired": "Name cannot be empty",
+    "operation": "operation",
+    "parameterKeyRequired": "The parameter primary key cannot be empty"
+  }
+}

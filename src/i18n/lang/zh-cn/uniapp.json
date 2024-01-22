@@ -1,0 +1,22 @@
+{
+  "portal": {
+    "name": "名称",
+    "inputName": "请输入名称",
+    "operation": "操作",
+    "design": "设计",
+    "assign": "分配",
+    "confirm": "确 定",
+    "cancel": "取 消",
+    "assignPortal": "分配门户",
+    "parameterKeyRequired": "参数主键不能为空",
+    "nameRequired": "名称不能为空",
+    "configurationValueRequired": "配置值不能为空",
+    "addPortalConfiguration": "添加门户配置",
+    "modifyPortalConfiguration": "修改门户配置",
+    "modifySuccess": "修改成功",
+    "addSuccess": "新增成功",
+    "confirmDeletePortalConfiguration": "是否确认删除门户配置编号为",
+    "dataItem": "的数据项？",
+    "deleteSuccess": "删除成功"
+  }
+}

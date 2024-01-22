@@ -11,7 +11,7 @@ export const openWxScanReq = handleFunc => {
     success: function (res) {
       // 扫码成功，跳转到二维码指定页面（res.resultStr为扫码返回的结果）
       let scan = res.resultStr;
-      alert(scan);
+      // alert(scan);
       handleFunc(scan);
     }
   });

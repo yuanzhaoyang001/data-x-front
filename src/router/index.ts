@@ -15,6 +15,7 @@ import { initFrontEndControlRoutes } from "@/router/frontEnd";
 import { initBackEndControlRoutes } from "@/router/backEnd";
 import { NextLoading } from "@/utils/loading";
 import { basePathUrl } from "@/utils/constants";
+import { toLogin } from "@/utils/auth";
 
 /**
  * 1、前端控制路由时：isRequestRoutes 为 false，需要写 roles，需要走 setFilterRoute 方法。
@@ -131,7 +132,7 @@ router.beforeEach(async (to, from, next) => {
       next();
       NextLoading.done();
     } else if (!token) {
-      next(`/login?redirect=${to.path}&params=${JSON.stringify(to.query ? to.query : to.params)}`);
+      toLogin();
       Session.clear();
       // NProgress.done();
     } else if (token && to.path === "/login") {

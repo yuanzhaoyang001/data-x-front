@@ -28,6 +28,10 @@
             value="QINIU"
           />
           <el-option
+            label="腾讯"
+            value="TENCENT"
+          />
+          <el-option
             :label="$t('system.fileConfig.upyun')"
             value="UPYUN"
           />
@@ -72,6 +76,17 @@
         :rules="[{ required: true, message: $t('formI18n.all.pleaseEnter') + ' Endpoint', trigger: 'blur' }]"
       >
         <el-input v-model="form.endpoint" />
+      </el-form-item>
+      <el-form-item
+        v-if="form.ossType === 'TENCENT'"
+        label="Region"
+        prop="endpoint"
+        :rules="[{ required: true, message: '请输入Region', trigger: 'blur' }]"
+      >
+        <el-input
+          v-model="form.endpoint"
+          placeholder="请输入Region"
+        />
       </el-form-item>
       <el-form-item
         v-if="form.ossType !== 'LOCAL'"

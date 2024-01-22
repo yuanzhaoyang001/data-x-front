@@ -13,7 +13,9 @@
       class="switch-qrscan"
       @click="handleSwitchScan"
     >
-      <i class="el-icon-refresh" />
+      <el-icon>
+        <ele-RefreshRight />
+      </el-icon>
     </div>
     <div class="modal-content">
       <div
@@ -27,10 +29,9 @@
         for="qr-input-file"
         class="custom-file-upload"
       >
-        <i
-          class="el-icon-picture-outline"
-          aria-hidden="true"
-        ></i>
+        <el-icon>
+          <ele-Picture />
+        </el-icon>
       </label>
       <input
         type="file"
@@ -222,8 +223,8 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   z-index: 9999;
   display: flex;
   justify-content: center;

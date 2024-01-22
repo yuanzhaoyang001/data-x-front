@@ -60,7 +60,6 @@ export const setThemeVars = (theme: any) => {
     if (key.startsWith("show")) {
       value = value == true ? "block" : "none";
     }
-    debugger;
     if (key === "themeColor" && value) {
       formWrapDocument.style.setProperty("--form-theme-color", value || themeDefaultValues.themeColor);
       formWrapDocument.style.setProperty("--form-theme-hover-color", getHoverColor(value) || themeDefaultValues.themeHoverColor);

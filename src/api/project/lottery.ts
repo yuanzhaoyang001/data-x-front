@@ -29,6 +29,19 @@ export const getDrawPrizesList = (sourceType: string, sourceId: string): Promise
 export const markSendStatus = (id: number): Promise<ResultData<DrawPrizesVO>> =>
   requestHttp.post("/lottery/activities/markSendStatus", { id });
 
+// 导出中奖名单
+export function exportDrawPrizesList(sourceType: string, sourceId: string) {
+  return requestHttp.service({
+    url: "/lottery/activities/exportWinners",
+    method: "get",
+    params: {
+      sourceType,
+      sourceId
+    },
+    responseType: "blob"
+  });
+}
+
 export const FORM_LOTTERY = "FORM_LOTTERY";
 
 export interface ParticipantInfo {

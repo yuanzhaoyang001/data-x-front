@@ -5,6 +5,7 @@ import qs from "qs";
 import { ResultData } from "@/api/types";
 import { useTLocale } from "@/utils/localeUtil";
 import VerificationBox from "@/components/Verifition/verification.ts";
+import { toLogin } from "@/utils/auth";
 
 const config = {
   // 默认地址
@@ -62,15 +63,8 @@ class RequestHttp {
           // `token` 过期或者账号已在别处登录
           if (res.code === 401 || res.code === 4001) {
             Session.clear(); // 清除浏览器全部临时缓存
-            // window.location.href = "/"; // 去登录页
-            ElMessageBox.alert("登录状态失效，请重新登录", "提示", {})
-              .then(() => {
-                // 获取当前页面的参数
-                const path = window.location.pathname;
-                const queryStr = window.location.href.split("?")[1];
-                window.location.href = `/login?redirect=${path}&params=${queryStr ? JSON.stringify(qs.parse(queryStr)) : ""}`;
-              })
-              .catch(() => {});
+            // 获取当前页面的参数
+            toLogin();
           } else if (res.code === 416) {
             // 需要滑动验证
             let result = {};

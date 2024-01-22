@@ -61,6 +61,7 @@ export function commonFormat(type: string, key: string, value: any, item: any): 
       type = key.replace(/\d+/g, "").toUpperCase();
     }
   }
+  // 处理各种可能为空的情况
   if (value === null || value === undefined) {
     return "";
   } else if (isArray(value) && value.length == 0) {
@@ -82,6 +83,8 @@ export function commonFormat(type: string, key: string, value: any, item: any): 
     }
   } else if ("MATRIX_INPUT" === type) {
     return formatMatrixInputData(value, item);
+  } else if ("HORIZONTAL_INPUT" === type) {
+    return value.join(",");
   } else if (["MATRIX_SELECT", "MATRIX_SCALE", "MATRIX_SLIDER"].includes(type)) {
     return formatMatrixSelectData(value, item);
   } else if (["TABLE_SELECT"].includes(type)) {

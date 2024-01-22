@@ -21,7 +21,7 @@
           :label="$t('form.lottery.tab2Name')"
           name="winningRecord"
         >
-          <winning-record />
+          <winning-record v-if="activeName === 'winningRecord'" />
         </el-tab-pane>
       </el-tabs>
     </div>
