@@ -59,6 +59,7 @@
     "workflowList": "流程列表",
     "workflowManagement": "流程管理",
     "portalManagement": "门户管理",
-    "portalDesign": "门户设计"
+    "portalDesign": "门户设计",
+    "mobileConfig": "系统配置"
   }
 }
