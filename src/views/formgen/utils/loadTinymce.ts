@@ -1,10 +1,11 @@
 import loadScript from "./loadScript";
 import { ElLoading } from "element-plus";
+import { basePathUrl } from "@/utils/constants";
 
 let tinymceObj: any;
 
 export default function loadTinymce(cb: Function) {
-  const tinymceUrl = window.origin + "/tinymce/tinymce.min.js";
+  const tinymceUrl = window.origin + basePathUrl + "/tinymce/tinymce.min.js";
 
   if (tinymceObj) {
     cb(tinymceObj);

@@ -56,7 +56,7 @@ export function toLogin() {
 function jumpToLogin() {
   const path = window.location.pathname;
   const queryStr = window.location.href.split("?")[1];
-  window.location.href = `/login?redirect=${path}&params=${queryStr ? JSON.stringify(qs.parse(queryStr)) : ""}`;
+  window.location.href = basePathUrl + `/login?redirect=${path}&params=${queryStr ? JSON.stringify(qs.parse(queryStr)) : ""}`;
 }
 
 /**

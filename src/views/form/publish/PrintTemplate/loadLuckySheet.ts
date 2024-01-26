@@ -1,5 +1,7 @@
 // 动态加载css文件
 
+import { getBaseUrlPath } from "@/utils/auth";
+
 const loadCSS = (url: string, isCache = true) => {
   const element = document.createElement("link");
   element.setAttribute("rel", "stylesheet");
@@ -38,12 +40,12 @@ export const loadAll = (callback: () => void) => {
   // 开始加载
   const cssList = ["assets/iconfont/iconfont.css", "css/luckysheet.css", "plugins/plugins.css", "plugins/css/pluginsCss.css"];
   cssList.forEach(item => {
-    loadCSS(window.origin + "/luckysheet/" + item);
+    loadCSS(getBaseUrlPath() + "/luckysheet/" + item);
   });
   let loadedScripts = 0;
   const jsList = ["luckysheet.umd.js", "jquery.min.js", "plugins/js/plugin.js"];
   jsList.forEach(item => {
-    loadJS(window.origin + "/luckysheet/" + item, () => {
+    loadJS(getBaseUrlPath() + "/luckysheet/" + item, () => {
       loadedScripts++;
       if (loadedScripts === jsList.length) {
         callback();

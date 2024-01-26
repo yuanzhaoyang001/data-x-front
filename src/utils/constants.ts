@@ -8,4 +8,4 @@ export const UPDATE_MODEL_EVENT = "update:modelValue";
 export const adminPrefix = "/admin";
 
 // 路由全局基础前缀
-export const basePathUrl = "";
+export const basePathUrl = import.meta.env.VITE_PUBLIC_PATH;

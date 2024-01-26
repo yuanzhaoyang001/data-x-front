@@ -1,5 +1,7 @@
 // 字体图标 url window.location.origin + "/iconfont/iconfont.css
-const cssCdnUrlList = [window.location.origin + "/iconfont/iconfont.css"];
+import { basePathUrl } from "@/utils/constants";
+
+const cssCdnUrlList = [window.location.origin + basePathUrl + "/iconfont/iconfont.css"];
 // const cssCdnUrlList = ["//at.alicdn.com/t/c/font_4300726_8n73zse2qqe.css"];
 
 // 第三方 js url

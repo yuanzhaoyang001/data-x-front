@@ -1,10 +1,11 @@
 import loadScript from "./loadScript";
 import { ElLoading } from "element-plus";
+import { getBaseUrlPath } from "@/utils/auth";
 
 let html5QrcodeObj: any;
 
 export default function loadHtml5Qrcode(cb: Function) {
-  const html5QrcodeUrl = window.origin + "/plugins/html5-qrcode-2.3.7.min.js";
+  const html5QrcodeUrl = getBaseUrlPath() + "/plugins/html5-qrcode-2.3.7.min.js";
 
   if (html5QrcodeObj) {
     cb(html5QrcodeObj);

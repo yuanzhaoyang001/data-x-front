@@ -239,6 +239,7 @@ import DeptChooseTree from "@/views/system/dept/chooseTree.vue";
 import UrlOperate from "./UrlOperate.vue";
 import { i18n } from "@/i18n";
 import { MessageUtil } from "@/utils/messageUtil";
+import { getBaseUrlPath } from "@/utils/auth";
 
 export default {
   name: "AuthGroupMange",
@@ -274,8 +275,7 @@ export default {
   },
   created() {
     this.formKey = this.$route.query.key;
-    let url = window.location.protocol + "//" + window.location.host;
-    this.createDataLink = `${url}/d/${this.formKey}`;
+    this.createDataLink = `${getBaseUrlPath()}/d/${this.formKey}`;
     this.queryAuthGroupListHandle();
   },
   methods: {
@@ -388,9 +388,11 @@ export default {
   background-color: var(--el-color-primary-light-10);
   border-radius: 8px;
 }
+
 .publish-content {
   padding: 20px;
 }
+
 .item-id-text {
   font-size: 10px;
   color: #9b9b9b;

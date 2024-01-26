@@ -44,6 +44,7 @@
 
 <script>
 import loadHtml5Qrcode from "../../../utils/loadHtmlQrCode";
+import { getBaseUrlPath } from "@/utils/auth";
 
 let successAudio = null;
 export default {
@@ -94,7 +95,7 @@ export default {
           this.handleFileSelect(html5QrCodeInstance);
           this.html5QrCodeInstance = html5QrCodeInstance;
           // 加载下扫码成功的声音
-          successAudio = new Audio(window.origin + "/audio/di.mp3");
+          successAudio = new Audio(getBaseUrlPath() + "/audio/di.mp3");
         });
       });
       document.body.style.overflow = "hidden"; // 防止背景滚动
