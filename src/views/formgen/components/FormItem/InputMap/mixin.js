@@ -127,6 +127,9 @@ export default {
     },
     // 获取坐标
     getAddress(lng, lat) {
+      if (!lng || !lat) {
+        return;
+      }
       const that = this;
       window.AMap.plugin("AMap.Geocoder", () => {
         // 回调函数
