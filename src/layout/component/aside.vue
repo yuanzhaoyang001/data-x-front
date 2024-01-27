@@ -27,6 +27,7 @@ import { useRoutesList } from "@/stores/routesList";
 import { useThemeConfig } from "@/stores/themeConfig";
 import { useTagsViewRoutes } from "@/stores/tagsViewRoutes";
 import mittBus from "@/utils/mitt";
+import { systemAdminMode } from "@/utils/constants";
 
 // 引入组件
 const Logo = defineAsyncComponent(() => import("@/layout/logo/index.vue"));
@@ -101,7 +102,7 @@ const setFilterRoutes = () => {
 // 路由过滤递归函数
 const filterRoutesFun = <T extends RouteItem>(arr: T[]): T[] => {
   return arr
-    .filter((item: T) => !item.meta?.isHide && item.meta?.location !== "2")
+    .filter((item: T) => !item.meta?.isHide && (systemAdminMode === "C" ? item.meta?.location !== "2" : true))
     .map((item: T) => {
       item = Object.assign({}, item);
       if (item.children) item.children = filterRoutesFun(item.children);

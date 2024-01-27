@@ -9,3 +9,6 @@ export const adminPrefix = "/admin";
 
 // 路由全局基础前缀
 export const basePathUrl = import.meta.env.VITE_PUBLIC_PATH;
+
+// 系统展示模式 用户端和客户端分离模式： C ， 混合模式：A 主要是菜单的显示方式
+export const systemAdminMode: string = "A";

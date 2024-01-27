@@ -10,6 +10,7 @@ import { formatTwoStageRoutes, formatFlatteningRoutes, router } from "@/router/i
 import { useRoutesList } from "@/stores/routesList";
 import { useTagsViewRoutes } from "@/stores/tagsViewRoutes";
 import { getRouters } from "@/api/menu";
+import { systemAdminMode } from "@/utils/constants";
 
 // 后端控制路由
 
@@ -47,7 +48,10 @@ export async function initBackEndControlRoutes() {
   useRequestOldRoutes().setRequestOldRoutes(JSON.parse(JSON.stringify(res.data)));
   // 处理路由（component），替换 dynamicRoutes（@/router/route）第一个顶级 children 的路由
   // 不等于2的才是后台的路由
-  dynamicRoutes[0].children = await backEndComponent(res.data.filter((item: any) => item.meta && item.meta?.location !== "2"));
+  dynamicRoutes[0].children = await backEndComponent(
+    res.data.filter((item: any) => item.meta && (systemAdminMode === "C" ? item.meta?.location !== "2" : true))
+  );
+  console.log(dynamicRoutes);
   // 处理固定的路由
   dynamicRoutes[0].children?.push(...fixedRoutes);
   // 添加动态路由
@@ -56,7 +60,9 @@ export async function initBackEndControlRoutes() {
   setFilterMenuAndCacheTagsViewRoutes();
   // 接下来处理前台的路由
   // 处理路由（component），替换 dynamicRoutes（@/router/route）第一个顶级 children 的路由
-  dynamicRoutes[1].children = await backEndComponent(res.data.filter((item: any) => item.meta && item.meta?.location === "2"));
+  dynamicRoutes[1].children = await backEndComponent(
+    res.data.filter((item: any) => item.meta && (systemAdminMode === "C" ? item.meta?.location === "2" : false))
+  );
   // 添加动态路由
   await setAddFrontRoute();
 }
