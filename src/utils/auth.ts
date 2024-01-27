@@ -54,9 +54,11 @@ export function toLogin() {
 }
 
 function jumpToLogin() {
-  const path = window.location.pathname;
+  let path = window.location.pathname;
+  path = path.slice(basePathUrl.length);
   const queryStr = window.location.href.split("?")[1];
-  window.location.href = basePathUrl + `login?redirect=${path}&params=${queryStr ? JSON.stringify(qs.parse(queryStr)) : ""}`;
+  window.location.href =
+    getBaseUrlPath() + `/login?redirect=${path}&params=${queryStr ? JSON.stringify(qs.parse(queryStr)) : ""}`;
 }
 
 /**
@@ -88,5 +90,11 @@ function getTLD() {
  */
 export const getBaseUrlPath = () => {
   let url = window.location.protocol + "//" + window.location.host;
-  return url + basePathUrl;
+  let baseUrl = url + basePathUrl;
+  // 最后一个是/ 移除掉
+  if (baseUrl.endsWith("/")) {
+    console.log(baseUrl.substring(0, baseUrl.length));
+    return baseUrl.substring(0, baseUrl.length - 1);
+  }
+  return baseUrl;
 };
