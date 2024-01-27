@@ -13,6 +13,7 @@ const ruleTrigger: RuleTriggerType = {
   RADIO: "blur",
   INPUT_MAP: "blur",
   SELECT: "blur",
+  NUMBER: "blur",
   CHECKBOX: "blur",
   CASCADER: "blur",
   PROVINCE_CITY: "blur",
