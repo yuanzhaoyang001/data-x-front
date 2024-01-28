@@ -31,8 +31,38 @@
         :rules="[{ required: true, message: '请输入Secret', trigger: 'blur' }]"
       >
         <el-input
+          show-password
           v-model="form.secret"
           placeholder="请输入Secret"
+        ></el-input>
+      </el-form-item>
+      <el-form-item>
+        <div class="flex">接收事件服务器配置url:</div>
+        <div class="flex">
+          {{ getUrl }}
+        </div>
+      </el-form-item>
+      <el-form-item
+        label="token"
+        prop="token"
+        :rules="[{ required: true, message: '请输入token', trigger: 'blur' }]"
+      >
+        <el-input
+          v-model="form.token"
+          show-password
+          placeholder="请输入token"
+        ></el-input>
+      </el-form-item>
+
+      <el-form-item
+        label="aesKey"
+        prop="aesKey"
+        :rules="[{ required: true, message: '请输入aesKey', trigger: 'blur' }]"
+      >
+        <el-input
+          show-password
+          v-model="form.aesKey"
+          placeholder="请输入aesKey"
         ></el-input>
       </el-form-item>
       <el-form-item>
@@ -55,6 +85,11 @@ export default {
   mixins: [ConfigMixin],
   data() {
     return {};
+  },
+  computed: {
+    getUrl() {
+      return `${window.location.origin}/tduck-api/wx/cp/portal/${this.form.agentId}`;
+    }
   },
   async created() {
     this.activeName = "wxCpEnvConfig";
