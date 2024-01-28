@@ -15,7 +15,9 @@
         <div class="title-top">
           <div>{{ $t("formgen.formQuestion.myQuestions") }}</div>
           <i @click="handleAdd">
-            <el-icon><ele-Plus /></el-icon>
+            <el-icon>
+              <ele-Plus />
+            </el-icon>
           </i>
         </div>
         <el-tree
@@ -207,7 +209,7 @@ const getList = async () => {
     };
   });
 
-  publicQuestionTreeData.value = res.data.publicQuestionBank.map((item: QuestionBankDetails) => {
+  publicQuestionTreeData.value = res.data.publicQuestionBank?.map((item: QuestionBankDetails) => {
     return {
       id: item.questionBank?.id,
       label: item.questionBank?.name,
@@ -281,20 +283,24 @@ onMounted(() => {
   overflow-y: scroll;
   max-height: 750px;
 }
+
 .question-bank-input {
   width: 218px;
   margin: 10px auto;
 }
+
 .title-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   i {
     color: blue;
     margin-right: 5px;
     cursor: pointer;
   }
 }
+
 .custom-tree-node {
   flex: 1;
   display: flex;
@@ -303,6 +309,7 @@ onMounted(() => {
   font-size: 14px;
   padding-right: 8px;
 }
+
 .custom-tree-node .controls {
   display: none;
 }
