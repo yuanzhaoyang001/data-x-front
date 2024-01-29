@@ -82,7 +82,7 @@
                   link
                   type="primary"
                   icon="ele-Edit"
-                  @click="changeBanner(row)"
+                  @click="changeBanner(row, $index)"
                 ></el-button>
               </el-tooltip>
               <el-tooltip
@@ -102,7 +102,7 @@
       </VueDraggable>
     </div>
     <el-dialog
-      :title="`${isUpdate ? $t('system.banner.modify') : $t('system.banner.addBanner')}`"
+      :title="`${null!==index ? $t('system.banner.modify') : $t('system.banner.addBanner')}`"
       v-model="isShowDialog"
       width="50%"
       append-to-body
@@ -181,7 +181,7 @@
 
 <script setup lang="ts">
 import { i18n } from "@/i18n";
-import { nextTick, onMounted, ref } from "vue";
+import { onMounted, ref } from "vue";
 import { ElMessageBox } from "element-plus";
 import type { FormInstance } from "element-plus";
 import { VueDraggable } from "vue-draggable-plus";
@@ -202,7 +202,7 @@ const bannerForm = ref<Banner>({
 const { portalConfig } = portalConfigStore;
 
 const bannerList = ref<Banner[]>(portalConfig.value.bannerList);
-const isUpdate = ref(false);
+const index = ref<number | null>(null);
 const isShowDialog = ref(false);
 const loading = ref(true);
 const rules = {
@@ -217,7 +217,7 @@ const getBanners = async () => {
 };
 
 const addBanner = () => {
-  isUpdate.value = false;
+  index.value = null;
   isShowDialog.value = true;
   bannerForm.value = {
     appId: "",
@@ -233,8 +233,10 @@ const bannerFormRef = ref<FormInstance>();
 const handleSubmit = () => {
   bannerFormRef.value!.validate(valid => {
     if (valid) {
-      if (!isUpdate.value) {
+      if (null == index.value) {
         bannerList.value.push(bannerForm.value);
+      } else {
+        bannerList.value[index.value] = bannerForm.value;
       }
       isShowDialog.value = false;
     }
@@ -253,10 +255,10 @@ const deleteBanner = row => {
     .catch(() => {});
 };
 
-const changeBanner = row => {
+const changeBanner = (row, i) => {
   isShowDialog.value = true;
   bannerForm.value = row;
-  isUpdate.value = true;
+  index.value = i;
 };
 
 const closeDialog = () => {

@@ -54,7 +54,9 @@ onMounted(() => {
   getByKey({
     configKey: "systemConfig"
   }).then(res => {
-    form.value = res.data;
+    if (res.data) {
+      form.value = res.data;
+    }
   });
 });
 

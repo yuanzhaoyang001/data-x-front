@@ -79,7 +79,7 @@
                 link
                 type="primary"
                 icon="ele-Edit"
-                @click="changeNav(row)"
+                @click="changeNav(row, $index)"
               ></el-button>
             </el-tooltip>
             <el-tooltip
@@ -98,7 +98,7 @@
       </el-table>
     </VueDraggable>
     <el-dialog
-      :title="`${isUpdate ? $t('system.customButton.modifyButton') : $t('system.customButton.addButton')}`"
+      :title="`${null !== index ? $t('system.customButton.modifyButton') : $t('system.customButton.addButton')}`"
       v-model="isShowDialog"
       width="40%"
       append-to-body
@@ -175,8 +175,7 @@
 </template>
 
 <script setup lang="ts">
-import Sortable, { SortableEvent } from "sortablejs";
-import { nextTick, onMounted, reactive, ref } from "vue";
+import { onMounted, reactive, ref } from "vue";
 import { i18n } from "@/i18n";
 import type { FormInstance } from "element-plus";
 import { portalConfigStore } from "@/views/uniapp/portal/config";
@@ -193,7 +192,7 @@ const navForm = reactive<Nav>({
 const { portalConfig } = portalConfigStore;
 
 const navList = ref<Nav[]>(portalConfig.value.navList);
-const isUpdate = ref(false);
+const index = ref<number | null>(null);
 const isShowDialog = ref(false);
 const loading = ref(true);
 const rules = {
@@ -213,7 +212,7 @@ const addNav = () => {
   navForm.imgUrl = "";
   navForm.type = "";
   navForm.addressUrl = "";
-  isUpdate.value = false;
+  index.value = null;
   isShowDialog.value = true;
 };
 
@@ -222,8 +221,10 @@ const navFormRef = ref<FormInstance>();
 const handleSubmit = () => {
   navFormRef.value!.validate(valid => {
     if (valid) {
-      if (!isUpdate.value) {
+      if (null === index.value) {
         navList.value.push({ ...navForm });
+      } else {
+        navList.value[index.value] = { ...navForm };
       }
       isShowDialog.value = false;
     }
@@ -237,13 +238,13 @@ const deleteNav = (row: any) => {
   navList.value = data;
 };
 
-const changeNav = (row: any) => {
+const changeNav = (row: any, i: number) => {
+  index.value = i;
   isShowDialog.value = true;
   navForm.name = row.name;
   navForm.imgUrl = row.imgUrl;
   navForm.type = row.type;
   navForm.addressUrl = row.addressUrl;
-  isUpdate.value = true;
 };
 
 onMounted(() => {
@@ -253,9 +254,6 @@ onMounted(() => {
 const getNav = async () => {
   loading.value = false;
   navList.value = portalConfig.value.navList;
-  await nextTick(() => {
-    rowDrop();
-  });
 };
 
 const cancel = () => {
