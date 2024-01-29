@@ -19,7 +19,7 @@
 </template>
 
 <script setup name="FormTinymce">
-import { getToken } from "@/utils/auth";
+import { baseUrl, getToken } from "@/utils/auth";
 import { nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 import { inlineToolbar, plugins, toolbar as defaultToolbar } from "./config";
 import loadTinymce from "../../utils/loadTinymce";
