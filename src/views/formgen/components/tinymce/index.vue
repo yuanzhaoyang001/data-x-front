@@ -19,12 +19,13 @@
 </template>
 
 <script setup name="FormTinymce">
-import { baseUrl, getToken } from "@/utils/auth";
+import { getToken } from "@/utils/auth";
 import { nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 import { inlineToolbar, plugins, toolbar as defaultToolbar } from "./config";
 import loadTinymce from "../../utils/loadTinymce";
 import _ from "lodash-es";
 import FieldSelectDialog from "./FieldSelectDialog.vue";
+import { basePathUrl } from "@/utils/constants";
 
 const props = defineProps({
   id: {
@@ -85,7 +86,7 @@ onMounted(() => {
     //div[*] 表示允许 <div> 标签以及所有的属性。
     extended_valid_elements: "formvariable[*]",
     custom_elements: "formvariable[*]",
-    content_css: "/tinymce/skins/editor.css",
+    content_css: basePathUrl + "/tinymce/skins/editor.css",
     fontsize_formats: "11px 12px 14px 16px 18px 24px 36px 48px",
     branding: false,
     object_resizing: false,
