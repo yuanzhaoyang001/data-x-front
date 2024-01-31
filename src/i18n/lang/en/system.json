@@ -435,6 +435,7 @@
     "action": "Action",
     "addTemplate": "Add Message Template",
     "chooseTemplateType": "Choose Template Type",
+    "cpWechat": "WeCom",
     "details": "Details",
     "email": "Email",
     "enterReceiver": "Enter Receiver",

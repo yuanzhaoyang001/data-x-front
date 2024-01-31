@@ -79,6 +79,12 @@
       :form-key="formKey"
       class="pt20"
       ref="preViewRef"
+      v-if="!isFormCover"
+    />
+    <form-cover-preview
+      class="preview-container"
+      :config="themeConfig"
+      v-else
     />
     <div
       class="fold-btn"
@@ -107,6 +113,7 @@
         :form-theme-config="currentThemeConfig"
         v-if="formKey"
         @refresh="handleRefreshForm"
+        @cover="handleFormCover"
       />
     </div>
   </div>
@@ -127,6 +134,8 @@ import FoldRight1 from "@/assets/images/form/fold-right1.svg";
 import { ElMessageBox } from "element-plus";
 import { i18n } from "@/i18n";
 import { SHOW_HEADER_USER_INFO_KEY } from "@/views/formgen/components/GenerateForm/types/constants";
+import { FormThemeType } from "@/views/formgen/components/GenerateForm/types/form";
+import FormCoverPreview from "@/views/form/theme/FormCoverPreview.vue";
 
 const showLeftScrollbar = ref(1);
 const showRightScrollbar = ref(1);
@@ -170,15 +179,27 @@ const activeStyleHandle = (item: any) => {
   queryFormTheme();
 };
 
+const themeConfig = ref<FormThemeType | null>(null);
+
 const handleRefreshForm = (vars: any) => {
   saveUserThemeRequest({
     formKey: formKey.value,
     themeConfig: vars
   }).then(() => {
     setThemeVars(vars);
+    themeConfig.value = vars;
     // Assuming that setThemeVars and handleChangeTheme are defined elsewhere
-    preViewRef.value.handleChangeTheme(vars);
+    preViewRef!.value!.handleChangeTheme(vars);
   });
+};
+
+const isFormCover = ref<boolean>(false);
+
+provide("formThemeConfig", themeConfig);
+
+const handleFormCover = (checked: boolean, vars: any) => {
+  isFormCover.value = checked;
+  themeConfig.value = vars;
 };
 
 const queryFormThemeStyle = () => {
@@ -318,11 +339,11 @@ provide(SHOW_HEADER_USER_INFO_KEY, true);
   background-color: white;
   height: calc(100vh - 60px);
   width: 0;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.25, 1);
+  transition: all 1s cubic-bezier(0.4, 0, 0.25, 1);
 }
 
 .right-container.show {
-  flex: 1;
+  flex: 1.2;
 }
 
 .right-container.hide {

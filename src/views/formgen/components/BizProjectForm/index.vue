@@ -19,10 +19,11 @@ import { cloneDeep, get, keys, set } from "lodash-es";
 import GenerateForm from "../GenerateForm/index.vue";
 import { dbDataConvertForItemJson } from "../../utils/convert";
 import request from "@/utils/request";
-import { htmlDecodeByRegExp, loadCSS, removeHtmlTag } from "../../utils";
+import { htmlDecodeByRegExp, isMobile, loadCSS, removeHtmlTag } from "../../utils";
 import { useUserForm } from "@/stores/userForm";
 import { composeComponents } from "@/views/formgen/components/GenerateForm/config";
 import { SubmitFormData } from "@/api/project/data";
+import { FormThemeType } from "@/views/formgen/components/GenerateForm/types/form";
 
 const formConf = ref<any>({
   fields: [],
@@ -57,7 +58,7 @@ provide(
   computed(() => formConf.value.setting || {})
 );
 
-const emit = defineEmits(["submit", "completed"]);
+const emit = defineEmits(["submit", "completed", "cover"]);
 
 const propsData = defineProps({
   // 表单配置
@@ -101,6 +102,8 @@ onMounted(async () => {
       // 主题数据
       if (res.data.userFormTheme) {
         formConf.value.theme = res.data.userFormTheme;
+        // 处理封面
+        handleShowFormCover(res.data.userFormTheme);
         loadCSS(res.data.userFormTheme?.cssUrl);
       }
       // 处理表单问题项
@@ -136,6 +139,12 @@ onMounted(async () => {
     }
   });
 });
+
+const handleShowFormCover = (theme: FormThemeType) => {
+  if (theme.enableCover && isMobile()) {
+    emit("cover", theme);
+  }
+};
 
 /**
  * 分页组件处理

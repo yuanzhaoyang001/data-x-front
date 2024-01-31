@@ -46,6 +46,16 @@ export interface FormThemeType {
   watermarkText: string;
   // 是否显示用户名为水印
   watermarkUserName: boolean;
+  cssUrl: string;
+  coverType: "color" | "img";
+  coverImgUrl: string;
+  coverColor: string;
+  coverTitle: string;
+  coverOpenType: "btn" | "scroll";
+  coverBtnText: string;
+  coverBtnColor: string;
+  coverBtnTextColor: string;
+  enableCover: boolean;
 }
 
 // 字段id和index的映射

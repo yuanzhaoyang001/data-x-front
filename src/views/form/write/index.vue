@@ -30,6 +30,7 @@
         :form-config="formConfig"
         @submit="submitForm"
         @completed="handleFormLoadCompleted"
+        @cover="handleShowFormCover"
       />
       <form-qrcode />
       <!--    商品支付-->
@@ -51,11 +52,18 @@
         :setting-config="userFormSetting"
       />
     </div>
+    <Transition name="fade">
+      <form-cover
+        :form-theme-config="themeConfig"
+        v-if="showCover"
+        @close="showCover = false"
+      />
+    </Transition>
   </div>
 </template>
 
 <script setup lang="ts" name="WriteView">
-import { onBeforeMount, provide, ref } from "vue";
+import { onBeforeMount, provide, Ref, ref } from "vue";
 
 import { useRouter } from "vue-router";
 import { useFormWxHook } from "@/views/form/write/hooks/useFormWxHook";
@@ -86,6 +94,8 @@ import FormEnterCheck from "./component/FormEnterCheck.vue";
 import { useUserForm } from "@/stores/userForm";
 import { storeToRefs } from "pinia";
 import { SHOW_HEADER_USER_INFO_KEY } from "@/views/formgen/components/GenerateForm/types/constants";
+import FormCover from "@/views/form/write/component/FormCover.vue";
+import { FormThemeType } from "@/views/formgen/components/GenerateForm/types/form";
 
 const props = defineProps({
   // 1：公开填写 2：指定成员填写
@@ -201,6 +211,15 @@ const goodsPayRef = ref<any>(null);
 const handleFormLoadCompleted = () => {
   // Initialize payment and get OpenId
   goodsPayRef.value.wxJsApiPay();
+};
+
+const themeConfig = ref<Ref<FormThemeType> | null>(null);
+
+const showCover = ref(false);
+
+const handleShowFormCover = (theme: FormThemeType) => {
+  themeConfig.value = theme;
+  showCover.value = true;
 };
 
 // Handle payment success
@@ -346,5 +365,18 @@ provide(SHOW_HEADER_USER_INFO_KEY, props.writeType != 2);
   width: 350px;
   margin: 200px auto;
   min-height: 200px;
+}
+
+.fade-enter-active {
+  transition: opacity 0.9s ease-in-out;
+}
+
+.fade-leave-active {
+  transition: opacity 0.9s ease-in-out;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

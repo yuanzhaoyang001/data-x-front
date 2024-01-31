@@ -3,7 +3,86 @@
     class="setting-collapse"
     v-model="activeNames"
     accordion
+    @change="handleSettingChange"
   >
+    <el-collapse-item
+      :title="$t('form.theme.coverSet')"
+      name="coverSet"
+    >
+      <div class="sub-title">{{ $t("form.theme.coverDesc") }}</div>
+      <div class="setting-row">
+        <div class="sub-title">{{ $t("form.theme.enableCover") }}</div>
+        <el-switch
+          size="small"
+          v-model="userFormTheme.enableCover"
+        />
+      </div>
+      <el-radio-group v-model="userFormTheme.coverType">
+        <el-radio-button
+          label="color"
+          size="default"
+        >
+          {{ $t("form.theme.color") }}
+        </el-radio-button>
+        <el-radio-button
+          label="img"
+          size="default"
+        >
+          {{ $t("form.theme.img") }}
+        </el-radio-button>
+      </el-radio-group>
+      <ImageUpload
+        v-model:value="userFormTheme.coverImgUrl"
+        :label="$t('form.theme.backgroundImage')"
+        v-if="userFormTheme.coverType === 'img'"
+      />
+      <div v-if="userFormTheme.coverType === 'color'">
+        <color-select
+          class="ml10"
+          :label="$t('form.theme.backgroundColor')"
+          v-model:value="userFormTheme.coverColor"
+        />
+      </div>
+      <div class="mt10">
+        <form-tinymce
+          toolbar="styleselect fontsizeselect bold italic underline strikethrough"
+          v-model:value="userFormTheme.coverTitle"
+          placeholder="请输入标题"
+        />
+      </div>
+      <div class="sub-title">{{ $t("form.theme.coverBtnSet") }}</div>
+
+      <el-radio-group v-model="userFormTheme.coverOpenType">
+        <el-radio-button
+          label="btn"
+          size="default"
+        >
+          {{ $t("form.theme.coverBtnOpen") }}
+        </el-radio-button>
+        <el-radio-button
+          label="scroll"
+          size="default"
+        >
+          {{ $t("form.theme.coverBtnScroll") }}
+        </el-radio-button>
+      </el-radio-group>
+      <el-input
+        class="mt10"
+        size="default"
+        v-model="userFormTheme.coverBtnText"
+        :placeholder="$t('form.theme.coverBtnText')"
+      />
+      <color-select
+        v-if="userFormTheme.coverOpenType === 'btn'"
+        :label="$t('form.theme.coverBtnColor')"
+        v-model:value="userFormTheme.coverBtnColor"
+      />
+      <color-select
+        v-if="userFormTheme.coverOpenType === 'scroll'"
+        :label="$t('form.theme.coverBtnTextColor')"
+        v-model:value="userFormTheme.coverBtnTextColor"
+      />
+    </el-collapse-item>
     <el-collapse-item
       :title="$t('form.theme.headerSet')"
       name="1"
@@ -242,7 +321,7 @@
           size="default"
           clearable
           v-model="userFormTheme.cssUrl"
-          style="width: 60%"
+          style="width: 50%"
         />
         <el-upload
           class="flex"
@@ -273,6 +352,7 @@ import ColorSelect from "@/views/form/theme/ColorSelect.vue";
 import { reactive, watch } from "vue";
 import { watchDebounced } from "@vueuse/core";
 import { baseUrl, getTokenHeader } from "@/utils/auth";
+import FormTinymce from "@/views/formgen/components/tinymce/index.vue";
 
 const activeNames = ["1"];
 
@@ -291,7 +371,7 @@ const handleCssUploadSuccess = (response: any) => {
   userFormTheme.cssUrl = response.data;
 };
 
-const emit = defineEmits(["refresh"]);
+const emit = defineEmits(["refresh", "cover"]);
 
 // 用户主题设置
 const userFormTheme = reactive({
@@ -319,7 +399,17 @@ const userFormTheme = reactive({
   watermark: false,
   watermarkText: "",
   watermarkUserName: false,
-  cssUrl: ""
+  enable: false,
+  enableCover: false,
+  cssUrl: "",
+  coverType: "",
+  coverImgUrl: "",
+  coverColor: "",
+  coverTitle: "",
+  coverOpenType: "btn",
+  coverBtnText: "",
+  coverBtnColor: "",
+  coverBtnTextColor: ""
 });
 
 const handleChangeBackgroundType = () => {
@@ -351,6 +441,10 @@ watch(
     deep: true
   }
 );
+
+const handleSettingChange = type => {
+  emit("cover", type == "coverSet", userFormTheme);
+};
 </script>
 
 <style scoped lang="scss">
@@ -391,6 +485,9 @@ watch(
     width: 100%;
     align-items: flex-start;
     padding-left: 25px;
+    min-height: 70vh;
+    height: 70vh;
+    overflow-y: scroll;
     padding-right: 20px;
 
     .el-radio__input {

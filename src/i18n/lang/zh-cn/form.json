@@ -1035,10 +1035,13 @@
     "buttonText": "按钮提示文字",
     "center": "居中",
     "color": "颜色",
+    "coverDesc": "封面设置后仅在移动端生效",
     "confirmText": "原有主题将会被替换，确认切换？",
     "contentSet": "内容设置",
     "fontSet": "字体设置",
     "headerSet": "页头设置",
+    "coverSet": "封面设置",
+    "coverBtnSet": "封面按钮设置",
     "img": "图片",
     "importCss": "引入css",
     "left": "靠左",
@@ -1064,7 +1067,13 @@
     "titleSize": "标题字号",
     "warning": "温馨提示",
     "watermarksSet": "水印设置",
-    "watermarksText": "水印文字"
+    "watermarksText": "水印文字",
+    "coverBtnOpen": "按钮",
+    "coverBtnScroll": "滑动",
+    "coverBtnText": "文字",
+    "coverBtnColor": "按钮颜色",
+    "coverBtnTextColor": "文字颜色",
+    "enableCover": "启用封面"
   },
   "viewOrUpdate": {
     "basicInformation": "基础信息",
