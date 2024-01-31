@@ -33,7 +33,7 @@
       </el-radio-group>
       <ImageUpload
         v-model:value="userFormTheme.coverImgUrl"
-        :label="$t('form.theme.backgroundImage')"
+        :label="$t('form.theme.coverImageUrl')"
         v-if="userFormTheme.coverType === 'img'"
       />
       <div v-if="userFormTheme.coverType === 'color'">
@@ -47,7 +47,7 @@
         <form-tinymce
           toolbar="styleselect fontsizeselect bold italic underline strikethrough"
           v-model:value="userFormTheme.coverTitle"
-          placeholder="请输入标题"
+          :placeholder="$t('form.theme.coverPlaceholder')"
         />
       </div>
       <div class="sub-title">{{ $t("form.theme.coverBtnSet") }}</div>

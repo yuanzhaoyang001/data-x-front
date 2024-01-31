@@ -82,7 +82,7 @@
       v-if="!isFormCover"
     />
     <form-cover-preview
-      class="preview-container"
+      class="preview-container preview-cover-wrap"
       :config="themeConfig"
       v-else
     />
@@ -371,5 +371,9 @@ provide(SHOW_HEADER_USER_INFO_KEY, true);
 .fold-btn {
   margin-top: 0px;
   cursor: pointer;
+}
+
+.preview-cover-wrap {
+  z-index: 100 !important;
 }
 </style>

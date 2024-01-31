@@ -397,6 +397,7 @@ defineExpose({
   max-height: 100% !important;
   overflow: hidden !important;
   padding: 10px !important;
+  z-index: 99999 !important;
 }
 
 @media screen and (max-width: 767px) {

@@ -84,28 +84,32 @@ const handleCloseCover = () => {
   position: absolute;
   top: 0;
   left: 0;
+  padding-bottom: env(safe-area-inset-bottom);
   z-index: 9999;
 }
 
 .cover-title {
   text-align: center;
+  width: 100%;
+  overflow-wrap: break-word;
   margin-top: 50px;
 }
 
 .cover-btn-wrap {
   position: absolute;
-  bottom: 30px;
+  bottom: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
   align-content: center;
   flex-wrap: nowrap;
   width: 100%;
+  overflow: hidden;
 }
 
 .cover-scroll-wrap {
   position: absolute;
-  bottom: 50px;
+  bottom: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -118,7 +122,7 @@ const handleCloseCover = () => {
 .scroll-arrow {
   position: absolute;
   width: 100%;
-  bottom: 5px;
+  bottom: 15px;
   animation: move 2s infinite;
   display: flex;
   align-items: center;
@@ -133,12 +137,12 @@ const handleCloseCover = () => {
 
 @keyframes move {
   0% {
-    bottom: 5px;
+    bottom: 15px;
     opacity: 1;
   }
 
   100% {
-    bottom: 30px;
+    bottom: 60px;
     opacity: 0;
   }
 }
