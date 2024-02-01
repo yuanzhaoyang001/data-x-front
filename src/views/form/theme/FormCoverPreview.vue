@@ -24,10 +24,10 @@ const formThemeConfig = inject<Ref<FormThemeType>>("formThemeConfig");
 
 .cover-mobile-wrap {
   position: relative;
-  width: 320px;
-  height: 560px;
+  width: 322px;
+  height: 699px;
   background-color: #ffffff;
-  border-radius: 6px;
+  border-radius: 10px;
   margin: 30px auto;
 }
 </style>

@@ -86,13 +86,14 @@ const handleCloseCover = () => {
   left: 0;
   padding-bottom: env(safe-area-inset-bottom);
   z-index: 9999;
+  border-radius: 10px;
 }
 
 .cover-title {
   text-align: center;
-  width: 100%;
+  width: 80%;
   overflow-wrap: break-word;
-  margin-top: 50px;
+  margin: 50px auto;
 }
 
 .cover-btn-wrap {
@@ -108,6 +109,7 @@ const handleCloseCover = () => {
 }
 
 .cover-scroll-wrap {
+  font-weight: bold;
   position: absolute;
   bottom: 60px;
   display: flex;
