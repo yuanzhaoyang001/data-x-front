@@ -1111,7 +1111,14 @@
     "titleSize": "Title Size",
     "warning": "Warning",
     "watermarksSet": "Watermark Settings",
-    "watermarksText": "Text"
+    "watermarksText": "Text",
+    "coverBtnOpen": "Button",
+    "coverBtnScroll": "Sliding",
+    "coverBtnText": "Text",
+    "coverBtnColor": "Button Color",
+    "coverBtnTextColor": "Text Color",
+    "enableCover": "Enable Cover",
+    "coverImageUrl": "Upload Image"
   },
   "viewOrUpdate": {
     "basicInformation": "Basic Information",

@@ -138,7 +138,7 @@
     "row3": "矩阵行3",
     "selectCity": "请选择省市县",
     "selectComponents": "选择组件",
-    "title": "<h3 style=\"text-align: center\" data-mce-style=\"text-align: center\">问卷名称</h3>",
+    "title": "<h3 style=\"text-align: center\" data-mce-style=\"text-align: center\">表单名称</h3>",
     "value1": "选项1",
     "value2": "选项2",
     "value3": "选项1-1"

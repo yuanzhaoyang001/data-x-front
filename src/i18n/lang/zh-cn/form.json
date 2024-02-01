@@ -1073,7 +1073,8 @@
     "coverBtnText": "文字",
     "coverBtnColor": "按钮颜色",
     "coverBtnTextColor": "文字颜色",
-    "enableCover": "启用封面"
+    "enableCover": "启用封面",
+    "coverImageUrl": "上传图片"
   },
   "viewOrUpdate": {
     "basicInformation": "基础信息",
