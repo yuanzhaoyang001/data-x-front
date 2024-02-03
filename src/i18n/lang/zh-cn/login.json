@@ -24,8 +24,8 @@
     "wechatLogin": "微信登录"
   },
   "updateAccount": {
-    "updateAccountTitle": "修改账号",
-    "updateAccountDesc": "首次登录我们建议您修改自己的账号以及密码，避免您下次登录遗忘账号。",
+    "updateAccountTitle": "关联账号",
+    "updateAccountDesc": "首次登录时，我们建议您注册或者补充自己的账号以及密码，避免您下次登录遗忘账号。",
     "accountName": "账号",
     "accountNamePlaceholder": "请输入账号",
     "password": "密码",

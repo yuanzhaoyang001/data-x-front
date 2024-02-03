@@ -110,12 +110,12 @@
                   globalConfigInfo.thirdPartyLoginTypeList.includes('wechatOpen')
                 "
                 class="other-login-wechat"
+                @click="handleToOtherLogin('wechatOpen')"
               >
                 <img
                   src="../../../assets/icons/wechatOpen.svg"
                   alt="微信登录"
                   class="cursor-pointer login-icon"
-                  @click="handleToOtherLogin('wechatOpen')"
                 />
                 {{ $t("login.login.wechatLogin") }}
               </div>
@@ -126,12 +126,12 @@
                   globalConfigInfo.thirdPartyLoginTypeList.includes('wechatEnterprise')
                 "
                 class="other-login-firm"
+                @click="handleToOtherLogin('wechatEnterprise')"
               >
                 <img
                   src="../../../assets/icons/wechatEnterprise.svg"
                   alt="企微 "
                   class="cursor-pointer login-icon"
-                  @click="handleToOtherLogin('wechatEnterprise')"
                 />
               </div>
             </div>

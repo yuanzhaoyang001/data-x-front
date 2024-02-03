@@ -42,10 +42,7 @@
             />
           </el-form-item>
           <el-form-item>
-            <el-button
-              @click="handleNext"
-              icon="ele-Close"
-            >
+            <el-button @click="handleNext">
               {{ $t("common.cancel") }}
             </el-button>
             <el-button
