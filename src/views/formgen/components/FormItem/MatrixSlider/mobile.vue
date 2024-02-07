@@ -15,11 +15,10 @@
           <span>{{ max }}{{ unit }}</span>
         </div>
         <van-slider
-          v-model:value="dataValue[row.id]"
+          v-model="dataValue[row.id]"
           @change="handleChange"
           :min="min"
           :max="max"
-          active-color="#1890ff"
         >
           <template #button>
             <div class="custom-slider-button">{{ dataValue[row.id] }}</div>
@@ -33,7 +32,6 @@
 <script>
 import mixin from "../mixin";
 import SliderMixin from "./SliderMixin";
-
 import "vant/lib/cell/style";
 import "vant/lib/cell-group/style";
 import "vant/lib/slider/style";
@@ -52,6 +50,8 @@ export default {
 
 <style lang="scss" scoped>
 .mobile-matrix-slider {
+  --van-slider-active-background: var(--form-theme-color, #4c4edb);
+
   .card {
     background-color: #fafafa;
 
@@ -89,7 +89,7 @@ export default {
       font-size: 10px;
       line-height: 18px;
       text-align: center;
-      background-color: var(--form-theme-color);
+      background-color: var(--form-theme-color, #4c4edb);
       border-radius: 100px;
     }
   }
