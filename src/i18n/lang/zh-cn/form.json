@@ -1074,7 +1074,8 @@
     "coverBtnColor": "按钮颜色",
     "coverBtnTextColor": "文字颜色",
     "enableCover": "启用封面",
-    "coverImageUrl": "上传图片"
+    "coverPlaceholder": "请输入封面文案",
+    "coverImageUrl": "封面图片"
   },
   "viewOrUpdate": {
     "basicInformation": "基础信息",

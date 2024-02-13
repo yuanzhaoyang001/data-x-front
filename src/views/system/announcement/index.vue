@@ -390,6 +390,7 @@
         >
           <tinymce
             v-model:value="form.msgContent"
+            toolbar=" styleselect fontsizeselect bold italic underline strikethrough undo redo  blockquote removeformat alignleft aligncenter alignright  subscript superscript  hr bullist numlist link image charmap preview  pagebreak insertdatetime media table emoticons forecolor backcolor fullscreen "
             :height="192"
             :placeholder="$t('system.announcement.summaryPlaceholder')"
           />
@@ -446,10 +447,12 @@ import {
 import UserChooseTable from "@/views/system/user/chooseTable.vue";
 import { listUser } from "@/api/system/user";
 import { getTokenUrl } from "@/utils/auth";
+import Tinymce from "@/views/formgen/components/tinymce/index.vue";
 
 export default {
   name: "Announcement",
   components: {
+    Tinymce,
     UserChooseTable
   },
   data() {

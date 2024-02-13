@@ -86,6 +86,7 @@
       <tinymce
         v-model:value="form.copyright"
         :height="192"
+        toolbar=" styleselect fontsizeselect bold italic underline strikethrough undo redo  blockquote removeformat alignleft aligncenter alignright  subscript superscript  hr bullist numlist link image charmap preview  pagebreak insertdatetime media table emoticons forecolor backcolor fullscreen "
         placeholder="Copyright © 2018-2021 tduckcloud.com All Rights Reserved."
       />
     </el-form-item>
@@ -103,11 +104,13 @@
 <script>
 import ConfigMixin from "./ConfigMixin";
 import constants from "@/utils/constants";
+import Tinymce from "@/views/formgen/components/tinymce/index.vue";
 import { i18n } from "@/i18n";
 
 export default {
   name: "SystemInfoConfig",
   mixins: [ConfigMixin],
+  components: { Tinymce },
   data() {
     return {
       loading: true,

@@ -15,11 +15,22 @@
       :form-item-id="formItemId"
       @submit="handleInsertContent"
     />
+    <el-dialog
+      fullscreen
+      v-model="dialogVisible"
+      title="编辑"
+      :before-close="handleCloseDialog"
+    >
+      <textarea
+        :id="fullEditTinymceId"
+        style="visibility: hidden"
+      />
+    </el-dialog>
   </div>
 </template>
 
 <script setup name="FormTinymce">
-import { baseUrl, getToken } from "@/utils/auth";
+import { baseUrl, getBaseUrlPath, getToken } from "@/utils/auth";
 import { nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 import { inlineToolbar, plugins, toolbar as defaultToolbar } from "./config";
 import loadTinymce from "../../utils/loadTinymce";
@@ -48,6 +59,10 @@ const props = defineProps({
   formItemId: {
     type: String,
     default: ""
+  },
+  placeholder: {
+    type: String,
+    default: ""
   }
 });
 
@@ -57,28 +72,42 @@ const fieldSelectDialog = ref(null);
 
 const tinymceId = ref(props.id);
 
+const fullEditTinymceId = ref(`tinymce-${_.uniqueId()}`);
+
+const dialogVisible = ref(false);
+
 onMounted(() => {
-  const token = getToken();
-  const uploadUrl = `${baseUrl}/user/file/upload`;
+  initDefaultTinymce();
+});
+
+const initDefaultTinymce = () => {
   let finalToolbar = [];
   if (props.inline) {
     finalToolbar = props.toolbar && props.toolbar.length ? props.toolbar : inlineToolbar;
   } else {
     finalToolbar = props.toolbar && props.toolbar.length ? props.toolbar : defaultToolbar;
   }
+  initTinymce(`#${props.id}${props.inline ? "inline" : ""}`, props.inline, finalToolbar);
+};
+
+const initTinymce = (targetTinymceId, inline, customToolbar, tinymceConf) => {
+  const token = getToken();
+  const uploadUrl = `${baseUrl}/user/file/upload`;
   // eslint-disable-next-line global-require
+  console.log(targetTinymceId);
   let conf = {
-    selector: `#${props.id}${props.inline ? "inline" : ""}`,
+    selector: targetTinymceId,
     language: "zh_CN",
     menubar: "false",
     icons: "tduck",
     skin: "tduck",
     // skin_url: "/tinymce/skins/ui/tduck",
     // content_css: "/tinymce/skins/content/tduck",
-    cache_suffix: "?v=0.0.6",
+    cache_suffix: "?v=0.0.7",
     plugins,
-    inline: props.inline,
-    toolbar: finalToolbar,
+    inline: inline,
+    toolbar: customToolbar,
+    placeholder: props.placeholder,
     toolbar_drawer: "sliding",
     entity_encoding: "row", // 所有字符都将以非实体形式保存，避免出现部分符号变成 html 编码
     toolbar_mode: "sliding",
@@ -86,7 +115,7 @@ onMounted(() => {
     //div[*] 表示允许 <div> 标签以及所有的属性。
     extended_valid_elements: "formvariable[*]",
     custom_elements: "formvariable[*]",
-    content_css: basePathUrl + "/tinymce/skins/editor.css",
+    content_css: getBaseUrlPath() + "/tinymce/skins/editor.css",
     fontsize_formats: "11px 12px 14px 16px 18px 24px 36px 48px",
     branding: false,
     object_resizing: false,
@@ -156,19 +185,34 @@ onMounted(() => {
     }
   };
   loadTinymce(tinymce => {
-    conf = Object.assign(conf, {});
+    console.log("loadTinymce");
+    conf = Object.assign(conf, tinymceConf);
     conf.init_instance_callback = editor => {
       if (props.value) editor.setContent(props.value);
       initChangeWatch(editor);
     };
     conf.setup = editor => {
       // 注册一个工具栏按钮名称
-      editor.ui.registry.addButton("formvariable", {
-        text: "",
+      editor.ui.registry.addToggleButton("formvariable", {
         icon: "formvariable",
         tooltip: "引用题目",
         onAction: function () {
           showFieldSelectDialog();
+        }
+      });
+      // 全屏编辑
+      editor.ui.registry.addToggleButton("fulledit", {
+        icon: "fulledit",
+        tooltip: "全部编辑",
+        onAction: function () {
+          editorInstance.destroy();
+          editorInstance = null;
+          dialogVisible.value = true;
+          nextTick(() => {
+            initTinymce(`#${fullEditTinymceId.value}`, false, defaultToolbar, {
+              height: 900
+            });
+          });
         }
       });
     };
@@ -186,7 +230,7 @@ onMounted(() => {
     }, 100),
     true
   );
-});
+};
 
 onUnmounted(() => {
   if (!editorInstance) return;
@@ -233,6 +277,15 @@ watch(
     immediate: true
   }
 );
+
+const handleCloseDialog = () => {
+  editorInstance.destroy();
+  editorInstance = null;
+  dialogVisible.value = false;
+  nextTick(() => {
+    initDefaultTinymce();
+  });
+};
 
 defineExpose({
   handleInsertContent
