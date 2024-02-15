@@ -31,12 +31,11 @@
 
 <script setup name="FormTinymce">
 import { baseUrl, getBaseUrlPath, getToken } from "@/utils/auth";
-import { nextTick, onMounted, onUnmounted, ref, watch } from "vue";
+import { nextTick, onMounted, onUnmounted, ref, useAttrs, watch } from "vue";
 import { inlineToolbar, plugins, toolbar as defaultToolbar } from "./config";
 import loadTinymce from "../../utils/loadTinymce";
 import _ from "lodash-es";
 import FieldSelectDialog from "./FieldSelectDialog.vue";
-import { basePathUrl } from "@/utils/constants";
 
 const props = defineProps({
   id: {
@@ -80,6 +79,8 @@ onMounted(() => {
   initDefaultTinymce();
 });
 
+const attr = useAttrs();
+
 const initDefaultTinymce = () => {
   let finalToolbar = [];
   if (props.inline) {
@@ -87,7 +88,7 @@ const initDefaultTinymce = () => {
   } else {
     finalToolbar = props.toolbar && props.toolbar.length ? props.toolbar : defaultToolbar;
   }
-  initTinymce(`#${props.id}${props.inline ? "inline" : ""}`, props.inline, finalToolbar);
+  initTinymce(`#${props.id}${props.inline ? "inline" : ""}`, props.inline, finalToolbar, attr);
 };
 
 const initTinymce = (targetTinymceId, inline, customToolbar, tinymceConf) => {
@@ -210,7 +211,8 @@ const initTinymce = (targetTinymceId, inline, customToolbar, tinymceConf) => {
           dialogVisible.value = true;
           nextTick(() => {
             initTinymce(`#${fullEditTinymceId.value}`, false, defaultToolbar, {
-              height: 900
+              height: 900,
+              ...attr
             });
           });
         }
