@@ -117,10 +117,10 @@
     />
     <el-dialog
       v-model="addDialogVisible"
+      v-if="addDialogVisible"
       :close-on-click-modal="false"
       :title="$t('form.formData.add')"
       width="60%"
-      v-if="addDialogVisible"
     >
       <el-scrollbar
         height="750px"

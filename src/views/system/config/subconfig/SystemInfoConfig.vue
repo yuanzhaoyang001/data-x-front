@@ -86,7 +86,7 @@
       <tinymce
         v-model:value="form.copyright"
         :height="192"
-        toolbar=" styleselect fontsizeselect bold italic underline strikethrough undo redo  blockquote removeformat alignleft aligncenter alignright  subscript superscript  hr bullist numlist link image charmap preview  pagebreak insertdatetime media table emoticons forecolor backcolor fullscreen "
+        toolbar="undo redo | blocks fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat"
         placeholder="Copyright © 2018-2021 tduckcloud.com All Rights Reserved."
       />
     </el-form-item>

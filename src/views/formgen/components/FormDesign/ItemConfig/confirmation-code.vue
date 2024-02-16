@@ -100,10 +100,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.descriptive-text {
-  :deep(.tox .tox-tbtn) {
-    height: 28px;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

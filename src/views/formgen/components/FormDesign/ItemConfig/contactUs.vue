@@ -150,10 +150,4 @@ const handleUploadQrcodeSuccess = (response: any) => {
   closeUploadProgressHandle();
 };
 </script>
-<style lang="scss" scoped>
-.contact-us-setting {
-  :deep(.tox .tox-tbtn) {
-    height: 28px;
-  }
-}
-</style>
+<style lang="scss" scoped></style>
