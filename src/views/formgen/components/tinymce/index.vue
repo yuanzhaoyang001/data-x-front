@@ -217,6 +217,8 @@ const initTinymce = (targetTinymceId, inline, customToolbar, tinymceConf) => {
     conf.init_instance_callback = editor => {
       if (props.value) editor.setContent(props.value);
       initChangeWatch(editor);
+      // 加载完成事件
+      emits("load");
     };
     conf.setup = editor => {
       // 注册一个工具栏按钮名称
@@ -276,7 +278,7 @@ const showFieldSelectDialog = () => {
   });
 };
 
-const emits = defineEmits(["update:value", "blur", "change"]);
+const emits = defineEmits(["update:value", "blur", "change", "load"]);
 
 let editorInstance = null;
 
