@@ -8,14 +8,18 @@ const expressionOperator: any = {
     if (!v1) {
       return false;
     }
+    // 如果是数字 就把v2转成数字 避免出现 1 eq '1'的情况
+    if (_.isNumber(v1)) {
+      v2 = +v2;
+    }
     // 当type=CHECK_BOX时此处应为包含关系 == 不管类型是否一致
-    return Array.isArray(v1) ? v1.includes(+v2) : v1 == +v2;
+    return Array.isArray(v1) ? v1.includes(v2) : v1 == v2;
   },
   ne(v1: any, v2: any) {
-    // if (!Number(v1)) {
-    //   return false
-    // }
-    return Array.isArray(v1) ? !v1.includes(+v2) : v1 != +v2;
+    if (_.isNumber(v1)) {
+      v2 = +v2;
+    }
+    return Array.isArray(v1) ? !v1.includes(v2) : v1 != v2;
   },
   gt(v1: any, v2: any) {
     // 是否是数字
@@ -49,6 +53,7 @@ const expressionOperator: any = {
     if (!v1) {
       return false;
     }
+    debugger;
     return v1.indexOf(v2) > -1;
   },
   notLike(v1: any, v2: any) {

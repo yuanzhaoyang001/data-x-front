@@ -304,6 +304,7 @@ export default {
   },
   beforeMount() {
     this.filterParams = {
+      ...this.filterParams,
       ...this.formDataFilter,
       conditionList: this.formDataFilter?.conditionList
         ? this.formDataFilter.conditionList.map(item => {
