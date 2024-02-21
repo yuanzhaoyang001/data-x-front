@@ -4315,6 +4315,11 @@ body.tox-dialog__disable-scroll {
     overflow: hidden
 }
 
+.tox.tox-tinymce-inline .tox-toolbar__group {
+    padding: 0px!important;
+    flex-wrap: nowrap;
+}
+
 .tox:not(.tox-tinymce-inline).tox-tinymce--toolbar-bottom .tox-editor-header {
     border-top: none;
     box-shadow: none
