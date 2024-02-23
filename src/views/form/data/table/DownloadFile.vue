@@ -95,6 +95,7 @@
 import { downloadFormDataFileRequest } from "@/api/project/data";
 import DynamicFiledEditor from "@/views/formgen/components/formula/DynamicFiledEditor.vue";
 import { i18n } from "@/i18n";
+import TProcess from "@/components/HandleProcess/process";
 
 export default {
   name: "DownloadFile",
@@ -141,10 +142,10 @@ export default {
         params.current = null;
       }
       downloadFormDataFileRequest(this.queryParams).then(res => {
-        this.$process({
+        TProcess({
           tips: i18n.global.t("form.downloadFile.exportAllAttachmentsTip"),
           message: i18n.global.t("form.downloadFile.exportingAttachments"),
-          key: res.data
+          requestKey: res.data
         });
       });
     }

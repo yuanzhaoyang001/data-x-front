@@ -136,6 +136,7 @@
         v-if="dataShowType == 'table'"
         v-loading="projectListLoading"
         :project-list="projectList"
+        type="mange"
       />
       <div class="project-page-view">
         <el-pagination

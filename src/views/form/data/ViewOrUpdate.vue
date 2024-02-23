@@ -23,17 +23,20 @@
             class="el-dialog__close"
             text
             type="primary"
+            v-if="checkBtnPerms('print')"
             v-print="printForm"
           >
             {{ $t("form.data.printData") }}
           </el-button>
 
           <print-template-list
+            v-if="checkBtnPerms('print')"
             :data-ids="[formModel.id]"
             ref="printTemplateListRef"
           ></print-template-list>
 
           <print-poster-list
+            v-if="checkBtnPerms('print')"
             :data-ids="[formModel.id]"
             ref="printPosterListRef"
           ></print-poster-list>

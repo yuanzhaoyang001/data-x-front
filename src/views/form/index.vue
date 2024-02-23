@@ -222,7 +222,7 @@ onMounted(async () => {
   // 初始化ws连接
   // 拼接ws地址
   initWebSocket(getConnUrl(userInfos.userId));
-  // 监听ws消息
+  // 监听ws消x息
   mittBus.on("sysMsgNotice", res => {
     try {
       const { title, msgContent } = res;

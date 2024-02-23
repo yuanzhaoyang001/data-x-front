@@ -42,6 +42,7 @@ export function getConnUrl(userId: number) {
  * 初始化连接
  */
 export function initWebSocket(url: string) {
+  console.log("初始化连接", url);
   // WebSocket与普通的请求所用协议有所不同，ws等同于http，wss等同于https
   wsConn = new WebSocket(url);
   wsConn.onopen = websocketOnopen;

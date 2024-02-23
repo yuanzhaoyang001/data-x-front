@@ -303,6 +303,10 @@ const route = useRoute();
 const formKey = route.query.key;
 
 const handleSubmit = () => {
+  if (!authObjectForm.authGroupId) {
+    MessageUtil.error(i18n.global.t("form.setting.pleaseSelectAuthGroup"));
+    return;
+  }
   authObjectForm.formKey = formKey;
   addShareCollaboratorRequest(authObjectForm).then(() => {
     MessageUtil.success(i18n.global.t("formI18n.all.success"));

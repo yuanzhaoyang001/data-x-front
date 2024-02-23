@@ -55,17 +55,22 @@
             <el-table-column
               :label="$t('form.lottery.prizeName')"
               prop="name"
+              align="center"
             />
             <el-table-column
               :label="$t('form.lottery.prizeQuantity')"
               prop="quantity"
-            />
+              align="center"
+            >
+              <template #default="scope">{{ scope.row.quantity }}%</template>
+            </el-table-column>
             <el-table-column
               :label="$t('form.lottery.prizeQuantityLeft')"
               prop="winProbability"
+              align="center"
             >
               <template #default="scope">
-                {{ scope.row.quantity - usedPrizeStock[`${scope.row.id}`] || 0 }}
+                {{ scope.row.quantity - (usedPrizeStock[`${scope.row.id}`] || 0) }}
               </template>
             </el-table-column>
             <el-table-column

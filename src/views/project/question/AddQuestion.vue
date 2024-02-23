@@ -76,6 +76,7 @@ const handleSaveItems = () => {
   } else {
     updateQuestionBankItem({
       id: itemId as number,
+      label: removeHtmlTag(formDesignRef.value!.drawingList[0].config.label),
       scheme: formDesignRef.value!.drawingList[0]
     }).then(() => {
       MessageUtil.success(i18n.global.t("formI18n.all.success"));
@@ -92,13 +93,21 @@ onMounted(() => {
     getQuestionBankItem(itemId as number).then(res => {
       formDesignRef.value!.formConf.status = 2;
       formDesignRef.value!.drawingList.push(res.data.scheme);
+      nextTick(() => {
+        // 编辑隐藏全部
+        // 隐藏 .drawing-item-operation-wrap
+        let drawingItemOperationWrap = document.querySelectorAll(".drawing-item-operation-wrap");
+        //隐藏全部带有这个样式的
+        drawingItemOperationWrap.forEach((item: any) => {
+          item.style.display = "none";
+        });
+      });
     });
   }
   formDesignRef.value!.formConf.type = bankType;
   nextTick(() => {
     // 查找.left-tabs下面的第三个.el-tabs__item
     let tabs = document.querySelectorAll(".left-tabs .el-tabs__item");
-    console.log(tabs);
     if (tabs.length >= 3) {
       // 获取第三个.tab并移除它
       let thirdTab = tabs[2];

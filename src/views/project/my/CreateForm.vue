@@ -3,6 +3,7 @@
     class="container-form"
     v-model="createFormVisible"
     width="40%"
+    append-to-body
   >
     <div class="container-form-title">{{ $t("form.createForm.title") }}</div>
     <div class="container-form-wrap">

@@ -3,8 +3,15 @@
     <el-form
       :inline="true"
       :model="queryParam"
+      @submit.native.prevent
       label-width="68px"
     >
+      <el-form-item
+        :label="$t('project.bank.name')"
+        prop="name"
+      >
+        <el-tag>{{ questionBankName }}</el-tag>
+      </el-form-item>
       <el-form-item
         :label="$t('project.bank.questionName')"
         prop="name"
@@ -73,7 +80,7 @@
       <el-table-column
         align="center"
         label="ID"
-        prop="bankId"
+        prop="id"
       />
       <el-table-column
         align="center"
@@ -155,6 +162,7 @@
       append-to-body
       :title="$t('formI18n.all.view')"
       width="30%"
+      destroy-on-close
     >
       <generate-form
         v-if="dialogVisible"
@@ -177,7 +185,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { onMounted, reactive, ref } from "vue";
+import { onMounted, reactive, ref, watch } from "vue";
 import {
   deleteQuestionBankItem,
   pageQuestionBankItem,
@@ -201,15 +209,18 @@ const queryParam = reactive<PageQuestionBankItemParam>({
 });
 
 const total = ref<number>(0);
-const ids = ref<any>(null);
+const ids = ref<number[]>([]);
 
-const getList = async () => {
+const getList = () => {
   loading.value = true;
-  const res = await pageQuestionBankItem(queryParam);
-  total.value = res.data.total;
-  queryParam.size = res.data.size;
-  queryParam.current = res.data.current;
-  questionList.value = res.data.records;
+  const res = pageQuestionBankItem(queryParam).then(res => {
+    if (res.data) {
+      total.value = res.data.total;
+      queryParam.size = res.data.size;
+      queryParam.current = res.data.current;
+      questionList.value = res.data.records;
+    }
+  });
   loading.value = false;
 };
 const handleQuery = () => {
@@ -222,7 +233,7 @@ const resetQuery = () => {
 };
 
 const handleSelectionChange = (selection: QuestionBankItem[]) => {
-  ids.value = selection.map(item => item.id);
+  ids.value = selection.map(item => item.id as number);
 };
 
 const handleDelete = (row: QuestionBankItem) => {
@@ -285,16 +296,24 @@ const formConf = ref<any>({
 });
 
 const handleView = (row: QuestionBankItem) => {
+  formConf.value.fields = [];
   formConf.value.fields.push(row.scheme);
   dialogVisible.value = true;
 };
 
 const route = useRoute();
-onMounted(() => {
-  queryParam.bankId = route.query.bankId as number;
-  bankType.value = route.query.type as number;
-  getList();
-});
+
+const questionBankName = ref<string>("");
+watch(
+  () => route.query,
+  () => {
+    queryParam.bankId = route.query.bankId as number;
+    bankType.value = route.query.type as number;
+    questionBankName.value = decodeURIComponent(route.query.name as string);
+    getList();
+  },
+  { deep: false, immediate: true }
+);
 </script>
 
 <style lang="scss" scoped></style>

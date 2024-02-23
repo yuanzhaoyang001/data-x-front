@@ -43,7 +43,8 @@ export default {
   },
   methods: {
     handlePreview(file) {
-      window.open(file.url);
+      console.log(file);
+      window.open(file.url || file.response.data);
     }
   }
 };

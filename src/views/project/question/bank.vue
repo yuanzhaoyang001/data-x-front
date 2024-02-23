@@ -360,12 +360,13 @@ const handleDelete = (row: Question) => {
 };
 const router = useRouter();
 
-const toQuestionItemPage = (item: any) => {
+const toQuestionItemPage = (item: Question) => {
   router.push({
     path: "/question/BankItem",
     query: {
       bankId: item.id,
-      type: item.bankType
+      type: item.bankType,
+      name: encodeURIComponent(item.name)
     }
   });
 };

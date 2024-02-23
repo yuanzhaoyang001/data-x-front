@@ -69,6 +69,7 @@
       />
       <el-table-column
         align="center"
+        v-if="type"
         :label="$t('client.table.createUser')"
         prop="createUserName"
       />
@@ -85,7 +86,7 @@
               @click.stop="$emit('renameFolder', scope.row)"
             >
               <el-icon>
-                <Edit />
+                <ele-Edit />
               </el-icon>
               {{ $t("client.table.reName") }}
             </el-button>

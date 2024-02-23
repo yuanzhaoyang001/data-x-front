@@ -29,57 +29,76 @@
   </el-dialog>
 </template>
 
-<script>
-export default {
-  name: "HandleProcess",
-  props: {},
-  data() {
-    return {
-      tips: "",
-      completeMessage: "已完成",
-      message: "处理中",
-      downloadUrl: "",
-      key: "",
-      timer: null,
-      percentage: 0,
-      dialogVisible: true,
-      resultTips: ""
-    };
+<script setup>
+import { onMounted, onUnmounted, ref, useAttrs } from "vue";
+import request from "@/utils/request";
+import { ElDialog, ElLink, ElProgress } from "element-plus";
+
+defineOptions({
+  inheritAttrs: false
+});
+const attrs = useAttrs();
+
+const props = defineProps({
+  tips: {
+    type: String,
+    default: () => {
+      return "";
+    }
   },
-  created() {
-    this.getHandleProcess();
-    this.timer = setInterval(() => {
-      this.getHandleProcess();
-    }, 5000);
+  message: {
+    type: String,
+    default: () => {
+      return "";
+    }
   },
-  unmounted() {
-    clearInterval(this.timer);
-  },
-  methods: {
-    /**
-     * 获取处理进去
-     */
-    getHandleProcess() {
-      this.$api.get(`/common/process?key=${this.key}`).then(res => {
-        let { rate, url, tips } = res.data;
-        if (rate) {
-          this.percentage = rate;
-        }
-        if (tips) {
-          this.resultTips = tips;
-        }
-        if (url) {
-          this.downloadUrl = url;
-          clearInterval(this.timer);
-        }
-      });
-    },
-    handleClose() {
-      clearInterval(this.timer);
-      this.$destroy(true);
-      this.$el.parentNode.removeChild(this.$el);
+  requestKey: {
+    type: String,
+    default: () => {
+      return "";
     }
   }
+});
+
+const completeMessage = "已完成";
+const downloadUrl = ref("");
+let timer = null;
+const percentage = ref(0);
+const dialogVisible = ref(true);
+const resultTips = ref("");
+
+const getHandleProcess = () => {
+  request.get(`/common/process?key=${props.requestKey}`).then(res => {
+    if (res.data) {
+      let { rate, url, tips } = res.data;
+      if (rate) {
+        percentage.value = rate;
+      }
+      if (tips) {
+        resultTips.value = tips;
+      }
+      if (url) {
+        downloadUrl.value = url;
+        clearInterval(timer);
+      }
+    }
+  });
+};
+
+onMounted(() => {
+  getHandleProcess();
+  timer = setInterval(() => {
+    getHandleProcess();
+  }, 5000);
+});
+
+onUnmounted(() => {
+  clearInterval(timer);
+});
+
+const handleClose = () => {
+  clearInterval(timer);
+  dialogVisible.value = false;
 };
 </script>
 

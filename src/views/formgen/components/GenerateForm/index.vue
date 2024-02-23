@@ -18,7 +18,7 @@
     </div>
     <top-login-user v-if="formThemeConfig?.showTopUserInfo" />
     <div
-      v-show="!showConfirm"
+      v-if="!showConfirm"
       class="project-form"
     >
       <answer-card

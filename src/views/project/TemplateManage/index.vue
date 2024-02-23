@@ -89,7 +89,7 @@
       >
         <template #default="scope">
           <span v-if="!scope.row.userId || scope.row.userId == 0">公开</span>
-          <span>{{ scope.row.nickName }}</span>
+          <span v-else>{{ scope.row.nickName }}</span>
         </template>
       </el-table-column>
       <el-table-column

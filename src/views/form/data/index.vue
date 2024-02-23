@@ -113,7 +113,7 @@
       :form-key="formKey"
       :form-model="formModel"
       @reload="handleReloadTable"
-      @openReply="$refs.replyDrawer.open()"
+      @openReply="$refs.replyDrawerRef.open()"
     />
     <el-dialog
       v-model="addDialogVisible"
