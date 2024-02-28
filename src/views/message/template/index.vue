@@ -537,7 +537,7 @@ const rules = {
 const getToolbar = computed(() => {
   // 类型不一致
   if (form.value.templateType == 2) {
-    return " styleselect fontsizeselect bold italic underline strikethrough undo redo  removeformat alignleft aligncenter alignright  subscript superscript  hr  charmap    forecolor backcolor   ";
+    return " styles fontsize bold italic underline strikethrough undo redo  removeformat alignleft aligncenter alignright  subscript superscript  hr  charmap    forecolor backcolor   ";
   }
   return "  ";
 });

@@ -390,7 +390,7 @@
         >
           <tinymce
             v-model:value="form.msgContent"
-            toolbar=" styleselect fontsizeselect bold italic underline strikethrough undo redo  blockquote removeformat alignleft aligncenter alignright  subscript superscript  hr bullist numlist link image charmap preview  pagebreak insertdatetime media table emoticons forecolor backcolor fullscreen "
+            toolbar=" styles fontsize bold italic underline strikethrough undo redo  blockquote removeformat alignleft aligncenter alignright  subscript superscript  hr bullist numlist link image charmap preview  pagebreak insertdatetime media table emoticons forecolor backcolor fullscreen "
             :height="192"
             :placeholder="$t('system.announcement.summaryPlaceholder')"
           />

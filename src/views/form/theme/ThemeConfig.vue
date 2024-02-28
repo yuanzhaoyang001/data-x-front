@@ -45,7 +45,7 @@
       </div>
       <div class="mt10">
         <form-tinymce
-          toolbar="styleselect fontsizeselect bold italic underline strikethrough alignleft aligncenter alignright   hr   forecolor backcolor "
+          toolbar="styles fontsize bold italic underline strikethrough alignleft aligncenter alignright   hr   forecolor backcolor "
           v-model:value="userFormTheme.coverTitle"
           :placeholder="$t('form.theme.coverPlaceholder')"
         />

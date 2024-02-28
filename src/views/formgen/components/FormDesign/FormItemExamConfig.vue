@@ -121,7 +121,7 @@ export default {
   data() {
     return {
       formTitleToolbar:
-        " styleselect fontsizeselect bold italic underline strikethrough undo redo  removeformat alignleft aligncenter alignright  subscript superscript " +
+        " styles fontsize bold italic underline strikethrough undo redo  removeformat alignleft aligncenter alignright  subscript superscript " +
         " hr  charmap    forecolor backcolor    ",
       selectFields: selectFields,
       inputFields: inputFields
@@ -185,6 +185,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../assets/styles/right";
+
 .answer-analysis-wrap {
   min-height: 50px;
   padding: 10px 0;

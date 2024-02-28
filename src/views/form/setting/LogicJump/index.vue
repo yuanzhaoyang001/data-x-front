@@ -244,7 +244,7 @@
           v-if="jumpLogicItem.promptJump.promptJumpType === 'prompt'"
         >
           <form-tinymce
-            toolbar="styleselect fontsizeselect bold italic underline strikethrough undo redo  blockquote removeformat alignleft aligncenter alignright  subscript superscript  hr bullist numlist link image charmap preview  pagebreak insertdatetime media table emoticons forecolor backcolor fullscreen "
+            toolbar="styles fontsize bold italic underline strikethrough undo redo  blockquote removeformat alignleft aligncenter alignright  subscript superscript  hr bullist numlist link image charmap preview  pagebreak insertdatetime media table emoticons forecolor backcolor fullscreen "
             v-model:value="jumpLogicItem.promptJump.promptJumpContent"
             :ref="(el: any) => (tinymceRefs[sIndex] = el)"
           />
@@ -442,6 +442,7 @@ defineExpose({
     }
   }
 }
+
 .logic-card {
   background-color: var(--el-color-primary-light-10);
   margin-top: 10px;
