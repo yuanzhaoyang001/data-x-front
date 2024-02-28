@@ -151,4 +151,8 @@ defineExpose({
 .form-item-wrap {
   position: relative;
 }
+
+:deep(.form-item .el-form-item__label) {
+  height: 100%;
+}
 </style>

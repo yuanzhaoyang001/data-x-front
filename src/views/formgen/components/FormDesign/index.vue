@@ -288,7 +288,7 @@ watch(
     if (activeData.value?.placeholder === undefined || !activeData.value?.config.tag || oldActiveId.value !== activeId.value) {
       return;
     }
-    activeData.value!.placeholder = activeData.value?.placeholder.replace(removeHtmlTag(oldVal), "") + removeHtmlTag(val);
+    // activeData.value!.placeholder = activeData.value?.placeholder.replace(removeHtmlTag(oldVal), "") + removeHtmlTag(val);
   },
   { deep: true }
 );

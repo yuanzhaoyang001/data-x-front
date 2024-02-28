@@ -101,7 +101,7 @@ const props = defineProps({
 });
 
 const formTitleToolbar =
-  " styles fontsize bold italic underline strikethrough undo redo     forecolor backcolor image   formvariable fulledit";
+  "  fontsize bold italic underline strikethrough  removeformat alignleft aligncenter alignright  subscript superscript  hr forecolor backcolor image   formvariable fulledit";
 
 // 这些组件值需要被包装 需要特殊处理
 const componentList = [

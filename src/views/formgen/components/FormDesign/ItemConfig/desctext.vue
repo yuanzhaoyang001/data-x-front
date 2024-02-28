@@ -8,26 +8,20 @@
     </el-form-item>
     <el-divider>{{ $t("formgen.desc.text") }}</el-divider>
     <div>
-      <tinymce
-        :id="activeData.formId"
-        :key="activeData.formId"
-        v-model:value="activeData.content"
-        placeholder=""
-      />
+      <tinymce v-model:value="activeData.content" />
     </div>
   </div>
 </template>
 
-<script>
+<script setup name="ConfigItemDescText">
 import tinymce from "../../tinymce/index.vue";
 
-export default {
-  name: "ConfigItemDescText",
-  components: {
-    tinymce
-  },
-  props: ["activeData"]
-};
+const props = defineProps({
+  activeData: {
+    type: Object,
+    default: () => {}
+  }
+});
 </script>
 
 <style lang="scss" scoped></style>

@@ -157,6 +157,8 @@ const initTinymce = (targetTinymceId, inline, customToolbar, tinymceConf) => {
 };
 
 onUnmounted(() => {
+  console.log("销毁tinymce");
+  console.log(editorInstance);
   if (!editorInstance) return;
   window.addEventListener("scroll", () => {}, true);
   editorInstance.destroy();
@@ -178,7 +180,6 @@ let editorInstance = null;
 
 const initChangeWatch = editor => {
   editorInstance = editor;
-  if (props.value) editor.setContent(props.value);
   editor.on("change keyup undo redo", () => {
     editor.save();
     emits("update:value", editor.getContent());
@@ -194,7 +195,7 @@ watch(
   () => props.value,
   async (val, prevVal) => {
     if (editorInstance && val !== prevVal && val !== editorInstance.getContent()) {
-      editorInstance.setContent(val);
+      editorInstance.setContent(val || "");
     }
   },
   {

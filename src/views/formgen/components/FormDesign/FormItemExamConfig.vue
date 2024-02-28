@@ -99,8 +99,7 @@
         <div class="answer-analysis-wrap">
           <form-tinymce
             v-model:value="activeData.examConfig.answerAnalysis"
-            :inline="true"
-            :toolbar="formTitleToolbar"
+            :config="{ toolbar_mode: 'scrolling', height: 200 }"
           />
         </div>
       </div>
@@ -109,78 +108,59 @@
   </div>
 </template>
 
-<script>
-import { debounce } from "lodash-es";
+<script setup>
+import { ref, watch } from "vue";
 import FormTinymce from "@/views/formgen/components/tinymce/index.vue";
 import { inputFields, selectFields } from "@/views/formgen/components/GenerateForm/examConfig";
 
-export default {
-  name: "FormItemExamConfig",
-  components: { FormTinymce },
-  props: ["activeData", "formConf"],
-  data() {
-    return {
-      formTitleToolbar:
-        " styles fontsize bold italic underline strikethrough undo redo  removeformat alignleft aligncenter alignright  subscript superscript " +
-        " hr  charmap    forecolor backcolor    ",
-      selectFields: selectFields,
-      inputFields: inputFields
-    };
-  },
-  computed: {
-    isSupport() {
-      return ["INPUT", "TEXTAREA", "RADIO", "CHECKBOX", "SELECT", "IMG_SELECT", "NUMBER"].includes(this.activeData.typeId);
-    }
-  },
-  watch: {
-    activeData: {
-      handler(val) {
-        if (!val.examConfig && this.isSupport) {
-          this.activeData["examConfig"] = {
-            scoringType: null,
-            score: 1,
-            enableScore: true,
-            answer: null,
-            // 答案解析
-            answerAnalysis: null
-          };
-        }
-      },
-      immediate: true,
-      deep: true
-    }
-  },
-  methods: {
-    dataChange: debounce(function (val) {
-      this.$emit("data-change", val);
-    }, 430),
-    changeRenderKey() {
-      this.activeData.config.renderKey = +new Date();
-    },
-    handleEnableScoreChange(val) {},
-    handleOptionScoreChange() {
-      // 累加分值
-      let totalScore = 0;
-      // 如果是单选取最大值
-      if (this.activeData.typeId === "RADIO" || this.activeData.typeId === "SELECT") {
-        totalScore = Math.max(...this.activeData.config.options.map(item => item.score));
-      } else {
-        for (let option of this.activeData.config.options) {
-          totalScore += option.score;
-        }
-      }
-      this.activeData.examConfig.score = totalScore.toFixed(2);
-    },
-    handleScoringTypeChange(val) {
-      if (val == 4) {
-        for (let option of this.activeData.config.options) {
-          option.score = 2;
-        }
-      }
-    }
-  },
-  emits: ["data-change"]
+const props = defineProps({
+  activeData: {
+    type: Object,
+    default: () => {}
+  }
+});
+
+const isSupport = () => {
+  return ["INPUT", "TEXTAREA", "RADIO", "CHECKBOX", "SELECT", "IMG_SELECT", "NUMBER"].includes(props.activeData.typeId);
 };
+
+const handleOptionScoreChange = () => {
+  let totalScore = 0;
+  if (props.activeData.typeId === "RADIO" || props.activeData.typeId === "SELECT") {
+    totalScore = Math.max(...props.activeData.config.options.map(item => item.score));
+  } else {
+    for (let option of props.activeData.config.options) {
+      totalScore += option.score;
+    }
+  }
+  props.activeData.examConfig.score = totalScore.toFixed(2);
+};
+
+const handleScoringTypeChange = val => {
+  if (val == 4) {
+    for (let option of props.activeData.config.options) {
+      option.score = 2;
+    }
+  }
+};
+
+watch(
+  () => props.activeData,
+  val => {
+    if (!val.examConfig && isSupport()) {
+      val["examConfig"] = {
+        scoringType: null,
+        score: 1,
+        enableScore: true,
+        answer: null,
+        answerAnalysis: null
+      };
+    }
+  },
+  { immediate: true, deep: true }
+);
+
+const handleEnableScoreChang = () => {};
 </script>
 
 <style lang="scss" scoped>
@@ -191,6 +171,5 @@ export default {
   padding: 10px 0;
   overflow-y: auto;
   border-radius: 5px;
-  border: var(--el-border);
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="imageselect-wrap">
     <el-radio-group
       v-if="!item?.multiple"
       @change="handleChange"
@@ -140,6 +140,11 @@ const handleChange = (val: any) => {
 </script>
 
 <style lang="scss" scoped>
+.imageselect-wrap {
+  width: 100%;
+  overflow-x: scroll;
+}
+
 :deep(.el-radio-button__inner, .el-radio-group, .el-checkbox-group) {
   display: flex !important;
   flex-wrap: wrap;

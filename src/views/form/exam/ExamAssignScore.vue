@@ -579,6 +579,10 @@ const { getTotalScore } = examForm;
   flex: 0 0 70%;
 }
 
+:deep(.form-item .el-form-item__label) {
+  height: 100%;
+}
+
 :deep(.form-item-active) {
   border: 1px solid var(--el-color-primary-light-7);
   border-radius: 6px;

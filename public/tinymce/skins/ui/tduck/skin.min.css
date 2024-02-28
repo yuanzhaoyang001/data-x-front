@@ -4320,6 +4320,10 @@ body.tox-dialog__disable-scroll {
     flex-wrap: nowrap;
 }
 
+.tox.tox-tinymce-inline .tox-tbtn--bespoke {
+    width: 70px!important;
+}
+
 .tox:not(.tox-tinymce-inline).tox-tinymce--toolbar-bottom .tox-editor-header {
     border-top: none;
     box-shadow: none
