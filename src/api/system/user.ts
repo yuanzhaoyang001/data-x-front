@@ -114,8 +114,8 @@ export function updateUserPwd(oldPassword: string, newPassword: string) {
   };
   return request({
     url: "/system/user/profile/updatePwd",
-    method: "put",
-    params: data
+    method: "post",
+    data: data
   });
 }
 
