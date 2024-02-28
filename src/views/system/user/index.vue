@@ -924,6 +924,8 @@ export default {
       this.$refs["form"].validate(valid => {
         if (valid) {
           if (this.form.id != undefined) {
+            // 防止弱密码检测
+            delete this.form.password;
             updateUser(this.form).then(response => {
               this.msgSuccess(i18n.global.t("formI18n.all.success"));
               this.open = false;
