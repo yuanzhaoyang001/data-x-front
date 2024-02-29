@@ -146,10 +146,17 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 768px) {
   .container-wrap-central {
-    width: 450px !important;
+    width: 405px !important;
     margin: 10px auto 0 !important;
+    background: #ffffff;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.3);
+    height: 138px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
   }
   .container-wrap-title {
     display: flex;
@@ -167,8 +174,11 @@ onMounted(() => {
     }
   }
   .container-wrap-template {
-    width: 450px !important;
+    width: 405px !important;
     margin: 10px auto 0 !important;
+  }
+  .ranking-container .table-wrap {
+    width: 96% !important;
   }
 }
 

@@ -28,6 +28,7 @@
     >
       {{ resultData.examScoreText }}
     </div>
+    <!--    随机编号-->
     <div
       v-if="resultData.randomNumberText"
       class="text-center"
@@ -70,52 +71,54 @@
         {{ resultData.confirmationCodeInfo.code }}
       </div>
     </div>
+    <!--    查看排名和解析-->
     <div
-      class="flex-center mt10"
-      style="width: 450px"
+      class="flex-center mt5"
       @click="handleToExamResult"
     >
       <!--		考试按钮-->
       <el-button
         v-if="settingConfig?.examSettings?.enableViewAnswer"
-        size="small"
         @click="handleToExamResult"
+        type="primary"
       >
         {{ $t("form.submitResult.viewRankAnswer") }}
       </el-button>
     </div>
+    <!--    查看提交内容-->
     <div
-      class="mt10"
+      class="mt5 flex-center"
       style="text-align: center"
       @click="handleToAnswerResult"
     >
       <el-button
         v-if="settingConfig?.showSubmitContentBtn"
-        size="small"
         @click="handleToAnswerResult"
+        type="primary"
       >
         {{ $t("form.submitResult.viewSubmitContent") }}
       </el-button>
     </div>
-    <div class="mt10 text-center">
+    <!--    参与抽奖-->
+    <div class="mt5 text-center flex-center">
       <el-button
         v-if="hasLottery"
-        size="default"
         type="primary"
         @click="handleToLottery"
       >
         {{ $t("form.submitResult.participateInLottery") }}
       </el-button>
     </div>
+    <!--    测评结果-->
     <div
-      class="mt10"
+      class="mt5 flex-center"
       style="text-align: center"
       @click="handleToEvaluationResult"
     >
       <el-button
         v-if="settingConfig?.enableEvaluationResult"
-        size="small"
         @click="handleToEvaluationResult"
+        type="primary"
       >
         {{ $t("form.submitResult.evaluationResult") }}
       </el-button>
@@ -260,3 +263,9 @@ onMounted(() => {
   });
 });
 </script>
+
+<style lang="scss" scoped>
+.flex-center {
+  width: 200px;
+}
+</style>

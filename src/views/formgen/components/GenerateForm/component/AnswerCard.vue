@@ -261,7 +261,7 @@ const emit = defineEmits(["item-click"]);
   top: 70px;
   transition: all 0.3s linear;
   padding: 12px;
-  box-shadow: var(--el-box-shadow);
+  //box-shadow: var(--el-box-shadow);
   max-height: 400px;
   width: 230px;
   z-index: 10000;

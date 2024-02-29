@@ -196,6 +196,8 @@ const handleSetCurrentDimension = (ele: DimensionInfo) => {
       justify-items: center;
       align-content: center;
       align-items: center;
+      white-space: nowrap;
+      text-overflow: ellipsis;
 
       .el-icon {
         margin-right: 5px;

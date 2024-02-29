@@ -241,6 +241,85 @@ const linkUrl = ref<string>(window.location.href);
   .exam-result-wrap__card {
     width: 100%;
   }
+
+  .exam-result-wrap__card__detail {
+    padding: 40px 0;
+    table {
+      margin: 0 auto;
+      width: 350px !important;
+      border-collapse: collapse;
+      border-spacing: 0;
+
+      .header td {
+        background: var(--el-bg-color-page);
+        font-size: 14px;
+        width: 293px;
+        height: 38px;
+        border: var(--el-border);
+        border-bottom: none;
+        text-align: center;
+        line-height: 1;
+        color: var(--el-text-color-primary);
+      }
+
+      td {
+        width: 292.5px;
+        height: 38px;
+        border: var(--el-border);
+        text-align: center;
+        line-height: 1;
+        font-size: 14px;
+        color: var(--el-text-color-primary);
+      }
+    }
+  }
+  .exam-result-wrap__card__header {
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      padding: 23px 30px;
+      border-bottom: var(--el-border);
+    }
+    .content {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+
+      .left {
+        width: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        margin-left: 40px;
+      }
+
+      .right {
+        width: 30% !important;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: center;
+
+        .sub-title {
+          font-size: 13px;
+          color: var(--el-text-color-secondary);
+        }
+
+        .my-score-wrap {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          margin-top: 20px;
+        }
+
+        .score-warp {
+          display: flex;
+        }
+      }
+    }
+  }
 }
 
 .exam-result-wrap__card__header {

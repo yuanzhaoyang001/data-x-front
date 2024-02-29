@@ -51,8 +51,11 @@
             </div>
           </div>
 
-          <div v-if="item.examConfig?.answerAnalysis">
-            <div class="mb5 ml5 answer-analysis">{{ $t("form.exam.answerAnalysis") }}：</div>
+          <div
+            class="answer-analysis"
+            v-if="item.examConfig?.answerAnalysis"
+          >
+            <div class="mb5 ml5">{{ $t("form.exam.answerAnalysis") }}：</div>
             <div
               class="mb10 ml5"
               v-html="item.examConfig.answerAnalysis"
@@ -140,10 +143,14 @@ defineExpose({
 
 .answer-analysis {
   color: var(--el-text-color-secondary);
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #ecf5f0;
 }
 
 .item-seq-no {
-  font-size: 12px;
+  font-size: 16px;
+  font-weight: bold;
   line-height: 20px;
   color: var(--el-text-color-secondary);
 }

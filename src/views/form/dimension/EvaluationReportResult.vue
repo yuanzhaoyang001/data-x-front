@@ -61,7 +61,10 @@
           v-for="(item, index) in dimensionList"
           :key="item.name"
         >
-          <el-descriptions :column="1">
+          <el-descriptions
+            :column="1"
+            style="background-color: #f0f0f0"
+          >
             <el-descriptions-item :label="$t('form.dimension.dimension')">
               <el-tag
                 size="small"
