@@ -44,20 +44,10 @@
           clearable
         >
           <el-option
-            :label="$t('system.noticeTemplate.sms')"
-            value="SMS"
-          />
-          <el-option
-            :label="$t('system.noticeTemplate.email')"
-            value="EMAIL"
-          />
-          <el-option
-            :label="$t('system.noticeTemplate.wechat')"
-            value="WX_MP"
-          />
-          <el-option
-            :label="$t('system.noticeTemplate.inbox')"
-            value="INTERNAL"
+            v-for="item in msgTypeList"
+            :label="item.label"
+            :value="item.value"
+            :key="item.value"
           />
         </el-select>
       </el-form-item>
@@ -272,24 +262,10 @@
             clearable
           >
             <el-option
-              :label="$t('system.noticeTemplate.sms')"
-              value="1"
-            />
-            <el-option
-              :label="$t('system.noticeTemplate.email')"
-              value="2"
-            />
-            <el-option
-              :label="$t('system.noticeTemplate.wechat')"
-              value="3"
-            />
-            <el-option
-              :label="$t('system.noticeTemplate.inbox')"
-              value="4"
-            />
-            <el-option
-              :label="$t('system.noticeTemplate.cpWechat')"
-              value="5"
+              v-for="item in msgTypeList"
+              :label="item.label"
+              :value="item.value"
+              :key="item.value"
             />
           </el-select>
         </el-form-item>
@@ -393,24 +369,10 @@
             clearable
           >
             <el-option
-              :label="$t('system.noticeTemplate.sms')"
-              value="SMS"
-            />
-            <el-option
-              :label="$t('system.noticeTemplate.email')"
-              value="EMAIL"
-            />
-            <el-option
-              :label="$t('system.noticeTemplate.wechat')"
-              value="WX_MP"
-            />
-            <el-option
-              :label="$t('system.noticeTemplate.inbox')"
-              value="INTERNAL"
-            />
-            <el-option
-              :label="$t('system.noticeTemplate.cpWechat')"
-              value="WX_CP"
+              v-for="item in msgTypeList"
+              :label="item.label"
+              :value="item.value"
+              :key="item.value"
             />
           </el-select>
         </el-form-item>
@@ -532,6 +494,14 @@ const rules = {
   ],
   thirdTemplateId: [{ required: true, message: i18n.global.t("system.noticeTemplate.inputRequired"), trigger: "blur" }]
 };
+
+const msgTypeList = [
+  { label: i18n.global.t("system.noticeTemplate.sms"), value: 1 },
+  { label: i18n.global.t("system.noticeTemplate.email"), value: 2 },
+  { label: i18n.global.t("system.noticeTemplate.wechat"), value: 3 },
+  { label: i18n.global.t("system.noticeTemplate.inbox"), value: 4 },
+  { label: i18n.global.t("system.noticeTemplate.cpWechat"), value: 5 }
+];
 
 // Define computed properties
 const getToolbar = computed(() => {
