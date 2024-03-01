@@ -45,6 +45,10 @@
           label="ppt"
           value=".ppt,.pptx"
         />
+        <el-option
+          label="zip"
+          value=".zip"
+        />
       </el-select>
     </el-form-item>
     <el-form-item
