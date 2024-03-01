@@ -84,6 +84,6 @@ export function findLabelsByIds(options: any[], ids: any[]) {
  */
 export function isCustomField(key: string) {
   // 判断是否是表单自定义字段 格式为input121212121等
-  let bool = /.*\d+.*/g.test(key);
+  let bool = /^[a-zA-Z_].*\d$/.test(key);
   return bool;
 }

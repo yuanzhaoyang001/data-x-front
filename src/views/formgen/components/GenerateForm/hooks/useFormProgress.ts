@@ -12,7 +12,7 @@ export function useFormProgress(pageFormModel: Ref<any>) {
   const currentProgress = ref(0);
 
   const totalFields = computed(() => {
-    return allFields.value.filter(item => !item.displayType).length;
+    return allFields.value.filter(item => !item.displayType && item.typeId !== "PAGINATION").length;
   });
 
   // 监听表单数据
@@ -25,6 +25,7 @@ export function useFormProgress(pageFormModel: Ref<any>) {
         .map(key => key);
       console.log(count);
       // 计算比例
+      console.log(totalFields);
       currentProgress.value = Math.floor((count.length / totalFields.value) * 100);
     },
     { debounce: 800, maxWait: 800, deep: true }
