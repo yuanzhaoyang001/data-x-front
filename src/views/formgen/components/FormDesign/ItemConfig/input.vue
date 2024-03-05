@@ -145,11 +145,10 @@
       <el-switch v-model="activeData.notRepeat" />
     </el-form-item>
     <div
-      v-if="activeData.config.dataType"
       class="reg-item"
     >
       <el-form-item
-        v-if="activeData.config.dataType"
+        v-if="activeData.config.dataType.change"
         :label="$t('formgen.input.inputTypeCheck')"
       >
         <el-select

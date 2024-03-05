@@ -41,6 +41,7 @@ export const basicComponents = [
       append: "",
       // 数据类型
       dataType: {
+        change:true,
         type: "",
         message: ""
       }
@@ -296,6 +297,126 @@ export const basicComponents = [
     input: i18n.global.t("formgen.config.Enter_HORIZONTAL_INPUT"),
     placeholder: i18n.global.t("formgen.config.Enter_HORIZONTAL_INPUT"),
     style: { width: "100%" }
+  },
+  {
+    // 邮箱组件
+    typeId: "INPUT",
+    config: {
+      label: i18n.global.t("formgen.config.EMAIL_INPUT"),
+      labelWidth: null,
+      showLabel: true,
+      changeTag: true,
+      tag: "t-input",
+      tagIcon: "message",
+      defaultValue: undefined,
+      required: true,
+      span: 24,
+      // 正则校验规则
+      regList: [],
+      // 公式校验
+      formulaValidate: [],
+      prepend: "",
+      append: "",
+      // 数据类型
+      dataType: {
+        change:false,
+        type: "email",
+        message: i18n.global.t("formgen.config.Enter_EMAIL_INPUT"),
+      }
+    },
+    // 其余的为可直接写在组件标签上的属性
+    placeholder: i18n.global.t("formgen.config.pleaseEnter"),
+    style: { width: "100%" },
+    clearable: true,
+    "prefix-icon": "ele-Message",
+    "suffix-icon": "",
+    minlength: null,
+    maxlength: null,
+    "show-word-limit": false,
+    readonly: false,
+    disabled: false,
+    // 不允许重复数据
+    notRepeat: false
+  },
+  {
+    // 手机号
+    typeId: "INPUT",
+    config: {
+      label: i18n.global.t("formgen.config.PHONE_INPUT"),
+      labelWidth: null,
+      showLabel: true,
+      changeTag: true,
+      tag: "t-input",
+      tagIcon: "phone",
+      defaultValue: undefined,
+      required: true,
+      span: 24,
+      // 正则校验规则
+      regList: [],
+      // 公式校验
+      formulaValidate: [],
+      prepend: "",
+      append: "",
+      // 数据类型
+      dataType: {
+        change:false,
+        type: "phone",
+        message: i18n.global.t("formgen.config.Enter_PHONE_INPUT"),
+      }
+    },
+    // 其余的为可直接写在组件标签上的属性
+    placeholder: i18n.global.t("formgen.config.pleaseEnter"),
+    style: { width: "100%" },
+    clearable: true,
+    "prefix-icon": "ele-PhoneFilled",
+    "suffix-icon": "",
+    minlength: null,
+    maxlength: null,
+    "show-word-limit": false,
+    readonly: false,
+    disabled: false,
+    // 不允许重复数据
+    notRepeat: false
+  },
+  {
+    // 身份证
+    typeId: "INPUT",
+    config: {
+      label: i18n.global.t("formgen.config.IDENTITY_INPUT"),
+      labelWidth: null,
+      showLabel: true,
+      changeTag: true,
+      tag: "t-input",
+      tagIcon: "id_card",
+      defaultValue: undefined,
+      required: true,
+      span: 24,
+      // 正则校验规则
+      regList: [],
+      // 公式校验
+      formulaValidate: [],
+      prepend: "",
+      append: "",
+      // 数据类型
+      dataType: {
+        change:false,
+        type: "identity",
+        message: i18n.global.t("formgen.config.Enter_IDENTITY_INPUT"),
+      }
+    },
+    // 其余的为可直接写在组件标签上的属性
+    placeholder: i18n.global.t("formgen.config.pleaseEnter"),
+    style: { width: "100%" },
+    clearable: true,
+    "prefix-icon": "ele-User",
+    "suffix-icon": "",
+    minlength: null,
+    maxlength: null,
+    "show-word-limit": false,
+    readonly: false,
+    disabled: false,
+    // 不允许重复数据
+    notRepeat: false
   }
 ];
 
