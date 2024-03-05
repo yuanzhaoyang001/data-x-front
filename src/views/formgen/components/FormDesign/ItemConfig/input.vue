@@ -146,9 +146,10 @@
     </el-form-item>
     <div
       class="reg-item"
+      v-if="activeData.config.dataType"
     >
       <el-form-item
-        v-if="activeData.config.dataType.change"
+        v-if="activeData.config.dataType && activeData.config.dataType?.change"
         :label="$t('formgen.input.inputTypeCheck')"
       >
         <el-select
