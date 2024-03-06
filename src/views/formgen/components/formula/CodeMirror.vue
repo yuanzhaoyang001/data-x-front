@@ -18,6 +18,7 @@ import { basicSetup, EditorView } from "codemirror";
 import { StreamLanguage } from "@codemirror/language";
 import { spreadsheet } from "@codemirror/legacy-modes/mode/spreadsheet";
 import { customFieldPlugin, setCustomFieldLabelMap, tduckTheme } from "./customFieldPlugin";
+import { removeHtmlTag } from "@/views/formgen/utils";
 
 const props = defineProps({
   value: {
@@ -36,6 +37,12 @@ watch(
     let fieldObj = {};
     props.fields.forEach(field => {
       fieldObj[field.key] = field.label;
+      // 如果是子表单
+      if (field.children && field.children.length > 0) {
+        field.children.forEach(child => {
+          fieldObj[field.key + "," + child.vModel] = field.label + "-" + removeHtmlTag(child.config.label);
+        });
+      }
     });
     setCustomFieldLabelMap(fieldObj);
   },

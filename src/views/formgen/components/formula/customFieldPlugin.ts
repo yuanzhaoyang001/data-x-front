@@ -26,8 +26,9 @@ const customFieldPlugin = ViewPlugin.fromClass(
   }
 );
 
+// 匹配字符的正则 例如 #{name} #{age}
 const placeholderMatcher = new MatchDecorator({
-  regexp: /\#\{[a-zA-Z0-9_]+\}/g,
+  regexp: /\#\{[a-zA-Z0-9_,]+\}/g,
   decoration: match =>
     Decoration.replace({
       widget: new PlaceholderWidget(match[0])

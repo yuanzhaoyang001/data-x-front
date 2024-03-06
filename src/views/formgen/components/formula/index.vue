@@ -18,7 +18,7 @@
       </formula-code-mirror>
       <el-divider />
       <el-row :gutter="20">
-        <el-col :span="4">
+        <el-col :span="6">
           <div class="box-card">
             <div class="header">
               <el-input
@@ -103,7 +103,7 @@
             </div>
           </div>
         </el-col>
-        <el-col :span="10">
+        <el-col :span="8">
           <div class="intro-box">
             <span v-html="selectFun.intro"></span>
           </div>
@@ -204,10 +204,24 @@ export default {
       };
 
       // 转换格式
-      this.tempFields = this.fields.map(item => {
-        let label = removeHtmlTag(item.config.label);
-        return { key: item.vModel, fullLabel: label, label: subStr(label) };
-      });
+      this.tempFields = this.fields
+        .map(item => {
+          let label = removeHtmlTag(item.config.label);
+          // 子表单
+          if (item.vModel.startsWith("sub_form")) {
+            return item.childList.map(subItem => {
+              const subLabel = label + "-" + removeHtmlTag(subItem.config.label);
+              return {
+                key: item.vModel + "," + subItem.vModel,
+                fullLabel: subLabel,
+                label: subStr(subLabel)
+              };
+            });
+          } else {
+            return [{ key: item.vModel, fullLabel: label, label: subStr(label) }];
+          }
+        })
+        .flat();
       this.filterFields = this.tempFields;
     },
     open() {
@@ -226,6 +240,7 @@ export default {
       });
     },
     handleFieldClick(field) {
+      console.log(field);
       this.$refs.formulaCodeMirror.insertVariable(field.key, field.label);
     },
     handleFunMouseenter(data) {

@@ -11,6 +11,7 @@
 import { formEmits, formItemProps, useFormItem } from "@/views/formgen/components/FormItem/hooks/useFormItemHook";
 import { watchDebounced } from "@vueuse/core";
 import { useFuncCalcHook } from "@/views/formgen/components/FormItem/TFunCalc/useFuncCalc";
+import { inject } from "vue-demi";
 
 const props = defineProps({
   ...formItemProps,
@@ -28,10 +29,14 @@ const { changeValue } = formItemHook;
 
 const { evalFormula } = useFuncCalcHook();
 
+const isSubForm = inject("isSubForm", false);
+
+//@ts-ignore
 watchDebounced(
   () => props.models,
   (val: any) => {
-    const result = evalFormula(val, props.item?.calcFormula);
+    // 如果是子表单
+    const result = evalFormula(val, props.item?.calcFormula, isSubForm);
     if (result != null) {
       changeValue.value = result;
     }

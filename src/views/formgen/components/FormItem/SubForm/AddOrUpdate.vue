@@ -37,6 +37,9 @@ export default {
       default: () => []
     }
   },
+  provide: {
+    isSubForm: true
+  },
   emits: ["submit"],
   data() {
     return {

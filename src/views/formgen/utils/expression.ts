@@ -53,7 +53,6 @@ const expressionOperator: any = {
     if (!v1) {
       return false;
     }
-    debugger;
     return v1.indexOf(v2) > -1;
   },
   notLike(v1: any, v2: any) {
@@ -86,7 +85,7 @@ const expressionOperator: any = {
 /**
  * 逻辑连接符
  *  符号前面留空格 避免拼接时错误
- * @type {{'1': string, '2': string}}
+ * @type {{"1": string, "2": string}}
  */
 const LogicConnector: any = {
   AND: " and ",

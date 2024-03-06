@@ -6,7 +6,7 @@ export function useFuncCalcHook() {
   /**
    * 执行公式
    */
-  const evalFormula = (modelVal: any, formula: string) => {
+  const evalFormula = (modelVal: any, formula: string, isSubForm: boolean) => {
     // 动态使用的方法，需要在这里声明 不要移除了！！！
     const {
       // 数学函数
@@ -73,6 +73,7 @@ export function useFuncCalcHook() {
       TRUE,
       XOR
     } = formulaLib;
+    // 不能删 删了formulaLib导入的没使用 打包被移除了
     console.log(SUM(1, 2));
     try {
       if (!formula) {
@@ -82,32 +83,69 @@ export function useFuncCalcHook() {
         return;
       }
       let flag = false;
-      Object.keys(modelVal).forEach(key => {
-        if (formula.indexOf(`#{${key}}`) !== -1) {
+      // 寻找表达式的变量
+      let modifiedFormula = formula.replace(/#{([^}]+)}/g, (match, p1) => {
+        const value = handleValue(p1, modelVal[p1], modelVal, isSubForm);
+        if (value) {
           flag = true;
-          // 处理数据格式
-          formula = formula.replaceAll(`#{${key}}`, handleValue(key, modelVal[key], modelVal));
+          return value;
         }
+        return match; // 如果找不到对应的数据，则保持原样
       });
+
+      // Object.keys(modelVal).forEach(key => {
+      //   // 不要后边的} 兼容子表单
+      //   if (formula.indexOf(`#{${key}`) !== -1) {
+      //     flag = true;
+      //     // 处理数据格式
+      //     formula = formula.replaceAll(`#{${key}}`, handleValue(key, modelVal[key], modelVal));
+      //   }
+      // });
       if (!flag) return;
-      console.log(formula);
-      let evalVal = eval(formula);
-      return evalVal;
+      console.log(modifiedFormula);
+      return eval(modifiedFormula);
     } catch (e) {
       console.log(e);
     }
     return null;
   };
 
-  const handleValue = (key: string, val: any, modelVal: any) => {
+  const handleValue = (key: string, val: any, modelVal: any, isSubForm: boolean) => {
     if (key.startsWith("number")) {
       return val;
     } else if (key.endsWith("score")) {
       return val;
+    } else if (key.startsWith("sub_form")) {
+      return handleSubFormVal(key, val, modelVal, isSubForm);
     } else if (isLabelTag(key)) {
       return `'${modelVal[`${key}label`]}'`;
     } else {
       return `'${val}'`;
+    }
+  };
+
+  const handleSubFormVal = (key: string, val: any, modelVal: any, isSubForm: boolean) => {
+    // 截取子表单具体值
+    const keys = key.split(",");
+    const valueKey = keys[0];
+    const subValueKey = keys[1];
+    if (isSubForm) {
+      return modelVal[subValueKey];
+    } else {
+      // 找到子表单的值
+      const subFormVal = modelVal[valueKey];
+      let sumVal: any = null;
+      // 累加子表单数组每项的值
+      if (subFormVal && subFormVal.length > 0) {
+        subFormVal.forEach((item: any) => {
+          if (!sumVal) {
+            sumVal = item[subValueKey];
+          } else {
+            sumVal += item[subValueKey];
+          }
+        });
+      }
+      return sumVal;
     }
   };
 
