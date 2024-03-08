@@ -120,7 +120,7 @@
         prop="id"
       />
       <el-table-column
-        :label="$t('workflow.flowList.categoriesName')"
+        :label="$t('workflow.flowList.name')"
         align="center"
         prop="name"
       />
