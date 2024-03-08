@@ -223,6 +223,7 @@ const goBack = () => {
   position: absolute;
   bottom: 6%;
   left: 2%;
+  z-index: 9999;
 }
 
 .box-card {
