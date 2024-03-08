@@ -105,6 +105,11 @@ const initTinymce = (targetTinymceId, inline, customToolbar, tinymceConf) => {
     toolbar: customToolbar,
     placeholder: props.placeholder
   };
+  // 使用这个插件 需要扩展
+  if (customToolbar.indexOf("formvariable") > 0) {
+    conf.extended_valid_elements = "formvariable[*]";
+    conf.custom_elements = "formvariable[*]";
+  }
   loadTinymce(tinymce => {
     console.log("loadTinymce");
     conf = Object.assign(conf, tinymceConf);

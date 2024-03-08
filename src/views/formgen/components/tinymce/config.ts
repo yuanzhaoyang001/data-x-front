@@ -30,8 +30,8 @@ export const tinymceEditorConfig = {
   entity_encoding: "row", // 所有字符都将以非实体形式保存，避免出现部分符号变成 html 编码
   toolbar_mode: "sliding",
   //div[*] 表示允许 <div> 标签以及所有的属性。
-  extended_valid_elements: "formvariable[*]",
-  custom_elements: "formvariable[*]",
+  extended_valid_elements: "",
+  custom_elements: "",
   content_css: getBaseUrlPath() + "/tinymce/skins/editor.css",
   font_size_formats: "11px 12px 14px 16px 18px 24px 36px 48px",
   branding: false,
