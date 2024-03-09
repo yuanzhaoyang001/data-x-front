@@ -171,7 +171,7 @@ const getItemLabel = computed(() => {
   }
   let seqNo = "";
   if (props.seqNo != null) {
-    seqNo = `<span style="float: left;">${props.seqNo}：</span>`;
+    seqNo = `<span style="float: left;">${props.seqNo}.</span>`;
   }
   let label = props.item.config.label;
   // 存在动态引用其他字段
