@@ -64,17 +64,17 @@
       :gutter="10"
       class="mb8"
     >
-      <el-col :span="1.5">
-        <el-button
-          v-hasPermi="['workflow:process:start']"
-          icon="ele-Plus"
-          plain
-          type="primary"
-          @click="handleAdd"
-        >
-          {{ $t("workflow.myWkf.startWkf") }}
-        </el-button>
-      </el-col>
+      <!--      <el-col :span="1.5">-->
+      <!--        <el-button-->
+      <!--          v-hasPermi="['workflow:process:start']"-->
+      <!--          icon="ele-Plus"-->
+      <!--          plain-->
+      <!--          type="primary"-->
+      <!--          @click="handleAdd"-->
+      <!--        >-->
+      <!--          {{ $t("workflow.myWkf.startWkf") }}-->
+      <!--        </el-button>-->
+      <!--      </el-col>-->
       <el-col :span="1.5">
         <el-button
           v-hasPermi="['workflow:process:delete']"
