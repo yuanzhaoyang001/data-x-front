@@ -23,7 +23,7 @@
           :item="item"
           v-model:models="formModel"
           :seq-no="item.seqNo"
-          v-show="isFieldShow(item)"
+          v-show="isFieldShow(item) && isNotHideField(item)"
           @next="nextPage"
           @prev="prevPage"
           @input-change="onInputChange"
@@ -138,10 +138,14 @@ watch(
   { deep: true }
 );
 
-// 过滤隐藏字段
 const getFields = computed(() => {
-  return formConfCopy.value.fields.filter((item: any) => !item.hideType || props.showHiddenField);
+  return formConfCopy.value.fields;
 });
+
+// 是否是隐藏字段 或者开启了显示隐藏字段
+const isNotHideField = (item: any) => {
+  return !item.hideType || props.showHiddenField;
+};
 
 const { lastSeqNo } = useFormSeqNo();
 
@@ -380,7 +384,7 @@ const switchPage = (eventName: string, page: number) => {
 };
 
 /**
- * 字段是否显示
+ * 字段是否显示 受逻辑控制显示隐藏
  * @param item
  */
 const isFieldShow = (item: any) => {

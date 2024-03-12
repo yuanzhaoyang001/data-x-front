@@ -37,7 +37,7 @@ watchDebounced(
   (val: any) => {
     // 如果是子表单
     const result = evalFormula(val, props.item?.calcFormula, isSubForm);
-    if (result != null) {
+    if (result != null && result !== "undefined") {
       changeValue.value = result;
     }
   },
